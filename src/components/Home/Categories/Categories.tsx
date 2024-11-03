@@ -56,8 +56,8 @@ const Categories = () => {
   ];
 
   return (
-    <div className="container flex flex-col  pt-10 h-fit relative">
-      <div className="flex flex-wrap xl:flex-nowrap justify-between gap-6">
+    <div className="md:container  flex flex-col  pt-10 h-fit relative">
+      <div className="flex flex-wrap xl:flex-nowrap justify-center lg:justify-between gap-6">
         <div className="bg-secondary pl-8 w-80 rounded-lg h-[100px] flex items-center gap-6 ">
           <div>
             <Image src={svgIconDelevery} alt="" />
@@ -95,33 +95,34 @@ const Categories = () => {
           </div>
         </div>
       </div>
-      <Carousel
-        opts={{
-          align: "start",
-        }}
-        className="rounded-xl relative bg-secondary w-full top-12"
-      >
-        <CarouselContent className="flex   items-center top-12   justify-evenly h-[181px] ">
-          {carouselItem.map((item, index) => (
-            <CarouselItem
-              key={index}
-              className="flex basis-1/3 md:basis-1/4 lg:basis-1/6 shrink-0 flex-col items-center"
-            >
-              <Image src={item.img} alt="" />
-              <span> {item.title}</span>
-            </CarouselItem>
-          ))}
-
-          {/* <span>
+      <div className="w-full px-5">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="rounded-xl my-3 md:mx-6 relative bg-secondary top-0 w-full md:top-12"
+        >
+          <CarouselContent className="flex   items-center  justify-evenly h-[181px] ">
+            {carouselItem.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="flex basis-1/2 sm:basis-1/3  md:basis-1/3 lg:basis-1/6 shrink-0 flex-col items-center"
+              >
+                <Image src={item.img} alt="" />
+                <span> {item.title}</span>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <span className=" flex items-center justify-center w-10 h-10 rounded-full bg-white absolute -left-5 top-1/2 transform -translate-y-1/2">
             <Image src={svgIconLeftArrow} alt="" />
-            </span> */}
-          {/* <span>
+          </span>
+          <span className="  flex items-center justify-center w-10 h-10 rounded-full bg-white absolute   -right-5 top-1/2 transform -translate-y-1/2">
             <Image src={svgIconRightArrow} alt="" />
-            </span> */}
-        </CarouselContent>
-        <CarouselPrevious className="flex items-center justify-center w-10 h-10 rounded-full bg-white absolute -left-5 top-1/2 transform -translate-y-1/2" />
-        <CarouselNext className="flex items-center justify-center w-10 h-10 rounded-full bg-white absolute   -right-5 top-1/2 transform -translate-y-1/2" />
-      </Carousel>
+          </span>
+          <CarouselPrevious className="z-10 !opacity-0 *:opacity-0 flex items-center justify-center w-10 h-10 rounded-full bg-white absolute -left-5 top-1/2 transform -translate-y-1/2" />
+          <CarouselNext className="flex z-10 !opacity-0 *:opacity-0 items-center justify-center w-10 h-10 rounded-full bg-white absolute   -right-5 top-1/2 transform -translate-y-1/2" />
+        </Carousel>
+      </div>
     </div>
   );
 };

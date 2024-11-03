@@ -16,8 +16,8 @@ import React from "react";
 const BestSeller = () => {
   return (
     <div className="bg-secondary py-16">
-      <div className="flex xl:flex-nowrap gap-6 container justify-between flex-wrap">
-        <div className="xl:basis-6/12 lg:flex lg:basis-12/12 w-full">
+      <div className="flex xl:flex-nowrap gap-6 md:container mx-3 md:px-0 justify-between flex-wrap">
+        <div className="xl:basis-4/12   w-full">
           <div className="flex flex-col gap-4 mb-4">
             <p className="text-[#666666] text-xs font-medium">
               amazon award-winning monitor

@@ -12,7 +12,7 @@ import React from "react";
 const FooterMiddle = () => {
   return (
     <div className=" bg-black">
-      <div className="flex xl:flex-nowrap flex-wrap justify-between container pb-10">
+      <div className="flex xl:flex-nowrap flex-wrap justify-between px-3 md:px-0 md:container pb-10">
         <div className="xl:basis-4/12 w-full lg:basis-8/12 flex flex-col my-10 gap-6">
           <div className="">
             <Image src={pngIconLogo} alt="site logo" width={83} height={36} />

@@ -5,7 +5,7 @@ import React from "react";
 const FooterTop = () => {
   return (
     <div className="bg-[#FF2220] text-white py-4">
-      <div className="container flex-wrap xl:flex-nowrap flex justify-between">
+      <div className="md:container px-3 md:px-0 flex-wrap xl:flex-nowrap flex justify-between">
         <h1 className="font-bold text-[40px] leading-[48px]">
           Newsletter Sign UP
         </h1>

@@ -11,12 +11,12 @@ import React from "react";
 const FooterBottom = () => {
   return (
     <div className="bg-[#151515]">
-      <div className="container">
-        <div className="flex lg:flex-nowrap flex-wrap justify-between h-[93px] items-center">
+      <div className="md:container p-3 md:px-0">
+        <div className="flex gap-3 lg:flex-nowrap flex-wrap justify-between md:h-[93px] items-center">
           <div className="text-sm flex gap-2 text-white font-regular">
             © 2024 <h4 className="font-bold">Zylax</h4> . All Rights Reserved
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap md:flex-nowrap gap-4">
             <Image src={pngPaypal} alt="paypal" />
             <Image src={pngRupay} alt="paypal" />
             <Image src={pngVisa} alt="paypal" />

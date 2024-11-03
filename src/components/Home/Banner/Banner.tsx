@@ -18,7 +18,7 @@ import Autoplay from "embla-carousel-autoplay";
 const Banner = () => {
   return (
     <div className="bg-secondary py-8">
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 container ">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 p-3 md:p-0 md:container ">
         <div className="col-span-2 flex flex-col gap-4">
           <div>
             <Carousel
