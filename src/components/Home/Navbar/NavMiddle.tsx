@@ -1,46 +1,115 @@
 "use client";
 
 import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import NavSearch from "./NavSearch";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
+import { svgIconSearch } from "@/assets/images";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import {
   pngIconLogo,
   svgIconBag,
   svgIconPerson,
   svgIconSupport,
   svgIconTruck,
 } from "@/assets/images";
-import Image from "next/image";
-import React from "react";
-import NavSearch from "./NavSearch";
 
 const NavMiddle = () => {
   return (
     <div className="flex flex-col gap-1">
       <div className="  border-b border-b-[#F0F0F0]">
-        <div className="container flex justify-between items-center ">
+        <div className="container flex-wrap lg:flex-nowrap  flex justify-center lg:justify-between items-center ">
           <p className="font-semibold">
             Welcome to ZYLAX, One Stop Shop For All Your Gaming Needs!
           </p>
-          <div className="flex gap-3  h-8">
-            <button className="flex gap-1 items-center h-full">
-              <span>
-                <Image src={svgIconTruck} alt="truck" />
-              </span>
-              <span className="font-semibold text-xs">Truck Order</span>
-            </button>
-            <button className="flex gap-1 items-center h-full">
-              <span>
-                <Image src={svgIconPerson} alt="person" />
-              </span>
-              <span className="font-semibold text-xs">Signin/Register</span>
-            </button>
+          <div className=" h-8 flex justify-between w-full lg:w-auto lg:justify-normal">
+            <div className="flex gap-3 items-center ">
+              <button className="flex gap-1 items-center h-full">
+                <span>
+                  <Image src={svgIconTruck} alt="truck" />
+                </span>
+                <span className="font-semibold text-xs">Truck Order</span>
+              </button>
+              <button className="flex gap-1 items-center h-full">
+                <span>
+                  <Image src={svgIconPerson} alt="person" />
+                </span>
+                <span className="font-semibold text-xs">Signin/Register</span>
+              </button>
+            </div>
+            <Sheet>
+              <SheetTrigger className="w-6 lg:hidden block">
+                <Menu />
+              </SheetTrigger>
+              <SheetContent side={"left"} className="bg-white">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col p-4">
+                  {/* Search */}
+                  <div className="flex flex-col items-start gap-4 ">
+                    <div className="w-full">
+                      <Input
+                        className="border   bg-secondary px-4 py-2 h-full rounded-full "
+                        placeholder="Search anything"
+                      />
+                    </div>
+                    <Select>
+                      <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full ">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">Items 1</SelectItem>
+                        <SelectItem value="2">items 2</SelectItem>
+                        <SelectItem value="3">items 3</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Button className="bg-black max-w-32 text-white font-semibold rounded-full px-4 py-2">
+                      <Image
+                        src={svgIconSearch}
+                        className="filter invert"
+                        alt="search"
+                      />
+                      Search
+                    </Button>
+                  </div>
+
+                  {/* Menu */}
+                  <div className="flex flex-col items-start  text-black  py-2 font-semibold">
+                    <h3>Home</h3>
+                    <h3>About </h3>
+                    <h3>List Categories</h3>
+                    <h3>Best Seller</h3>
+                    <h3>Shop</h3>
+                    <h3>Blog</h3>
+                    <h3>Contact</h3>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
-      <div className="flex justify-between container pb-2 h-[49px]">
+      <div className="flex  justify-between gap-2 container pb-2 lg:h-[49px]">
         <div className="grid grid-cols-3 w-full">
           <div className="col-span-1">
             <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
           </div>
-          <div className="col-span-2 h-full items-center flex">
+          <div className="col-span-2 h-full hidden  items-center lg:flex">
             <NavSearch />
           </div>
         </div>

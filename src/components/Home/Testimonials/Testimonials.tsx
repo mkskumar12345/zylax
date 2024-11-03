@@ -12,8 +12,8 @@ const Testimonials = () => {
   return (
     <div>
       <div className="relative bg-cover bg-center bg-[url('/testimonial-bg-img.png')] bg-black/90 bg-blend-darken">
-        <div className="container pb-40 pt-16 flex gap-2">
-          <div className="mr-16 max-w-[184px] text-white flex flex-col gap-2 py-4 ">
+        <div className="container pb-40 pt-16 xl:flex-nowrap flex-wrap flex gap-2">
+          <div className="mr-16 lg:basis-1/2 w-full xl:max-w-[184px] text-white flex flex-col gap-2 py-4 ">
             <p className="font-semibold leading-4">Testimonials</p>
             <h1 className="font-semibold text-[32px] leading-8">
               What our Clients say
@@ -23,7 +23,7 @@ const Testimonials = () => {
               accumsan.
             </p>
           </div>
-          <div className="basis-1/3 bg-[#FF1E1C] rounded-t-xl text-white">
+          <div className="xl:basis-1/3 lg:basis-1/2 bg-[#FF1E1C] rounded-t-xl text-white">
             <div className="p-4 ">
               <h2 className="font-semibold text-xl">What others thought of</h2>
               <p className="mt-2 font-medium text-sm ">
@@ -47,7 +47,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-          <div className="basis-1/3 bg-[#ffffff] rounded-t-xl text-[#000000]">
+          <div className="xl:basis-1/3 lg:basis-1/2 bg-[#ffffff] rounded-t-xl text-[#000000]">
             <div className="p-4 ">
               <h2 className="font-semibold text-xl">What others thought of</h2>
               <p className="mt-2 font-medium text-sm ">
@@ -71,7 +71,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-          <div className="basis-1/3 bg-[#ffffff] rounded-t-xl text-[#000000]">
+          <div className="xl:basis-1/3 lg:basis-1/2 bg-[#ffffff] rounded-t-xl text-[#000000]">
             <div className="p-4 ">
               <h2 className="font-semibold text-xl">What others thought of</h2>
               <p className="mt-2 font-medium text-sm ">
@@ -98,30 +98,32 @@ const Testimonials = () => {
         </div>
       </div>
       <div className=" container  ">
-        <div className="relative h-[328px]">
-          <div className=" h-full p-8 rounded-xl gap-10 bg-white flex absolute -top-24  ">
-            <div className="basis-7/12 h-full ">
+        <div className="relative xl:h-[328px] md:border border-secondary">
+          <div className=" h-full p-8 rounded-xl  gap-10 bg-white flex-wrap lg:flex-nowrap flex xl:absolute -top-24  ">
+            <div className="xl:basis-7/12 lg:basis-6/12 w-full h-full ">
               <Image
                 src={pngTestimonialBanner}
                 alt="Testimonial Banner"
-                className="max-h-full rounded-t-xl max-w-[698px]"
+                className="max-h-full rounded-t-xl xl:max-w-[698px]"
               />
             </div>
-            <div className="basis-5/12 h-full flex  items-center">
-              <div className="flex flex-col gap-4 items-start">
+            <div className="xl:basis-5/12 lg:basis-6/12 w-full h-full flex  items-center">
+              <div className="flex  flex-col gap-4 items-start">
                 <button className="font-semibold rounded-t-[10px] px-4 bg-[#D30200]">
                   About Us
                 </button>
-                <h1 className="font-semibold text-[32px] leading-8 text-black">
-                  About ZYLAX
-                </h1>
-                <p className="font-regular text-sm ">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in
-                  eget facilisi ut. Turpis nisi tempus porttitor nunc interdum.
-                  Elit a auctor eget auctor. Massa facilisi nunc ornare quis
-                  congue amet arcu. tincidunt amet libero ultricies purus eu
-                  Tortor habitan
-                </p>
+                <div>
+                  <h1 className="font-semibold text-[32px] leading-8 text-black">
+                    About ZYLAX
+                  </h1>
+                  <p className="font-regular text-sm ">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    in eget facilisi ut. Turpis nisi tempus porttitor nunc
+                    interdum. Elit a auctor eget auctor. Massa facilisi nunc
+                    ornare quis congue amet arcu. tincidunt amet libero
+                    ultricies purus eu Tortor habitan
+                  </p>
+                </div>
                 <Button
                   variant={"outline"}
                   className="rounded-t-xl font-semibold leading-4 pt-2 px-4 border-[#D30200] text-[#D30200] "
@@ -132,7 +134,7 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-        <div className="relative transform -translate-y-1/2">
+        <div className="relative transform mb-10 xl:mb-0 xl:-translate-y-1/2">
           <Image src={pngTestimonialAd} alt="Testimonial Ad" />
         </div>
       </div>

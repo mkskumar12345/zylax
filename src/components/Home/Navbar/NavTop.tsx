@@ -4,7 +4,7 @@ import React from "react";
 const NavTop = () => {
   return (
     <div className="bg-primary text-secondary  ">
-      <div className="container flex justify-around items-center h-10  ">
+      <div className="container flex flex-wrap lg:flex-nowrap justify-around items-center h-10  ">
         <div>
           <p className="font-semibold text-xs">
             FREE delivery & 40% Discount for next 3 orders! Place your 1st order

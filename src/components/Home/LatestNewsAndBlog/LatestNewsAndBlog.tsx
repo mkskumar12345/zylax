@@ -7,7 +7,7 @@ const LatestNewsAndBlog = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between lg:flex-nowrap flex-wrap items-center">
           <h1 className="font-semibold text-5xl leading-[48px]">
             Latest news and blogs
           </h1>
@@ -20,7 +20,7 @@ const LatestNewsAndBlog = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-3  gap-6 my-10 ">
+        <div className="grid xl:grid-cols-3  lg:grid-cols-2 grid-cols-1  gap-6 my-10 ">
           {Array.from({ length: 3 }).map((_, index) => (
             <div key={index} className=" flex flex-col gap-4">
               <div>

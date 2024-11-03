@@ -12,7 +12,7 @@ const FooterBottom = () => {
   return (
     <div className="bg-[#151515]">
       <div className="container">
-        <div className="flex justify-between h-[93px] items-center">
+        <div className="flex lg:flex-nowrap flex-wrap justify-between h-[93px] items-center">
           <div className="text-sm flex gap-2 text-white font-regular">
             © 2024 <h4 className="font-bold">Zylax</h4> . All Rights Reserved
           </div>

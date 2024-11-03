@@ -64,6 +64,10 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      screens: {
+        "3xl": "1440px",
+        "4xl": "1600px",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

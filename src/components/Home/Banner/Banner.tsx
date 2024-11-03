@@ -5,20 +5,41 @@ import {
   pngHomeBannerRight1,
   pngHomeBannerRight2,
 } from "@/assets/images";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 const Banner = () => {
   return (
     <div className="bg-secondary py-8">
-      <div className="grid grid-cols-3 gap-4 container ">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 container ">
         <div className="col-span-2 flex flex-col gap-4">
           <div>
-            <Image src={pngHomeBannerCrousel1} alt="crousel1" />
+            <Carousel
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                }),
+              ]}
+              className="w-full "
+            >
+              <CarouselContent>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <CarouselItem key={index}>
+                    <Image src={pngHomeBannerCrousel1} alt="crousel1" />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
-          <div className="flex justify-between ">
-            <div className="relative h-[119px] w-[336px]">
+          <div className="flex gap-4 flex-wrap lg:flex-nowrap justify-between ">
+            <div className="relative h-[119px] w-full lg:w-[336px]">
               <Image
                 src={pngHomeBannerBottom1}
                 alt="bottom1"
@@ -34,7 +55,7 @@ const Banner = () => {
                 </Link>
               </div>
             </div>
-            <div className="relative h-[119px] w-[453px]">
+            <div className="relative h-[119px] w-full lg:w-[453px]">
               <Image
                 src={pngHomeBannerBottom2}
                 alt="bottom2"

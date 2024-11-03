@@ -196,7 +196,7 @@ const DealsOfTheDay = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white border-primary border-4 w-full flex-col rounded-xl flex gap-2 ">
+          <div className="bg-white  border-primary border-4 w-full flex-col rounded-xl hidden lg:flex gap-2 ">
             <div className="  p-8 flex gap-2 flex-col ">
               <div className=" flex flex-col gap-8">
                 <div className=" basis-1/2 flex relative justify-center items-center">
@@ -249,7 +249,7 @@ const DealsOfTheDay = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white border-secondary border flex-col w-full rounded-xl flex gap-2 ">
+          <div className="bg-white border-secondary border flex-col w-full rounded-xl hidden lg:flex gap-2 ">
             <div className="  p-8 flex gap-2 flex-col border-b-2 border-secondary">
               <div className=" flex gap-8">
                 <div className=" basis-1/2 flex relative justify-center items-center">
