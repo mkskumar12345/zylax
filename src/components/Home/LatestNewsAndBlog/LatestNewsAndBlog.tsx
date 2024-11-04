@@ -6,7 +6,7 @@ import React from "react";
 const LatestNewsAndBlog = () => {
   return (
     <div>
-      <div className="md:container px-3 md:px-0">
+      <div className="md:container px-3 ">
         <div className="flex justify-between lg:flex-nowrap flex-wrap items-center">
           <h1 className="font-semibold text-2xl lg:text-4xl xl:text-5xl lg:leading-9  xl:leading-[48px]">
             Latest news and blogs
