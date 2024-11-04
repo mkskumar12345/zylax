@@ -9,19 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Heart, Plus } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { pngBgDealOfDay } from "@/assets/images";
 import { Separator } from "@/components/ui/separator";
 
 const DealsOfTheDay = () => {
-  console.log(pngBgDealOfDay);
   return (
     <div className="">
-      <div
-        className=" bg-[linear-gradient(180deg,_#d30200_50%,_white_50%)] pt-12 px-3 md:px-0"
-        style={{
-          backgroundImage: `url(${pngBgDealOfDay})`,
-        }}
-      >
+      <div className=" bg-[linear-gradient(180deg,_#d30200_50%,_white_50%)] pt-12 px-3 md:px-0">
         <h1 className="text-secondary md:container  font-semibold md:text-3xl text-2xl lg:text-5xl mb-8">
           Best Deals of The Days
         </h1>
@@ -249,8 +242,8 @@ const DealsOfTheDay = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white border-secondary border flex-col w-full rounded-xl hidden lg:flex gap-2 ">
-            <div className="  p-8 flex gap-2 flex-col border-b-2 border-secondary">
+          <div className="bg-white border-secondary border  flex-col w-full rounded-xl hidden xl:flex gap-2 ">
+            <div className="p-8 flex gap-2 flex-col border-b-2 border-secondary">
               <div className=" flex gap-8">
                 <div className=" basis-1/2 flex relative justify-center items-center">
                   <Image src={pngGamingMonitor} alt="gamingMonitor" />

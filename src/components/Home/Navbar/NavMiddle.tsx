@@ -33,7 +33,7 @@ const NavMiddle = () => {
   return (
     <div className="flex flex-col gap-1">
       <div className="  border-b border-b-[#F0F0F0]">
-        <div className="md:container md:p-0 p-3 flex-wrap lg:flex-nowrap  flex justify-center lg:justify-between items-center ">
+        <div className="md:container  p-3 flex-wrap lg:flex-nowrap  flex justify-center lg:justify-between items-center ">
           <p className="font-medium hidden md:block">
             Welcome to ZYLAX, One Stop Shop For All Your Gaming Needs!
           </p>
@@ -112,7 +112,7 @@ const NavMiddle = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between gap-2 md:container p-3 pb-2 lg:h-[49px]">
+      <div className="flex justify-between gap-2 md:container px-3 pb-2 lg:h-[49px]">
         <div className="grid md:grid-cols-3 w-full">
           <div className="col-span-1">
             <Image src={pngIconLogo} alt="site logo" width={83} height={36} />

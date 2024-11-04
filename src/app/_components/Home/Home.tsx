@@ -15,7 +15,6 @@ import Footer from "@/components/Home/Footer/Footer";
 const HomeComponent = () => {
   return (
     <div>
-      <Navbar />
       <Banner />
       <Categories />
       <DealsOfTheDay />
@@ -24,7 +23,6 @@ const HomeComponent = () => {
       <BestArrival />
       <Testimonials />
       <LatestNewsAndBlog />
-      <Footer />
     </div>
   );
 };

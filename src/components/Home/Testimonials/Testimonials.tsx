@@ -12,7 +12,7 @@ const Testimonials = () => {
   return (
     <div>
       <div className="relative bg-cover bg-center bg-[url('/testimonial-bg-img.png')] bg-black/90 bg-blend-darken">
-        <div className="md:container px-3 md:px-0 pb-40 pt-16 xl:flex-nowrap flex-wrap flex gap-2">
+        <div className="md:container px-3  pb-40 pt-16 xl:flex-nowrap flex-wrap flex gap-2">
           <div className="mr-16 lg:basis-1/2 w-full xl:max-w-[184px] text-white flex flex-col gap-2 py-4 ">
             <p className="font-semibold leading-4">Testimonials</p>
             <h1 className="font-semibold text-[32px] leading-8">

@@ -58,6 +58,23 @@
   } */
 }
 
+@layer utilities {
+  .required::after {
+    content: "*"; /* Add asterisk */
+    color: #f1352b; /* Desired color */
+    font-weight: 600; /* Equivalent to font-semibold */
+    font-size: 0.875rem; /* Equivalent to text-sm */
+    margin-left: 0.25rem; /* Optional: space between label text and asterisk */
+  }
+  .optional::after {
+    content: " (optional)"; /* Add optional text */
+    color: #666666; /* Desired color */
+    font-weight: 600; /* Equivalent to font-semibold */
+    font-size: 0.875rem; /* Equivalent to text-sm */
+    margin-left: 0.25rem; /* Optional: space between label text and (optional) */
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

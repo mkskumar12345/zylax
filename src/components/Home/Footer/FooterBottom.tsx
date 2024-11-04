@@ -11,7 +11,7 @@ import React from "react";
 const FooterBottom = () => {
   return (
     <div className="bg-[#151515]">
-      <div className="md:container p-3 md:px-0">
+      <div className="md:container p-3 ">
         <div className="flex gap-3 lg:flex-nowrap flex-wrap justify-between md:h-[93px] items-center">
           <div className="text-sm flex gap-2 text-white font-regular">
             © 2024 <h4 className="font-bold">Zylax</h4> . All Rights Reserved

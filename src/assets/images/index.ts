@@ -48,7 +48,6 @@ import pngGamingMonitor from "./png/gaming-monitor.png";
 import pngWifyAms from "./png/wify-ams.png";
 import pngMouse from "./png/mouse.png";
 import pngMicroAtx from "./png/micro-atx.png";
-import pngBgDealOfDay from "./png/deal-of-day-bg.png";
 import pngBestSellerCpu from "./png/best-seller-cpu.png";
 import pngBestSellerGamingPc from "./png/best-seller-gaming-pc.png";
 import pngBestSellerPc from "./png/best-seller-pc.png";
@@ -65,6 +64,8 @@ import pngVisa from "./png/visa.png";
 import pngRupay from "./png/rupay.png";
 import pngKlarna from "./png/klarna.png";
 import pngStripe from "./png/stripe.png";
+import pngContactBanner from "./png/contact-banner.png";
+import pngContactForm from "./png/contact-form.png";
 
 export {
   // ////////////////////////////
@@ -115,9 +116,9 @@ export {
   pngGamingMonitor,
   pngWifyAms,
   pngGBMicroAtx,
+  pngContactForm,
   pngMouse,
   pngMicroAtx,
-  pngBgDealOfDay,
   pngLatestNews,
   pngBestSellerCpu,
   pngBestSellerGamingPc,
@@ -131,5 +132,6 @@ export {
   pngVisa,
   pngRupay,
   pngKlarna,
+  pngContactBanner,
   pngStripe,
 };

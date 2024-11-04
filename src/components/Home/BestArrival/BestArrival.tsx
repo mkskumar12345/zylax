@@ -12,7 +12,7 @@ import React from "react";
 
 const BestArrival = () => {
   return (
-    <div className="md:container px-3 md:px-0">
+    <div className="md:container px-3">
       <div className="flex justify-between">
         <h1 className="font-bold text-3xl ml-4">Best Arrivals</h1>
         <button className="flex gap-2 font-semibold text-sm items-center border-[#E5E7EB] border bg-white mx-1 p-1 px-3 rounded">
