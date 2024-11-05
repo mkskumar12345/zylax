@@ -29,13 +29,13 @@ import {
   svgIconTruck,
 } from "@/assets/images";
 
-import Signup from "@/components/Popup/Signup/Signup";
+import Login from "@/components/Popup/Login/Login";
 
 const NavMiddle = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
+  const openPopup = () => setPopupOpen(true);
+  const closePopup = () => setPopupOpen(false);
   return (
     <div className="flex flex-col gap-1">
       <div className="  border-b border-b-[#F0F0F0]">
@@ -58,7 +58,7 @@ const NavMiddle = () => {
                 Signin
               </span>
               <span className="font-semibold text-xs">/Register</span>
-              <Signup open={isPopupOpen} onClose={closePopup} />
+              <Login isOpen={isPopupOpen} onClose={closePopup} />
             </button>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">
