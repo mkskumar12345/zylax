@@ -12,6 +12,7 @@ import Testimonials from "@/components/Home/Testimonials/Testimonials";
 import LatestNewsAndBlog from "@/components/Home/LatestNewsAndBlog/LatestNewsAndBlog";
 import Footer from "@/components/Home/Footer/Footer";
 
+
 const HomeComponent = () => {
   return (
     <div>
@@ -23,6 +24,7 @@ const HomeComponent = () => {
       <BestArrival />
       <Testimonials />
       <LatestNewsAndBlog />
+
     </div>
   );
 };

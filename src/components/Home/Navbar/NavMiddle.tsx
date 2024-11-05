@@ -30,12 +30,17 @@ import {
 } from "@/assets/images";
 
 import Login from "@/components/Popup/Login/Login";
+import Signup from "@/components/Popup/Signup/Signup";
 
 const NavMiddle = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   const openPopup = () => setPopupOpen(true);
   const closePopup = () => setPopupOpen(false);
+
+  const [issignup, setSignup] = useState(false);
+  const signupopen = () => setSignup(true);
+  const signupclose = () => setSignup(false);
   return (
     <div className="flex flex-col gap-1">
       <div className="  border-b border-b-[#F0F0F0]">
@@ -50,14 +55,17 @@ const NavMiddle = () => {
               </span>
               <span className="font-semibold text-xs">Truck Order</span>
             </button>
-            <button className="flex gap-1 items-center h-full">
+            <button className="flex  items-center h-full">
               <span>
                 <Image src={svgIconPerson} alt="person" />
               </span>
               <span className="font-semibold text-xs" onClick={openPopup}>
-                Signin
+                Signin/
               </span>
-              <span className="font-semibold text-xs">/Register</span>
+              <span className="font-semibold text-xs" onClick={signupopen}>
+                Register
+              </span>
+              <Signup isOpen={issignup} onClose={signupclose} />
               <Login isOpen={isPopupOpen} onClose={closePopup} />
             </button>
             <Sheet>
