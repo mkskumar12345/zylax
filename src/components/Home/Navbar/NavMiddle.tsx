@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -29,7 +29,13 @@ import {
   svgIconTruck,
 } from "@/assets/images";
 
+import Signup from "@/components/Popup/Signup/Signup";
+
 const NavMiddle = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
   return (
     <div className="flex flex-col gap-1">
       <div className="  border-b border-b-[#F0F0F0]">
@@ -48,7 +54,11 @@ const NavMiddle = () => {
               <span>
                 <Image src={svgIconPerson} alt="person" />
               </span>
-              <span className="font-semibold text-xs">Signin/Register</span>
+              <span className="font-semibold text-xs" onClick={openPopup}>
+                Signin
+              </span>
+              <span className="font-semibold text-xs">/Register</span>
+              <Signup open={isPopupOpen} onClose={closePopup} />
             </button>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">
