@@ -1,5 +1,6 @@
-import React from "react";
-
+"use client";
+import login from "@/assets/images/png/login.png";
+import Image from "next/image";
 interface PopupProps {
   open: boolean;
   onClose: () => void;
@@ -7,7 +8,7 @@ interface PopupProps {
   children: React.ReactNode;
 }
 
-const Popup: React.FC<PopupProps> = ({ open, onClose,  children }) => {
+const Signup: React.FC<PopupProps> = ({ open, onClose, children }) => {
   if (!open) return null;
 
   return (
@@ -15,7 +16,7 @@ const Popup: React.FC<PopupProps> = ({ open, onClose,  children }) => {
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
         <div className="flex justify-between items-center">
           <div></div>
-        
+
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -23,14 +24,16 @@ const Popup: React.FC<PopupProps> = ({ open, onClose,  children }) => {
             &times;
           </button>
         </div>
-        <div className="mt-4">{children}
+        <div className="mt-4">
+          <div></div>
 
-
-          <div>Signup</div>
+          <div>
+            <Image src={login} alt="Login" />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Popup;
+export default Signup;
