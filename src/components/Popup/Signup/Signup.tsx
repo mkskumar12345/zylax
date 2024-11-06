@@ -89,7 +89,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
                 Login
               </span>
             </div>
-            <div className="flex items-center justify-center gap-1">
+            {/* <div className="flex items-center justify-center gap-1">
               <hr className="flex-grow border-t border-gray-300" />
               <span className="px-2 text-gray-500">Or Sign up with</span>
               <hr className="flex-grow border-t border-gray-300" />
@@ -104,7 +104,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
               <div className="border-[#3869EB] border rounded w-[120px] h-[22px] flex justify-center items-center">
                 <Image src={apple} alt="Login" className="" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className=" w-[350px] ">

@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import login from "@/assets/images/svg/login.svg";
-
 import Image from "next/image";
 import logo from "../../../assets/images/png/logo.png";
-import facebook from "../../../assets/images/svg/fcbook.svg";
-import google from "../../../assets/images/svg/google.svg";
-import apple from "../../../assets/images/svg/apple.svg";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 interface PopupProps {
   isOpen: boolean;
@@ -71,22 +67,6 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             <div className="text-center w-full">
               Don’t have an account?{" "}
               <span className="text-[#FF8682] font-semibold">Sign up</span>
-            </div>
-            <div className="flex items-center justify-center gap-1">
-            <hr className="flex-grow border-t border-gray-300" />
-              <span>Or login with</span>
-              <hr className="flex-grow border-t border-gray-300" />
-            </div>
-            <div className="flex justify-between w-full">
-              <div className="border-[#3869EB] border rounded w-[90px] h-[22px] flex justify-center items-center">
-                <Image src={facebook} alt="Login" className="" />
-              </div>
-              <div className="border-[#3869EB] border rounded w-[90px] h-[22px] flex justify-center items-center">
-                <Image src={google} alt="Login" className="" />
-              </div>
-              <div className="border-[#3869EB] border rounded w-[90px] h-[22px] flex justify-center items-center">
-                <Image src={apple} alt="Login" className="" />
-              </div>
             </div>
           </div>
 
