@@ -11,7 +11,7 @@ import ForgetPassword from "../ForgetPassword/ForgetPassword";
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
