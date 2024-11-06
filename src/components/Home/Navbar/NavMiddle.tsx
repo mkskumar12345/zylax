@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -30,26 +30,56 @@ import {
 } from "@/assets/images";
 import Link from "next/link";
 
+import Login from "@/components/Popup/Login/Login";
+import Signup from "@/components/Popup/Signup/Signup";
+
+interface PopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children?: React.ReactNode; // Optional children prop
+}
+
 const NavMiddle = () => {
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const openPopup = () => setPopupOpen(true);
+  const closePopup = () => setPopupOpen(false);
+
+  const [isSignupOpen, setSignup] = useState(false);
+  const signupopen = () => setSignup(true);
+  const signupclose = () => setSignup(false);
+
   return (
     <div className="flex flex-col gap-1">
-      <div className="  border-b border-b-[#F0F0F0]">
-        <div className="md:container  p-3 flex-wrap lg:flex-nowrap  flex justify-center lg:justify-between items-center ">
+      <div className="border-b border-b-[#F0F0F0]">
+        <div className="md:container p-3 flex-wrap lg:flex-nowrap flex justify-center lg:justify-between items-center ">
           <p className="font-medium hidden md:block">
             Welcome to ZYLAX, One Stop Shop For All Your Gaming Needs!
           </p>
-          <div className=" h-8  md:gap-3 items-center justify-between md:justify-normal flex  w-full lg:w-auto lg:justify-normal">
+          <div className="h-8 md:gap-3 items-center justify-between md:justify-normal flex w-full lg:w-auto lg:justify-normal">
             <button className="flex gap-1 items-center h-full">
               <span>
                 <Image src={svgIconTruck} alt="truck" />
               </span>
               <span className="font-semibold text-xs">Truck Order</span>
             </button>
-            <button className="flex gap-1 items-center h-full">
+            <button className="flex items-center h-full">
               <span>
                 <Image src={svgIconPerson} alt="person" />
               </span>
-              <span className="font-semibold text-xs">Signin/Register</span>
+              <span className="font-semibold text-xs" onClick={openPopup}>
+                Signin/
+              </span>
+              <span className="font-semibold text-xs" onClick={signupopen}>
+                Register
+              </span>
+              {/* Pass empty fragment or null as children */}
+              <Signup isOpen={isSignupOpen} onClose={signupclose}>
+                {/* Optional children content */}
+              </Signup>
+              <Login isOpen={isPopupOpen} onClose={closePopup}>
+                {/* Optional children content */}
+              </Login>
             </button>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">
@@ -64,7 +94,7 @@ const NavMiddle = () => {
                   <div className="flex flex-col items-start gap-4 ">
                     <div className="w-full">
                       <Input
-                        className="border   bg-secondary px-4 py-2 h-full rounded-full "
+                        className="border bg-secondary px-4 py-2 h-full rounded-full "
                         placeholder="Search anything"
                       />
                     </div>
@@ -89,7 +119,7 @@ const NavMiddle = () => {
                   </div>
 
                   {/* Menu */}
-                  <div className="flex flex-col items-start  text-black  py-2 font-semibold">
+                  <div className="flex flex-col items-start text-black py-2 font-semibold">
                     <h3>Home</h3>
                     <h3>About </h3>
                     <h3>List Categories</h3>
@@ -120,7 +150,7 @@ const NavMiddle = () => {
               <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
             </Link>
           </div>
-          <div className="col-span-2 h-full hidden  items-center lg:flex">
+          <div className="col-span-2 h-full hidden items-center lg:flex">
             <NavSearch />
           </div>
         </div>
