@@ -10,7 +10,7 @@ import ForgetPassword from "../ForgetPassword/ForgetPassword";
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
