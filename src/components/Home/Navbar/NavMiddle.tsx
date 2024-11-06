@@ -32,20 +32,26 @@ import {
 import Login from "@/components/Popup/Login/Login";
 import Signup from "@/components/Popup/Signup/Signup";
 
+interface PopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children?: React.ReactNode; // Optional children prop
+}
+
 const NavMiddle = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [isSignupOpen, setSignupOpen] = useState(false);
 
   const openPopup = () => setPopupOpen(true);
   const closePopup = () => setPopupOpen(false);
 
-  const signupopen = () => setSignupOpen(true);
-  const signupclose = () => setSignupOpen(false);
+  const [isSignupOpen, setSignup] = useState(false);
+  const signupopen = () => setSignup(true);
+  const signupclose = () => setSignup(false);
 
   return (
     <div className="flex flex-col gap-1">
       <div className="border-b border-b-[#F0F0F0]">
-        <div className="md:container p-3 flex-wrap lg:flex-nowrap flex justify-center lg:justify-between items-center">
+        <div className="md:container p-3 flex-wrap lg:flex-nowrap flex justify-center lg:justify-between items-center ">
           <p className="font-medium hidden md:block">
             Welcome to ZYLAX, One Stop Shop For All Your Gaming Needs!
           </p>
@@ -66,8 +72,13 @@ const NavMiddle = () => {
               <span className="font-semibold text-xs" onClick={signupopen}>
                 Register
               </span>
-              <Signup isOpen={isSignupOpen} onClose={signupclose} />
-              <Login isOpen={isPopupOpen} onClose={closePopup} />
+              {/* Pass empty fragment or null as children */}
+              <Signup isOpen={isSignupOpen} onClose={signupclose}>
+                {/* Optional children content */}
+              </Signup>
+              <Login isOpen={isPopupOpen} onClose={closePopup}>
+                {/* Optional children content */}
+              </Login>
             </button>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">
@@ -79,21 +90,21 @@ const NavMiddle = () => {
                 </SheetHeader>
                 <div className="flex flex-col p-4">
                   {/* Search */}
-                  <div className="flex flex-col items-start gap-4">
+                  <div className="flex flex-col items-start gap-4 ">
                     <div className="w-full">
                       <Input
-                        className="border bg-secondary px-4 py-2 h-full rounded-full"
+                        className="border bg-secondary px-4 py-2 h-full rounded-full "
                         placeholder="Search anything"
                       />
                     </div>
                     <Select>
-                      <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full">
+                      <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full ">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="1">Items 1</SelectItem>
-                        <SelectItem value="2">Items 2</SelectItem>
-                        <SelectItem value="3">Items 3</SelectItem>
+                        <SelectItem value="2">items 2</SelectItem>
+                        <SelectItem value="3">items 3</SelectItem>
                       </SelectContent>
                     </Select>
                     <Button className="bg-black w-full text-white font-semibold rounded-full px-4 py-2">
@@ -109,7 +120,7 @@ const NavMiddle = () => {
                   {/* Menu */}
                   <div className="flex flex-col items-start text-black py-2 font-semibold">
                     <h3>Home</h3>
-                    <h3>About</h3>
+                    <h3>About </h3>
                     <h3>List Categories</h3>
                     <h3>Best Seller</h3>
                     <h3>Shop</h3>
@@ -143,13 +154,13 @@ const NavMiddle = () => {
         <div className="w-full flex justify-end">
           <div className="flex items-center gap-6">
             <div className="flex gap-2">
-              <div className="relative font-semibold">
+              <div className="relative font-semibold ">
                 <span className="text-xs">$0</span>
                 <div className="absolute text-[6px] w-2 h-2 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
                   <span>0</span>
                 </div>
               </div>
-              <Image src={svgIconBag} alt="cart" />
+              <Image src={svgIconBag} alt="support" />
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <Image src={svgIconSupport} alt="support" />
