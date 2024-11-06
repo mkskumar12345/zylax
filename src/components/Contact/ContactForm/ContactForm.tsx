@@ -35,7 +35,7 @@ const ContactForm = () => {
       email: "",
       terms: false,
       phone: "",
-      country: "",
+      // country: "",
       subject: "",
       message: "",
     },
@@ -101,7 +101,7 @@ const ContactForm = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="mt-3">
+                    <FormItem className="mt-5">
                       <FormLabel className=" required font-semibold text-sm">
                         Email Address
                       </FormLabel>
@@ -121,7 +121,7 @@ const ContactForm = () => {
                   control={form.control}
                   name="phone"
                   render={({ field }) => (
-                    <FormItem className="mt-3">
+                    <FormItem className="mt-5">
                       <FormLabel className="optional font-semibold text-sm">
                         Phone{" "}
                       </FormLabel>
@@ -137,31 +137,12 @@ const ContactForm = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <FormItem className="mt-3">
-                      <FormLabel className="required font-semibold text-sm">
-                        Country / Region{" "}
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="text"
-                          placeholder="Country"
-                          className="border-[#CCCCCC] border rounded-[6px]"
-                        />
-                      </FormControl>
-                      <FormMessage className="text-xs text-red-500" />
-                    </FormItem>
-                  )}
-                />
+
                 <FormField
                   control={form.control}
                   name="subject"
                   render={({ field }) => (
-                    <FormItem className="mt-3">
+                    <FormItem className="mt-5">
                       <FormLabel className="optional font-semibold text-sm">
                         Subject
                       </FormLabel>
@@ -181,7 +162,7 @@ const ContactForm = () => {
                   control={form.control}
                   name="message"
                   render={({ field }) => (
-                    <FormItem className="mt-3">
+                    <FormItem className="mt-5">
                       <FormLabel className="font-semibold text-sm">
                         Message
                       </FormLabel>
@@ -189,24 +170,6 @@ const ContactForm = () => {
                         <Textarea
                           {...field}
                           placeholder="Note about your order, e.g. special note for delivery "
-                          className="border-[#CCCCCC] border rounded-[6px]"
-                        />
-                      </FormControl>
-                      <FormMessage className="text-xs text-red-500" />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <FormItem className="mt-3">
-                      <FormLabel>Country</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="text"
-                          placeholder="Country"
                           className="border-[#CCCCCC] border rounded-[6px]"
                         />
                       </FormControl>
@@ -235,7 +198,7 @@ const ContactForm = () => {
                   )}
                 />
                 <Button
-                  className="bg-[#D30200] text-white rounded-[8px] mt-4 font-semibold text-sm"
+                  className="bg-[#D30200] text-white rounded-[8px] mt-7 font-semibold text-sm"
                   type="submit"
                 >
                   Send Message
@@ -246,20 +209,20 @@ const ContactForm = () => {
           <div className="lg:col-span-5 col-span-12   grid grid-flow-row grid-rows-2 gap-2 ">
             <div className="row-span-1 bg-[#EDEFF6] rounded-[8px] p-6">
               <div>
-                <h4 className="uppercase text-sm font-medium text-[#666666] mb-4">
+                <h4 className="uppercase text-sm font-medium text-[#666666] mb-2">
                   united states (head quater)
                 </h4>
-                <div className="flex flex-col gap-3 text-black">
+                <div className="flex flex-col gap-2 text-black">
                   <p>152 Thatcher Road St, Mahattan, 10463, US </p>
                   <span> (+025) 3886 25 16</span>
                   <span className="text-[#1ABA1A]">demo@gmail.com</span>
                 </div>
               </div>
-              <div className="mt-3">
+              <div className="mt-2">
                 <h4 className="uppercase text-sm font-medium text-[#666666] mb-4">
                   united kingdom (branch)
                 </h4>
-                <div className="flex flex-col gap-3 text-black">
+                <div className="flex flex-col gap-2 text-black">
                   <p>12 Buckingham Rd, Thornthwaite, HG3 4TY, UK</p>
                   <span>(+718) 895-5350</span>
                   <span className="text-[#1ABA1A]">contact@demo.co.uk</span>

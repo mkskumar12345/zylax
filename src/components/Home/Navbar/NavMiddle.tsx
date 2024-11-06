@@ -28,6 +28,7 @@ import {
   svgIconSupport,
   svgIconTruck,
 } from "@/assets/images";
+import Link from "next/link";
 
 const NavMiddle = () => {
   return (
@@ -115,7 +116,9 @@ const NavMiddle = () => {
       <div className="flex justify-between gap-2 md:container px-3 pb-2 lg:h-[49px]">
         <div className="grid md:grid-cols-3 w-full">
           <div className="col-span-1">
-            <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
+            <Link href={"/"}>
+              <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
+            </Link>
           </div>
           <div className="col-span-2 h-full hidden  items-center lg:flex">
             <NavSearch />

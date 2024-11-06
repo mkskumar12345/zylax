@@ -34,6 +34,9 @@ import svgIconInstagram from "./svg/instagram.svg";
 import svgIconFacebook from "./svg/facebook.svg";
 import svgIconYoutube from "./svg/youtube.svg";
 import svgIconPinterest from "./svg/pintrest.svg";
+import svgIconBannerHome from "./svg/home.svg";
+import svgIconCategoriesFilterBtn from "./svg/categories-filter-btn.svg";
+import svgIconYellowStar from "./svg/yellow-star.svg";
 
 // ////////////////////////////
 // PNG
@@ -66,6 +69,7 @@ import pngKlarna from "./png/klarna.png";
 import pngStripe from "./png/stripe.png";
 import pngContactBanner from "./png/contact-banner.png";
 import pngContactForm from "./png/contact-form.png";
+import pngCommonBanner from "./png/common-banner.png";
 
 export {
   // ////////////////////////////
@@ -77,9 +81,11 @@ export {
   svgIconBag,
   svgIconSearch,
   svgIconSupport,
+  svgIconBannerHome,
   svgIconSupportHeadphone,
   svgIconDelevery,
   svgIconMemberDiscount,
+  svgIconCategoriesFilterBtn,
   svgIconGraphicCard,
   svgIconMotherBoard,
   svgIcon5Star,
@@ -90,6 +96,7 @@ export {
   svgIconProcessor,
   svgIconPowerSupply,
   svgIconMonitor,
+  svgIconYellowStar,
   svgIconFanKit,
   svgIconDoller,
   svgIconAddToBag,
@@ -112,6 +119,7 @@ export {
   pngHomeBannerRight2,
   pngHomeBannerBottom1,
   pngTestimonialBanner,
+  pngCommonBanner,
   pngHomeBannerBottom2,
   pngGamingMonitor,
   pngWifyAms,
