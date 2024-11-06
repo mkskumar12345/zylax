@@ -1,7 +1,5 @@
 import React from "react";
-
 import signup from "@/assets/images/svg/signup.svg";
-
 import Image from "next/image";
 import logo from "../../../assets/images/png/logo.png";
 import facebook from "../../../assets/images/svg/fcbook.svg";
@@ -87,7 +85,9 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             </div>
             <div className="text-left w-full">
               Already have an account?
-              <span className="text-[rgb(255,134,130)] font-semibold">Login</span>
+              <span className="text-[rgb(255,134,130)] font-semibold">
+                Login
+              </span>
             </div>
             <div className="flex items-center justify-center gap-1">
               <hr className="flex-grow border-t border-gray-300" />
@@ -108,7 +108,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
           </div>
 
           <div className=" w-[350px] ">
-            <Image src={signup} alt="signup" className="h-auto" />
+            <Image src={signup} alt="signup" className="" />
           </div>
         </div>
       </div>
