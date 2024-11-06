@@ -16,7 +16,6 @@ import Wishlist from "@/components/Wishlist/Wishlist";
 const HomeComponent = () => {
   return (
     <div>
-      {/* <Wishlist/> */}
       <Banner />
       <Categories />
       <DealsOfTheDay />
