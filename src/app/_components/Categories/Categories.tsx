@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const Categories = () => {
   const [values, setValues] = useState([20, 80]);
@@ -216,41 +217,40 @@ const Categories = () => {
           </div>
           <div className="grid grid-col-1 md:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2  mt-8 w-full gap-8 mb-12 ">
             {Array.from({ length: 12 }).map((_, index) => (
-              <div
-                key={index}
-                className="bg-white  card w-full border border-[#99999999] rounded-xl"
-              >
-                <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
-                  Gigabyte B450M DS3H V3 AM4 Micro ATX Mot...
-                </div>
-                <div className="flex gap-2 justify-center">
-                  <Image src={svgIcon5Star} className="h-3" alt="5star" />
-                  <span className="font-regular text-xs">(3)</span>
-                </div>
-                <div className="flex justify-center items-center">
-                  <Image src={pngGBMicroAtx} alt="" className="w-36 h-36 " />
-                </div>
-                <div className="flex items-center justify-between p-4 ">
-                  <h2 className="text-[#EB4227] font-semibold text-lg">
-                    $59.000
-                  </h2>
-                  <h2 className="line-through font-semibold text-[13px] text-[#666666]">
-                    $159.00
-                  </h2>
-                  <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
-                    45% OFF
+              <Link href={`/product-details`} key={index}>
+                <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
+                  <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
+                    Gigabyte B450M DS3H V3 AM4 Micro ATX Mot...
+                  </div>
+                  <div className="flex gap-2 justify-center">
+                    <Image src={svgIcon5Star} className="h-3" alt="5star" />
+                    <span className="font-regular text-xs">(3)</span>
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <Image src={pngGBMicroAtx} alt="" className="w-36 h-36 " />
+                  </div>
+                  <div className="flex items-center justify-between p-4 ">
+                    <h2 className="text-[#EB4227] font-semibold text-lg">
+                      $59.000
+                    </h2>
+                    <h2 className="line-through font-semibold text-[13px] text-[#666666]">
+                      $159.00
+                    </h2>
+                    <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
+                      45% OFF
+                    </div>
+                  </div>
+                  <div className="flex justify-between p-4 items-center">
+                    <div className="font-medium text-xs gap-2 flex items-center">
+                      <span className="text-black">1,897</span>
+                      <span className="text-[#666666]">Purchases</span>
+                    </div>
+                    <div>
+                      <Image src={svgIconBestArivalHeart} alt="" />
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-between p-4 items-center">
-                  <div className="font-medium text-xs gap-2 flex items-center">
-                    <span className="text-black">1,897</span>
-                    <span className="text-[#666666]">Purchases</span>
-                  </div>
-                  <div>
-                    <Image src={svgIconBestArivalHeart} alt="" />
-                  </div>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="flex gap-2 justify-center items-center">

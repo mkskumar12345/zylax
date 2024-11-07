@@ -70,6 +70,10 @@ import pngStripe from "./png/stripe.png";
 import pngContactBanner from "./png/contact-banner.png";
 import pngContactForm from "./png/contact-form.png";
 import pngCommonBanner from "./png/common-banner.png";
+import pngProductDetailsMain from "./png/product-details-main.png";
+import pngProductDetails1 from "./png/product-details-1.png";
+import pngProductDetails2 from "./png/product-details-2.png";
+import pngProductDetails3 from "./png/product-details-3.png";
 
 export {
   // ////////////////////////////
@@ -142,4 +146,8 @@ export {
   pngKlarna,
   pngContactBanner,
   pngStripe,
+  pngProductDetailsMain,
+  pngProductDetails1,
+  pngProductDetails2,
+  pngProductDetails3,
 };
