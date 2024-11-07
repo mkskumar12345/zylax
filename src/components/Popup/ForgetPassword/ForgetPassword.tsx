@@ -45,7 +45,7 @@ const ForgetPassword: React.FC<PopupProps> = ({
             <div className="text-left">
               <label className="font-semibold">Email</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
 
             <div className="">
@@ -54,7 +54,7 @@ const ForgetPassword: React.FC<PopupProps> = ({
               </button>
             </div>
 
-            <div className="flex items-center justify-center gap-1">
+            {/* <div className="flex items-center justify-center gap-1">
               <hr className="flex-grow border-t border-gray-300" />
               <span>Or login with</span>
               <hr className="flex-grow border-t border-gray-300" />
@@ -69,7 +69,7 @@ const ForgetPassword: React.FC<PopupProps> = ({
               <div className="border-[#3869EB] border rounded w-[90px] h-[22px] flex justify-center items-center">
                 <Image src={apple} alt="Login" className="" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className=" w-[350px]">

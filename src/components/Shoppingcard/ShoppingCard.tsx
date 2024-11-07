@@ -8,7 +8,7 @@ const ShoppingCard = () => {
     <div className="flex justify-center  gap-5 mt-5 mb-5">
       <div>
         <div className="text-[30px] font-bold border-[#E4E7E9] border-l border-r border-t pl-3 h-[64px] flex justify-start items-center">
-          ShoppingCard
+          Shopping Cart
         </div>
         <table className="border-[#E4E7E9] border w-[800px]">
           <thead>
@@ -82,7 +82,7 @@ const ShoppingCard = () => {
           <button className="text-[#EB4227] border border-[#EB4227] font-bold w-[200px] h-[48px] flex justify-center items-center gap-2 ">
             {" "}
             <ArrowLeft />
-            Return to Shop
+            Continue Shopping
           </button>
           <button className="text-[#EB4227] border border-[#EB4227] font-bold w-[149px] h-[48px]  ">
             Update cart
@@ -91,7 +91,7 @@ const ShoppingCard = () => {
       </div>
       <div className="w-[400px]">
         <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2">
-          <span className="text-[30px] font-bold">Card Totals</span>
+          <span className="text-[30px] font-bold">Cart Total</span>
 
           <div className="flex justify-between">
             <span className="text-[#5F6C72]">Sub-total</span>

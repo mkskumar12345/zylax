@@ -38,35 +38,35 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
               <div className="text-left">
                 <label className="font-semibold">First Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]   h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Last Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
             <div className="flex justify-between">
               <div className="text-left">
                 <label className="font-semibold">Email</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Phone Number</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]  h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className="text-left">
               <label className="font-semibold">Confirm Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className=" w-full text-left">
               <div className="flex gap-2">
@@ -89,7 +89,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
                 Login
               </span>
             </div>
-            <div className="flex items-center justify-center gap-1">
+            {/* <div className="flex items-center justify-center gap-1">
               <hr className="flex-grow border-t border-gray-300" />
               <span className="px-2 text-gray-500">Or Sign up with</span>
               <hr className="flex-grow border-t border-gray-300" />
@@ -104,7 +104,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
               <div className="border-[#3869EB] border rounded w-[120px] h-[22px] flex justify-center items-center">
                 <Image src={apple} alt="Login" className="" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className=" w-[350px] ">
