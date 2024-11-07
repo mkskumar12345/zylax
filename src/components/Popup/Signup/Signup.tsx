@@ -15,7 +15,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">
-      <div className="bg-white p-4 rounded shadow-md relative w-[850px] h-[600]">
+      <div className="bg-white lg:p-4  rounded shadow-md relative lg:w-[850px] w-[350px] h-[600]">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 cursor-pointer"
@@ -24,7 +24,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
         </button>
         {children}
         <div className="flex justify-between items-center flex-col lg:flex-row ">
-          <div className="flex flex-col justify-center gap-3 w-[450px] p-5">
+          <div className="flex flex-col justify-center gap-3 lg:w-[450px] p-5">
             <Image src={logo} alt="Logo" className="w-[100px]" />
 
             <div className="text-left">
@@ -34,39 +34,39 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
                 Let’s get you all st up so you can access your personal account.
               </span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex lg:justify-between flex-col">
               <div className="text-left">
                 <label className="font-semibold">First Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]   h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+                <input placeholder="First Name" className="border-[#CCCCCC] border lg:w-[200px] w-[300px]   h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Last Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+                <input placeholder="Last Name" className="border-[#CCCCCC] border lg:w-[200px] w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
-            <div className="flex justify-between">
+            <div className="flex lg:justify-between flex-col">
               <div className="text-left">
                 <label className="font-semibold">Email</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+                <input placeholder="Email" className="border-[#CCCCCC] border lg:w-[200px] w-[300px] h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Phone Number</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+                <input placeholder="Phone Number"  className="border-[#CCCCCC] border lg:w-[200px] w-[300px] h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+              <input placeholder="Password"  className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className="text-left">
               <label className="font-semibold">Confirm Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
+              <input placeholder="Confirm Password"  className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className=" w-full text-left">
               <div className="flex gap-2">
@@ -79,7 +79,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
               </div>
             </div>
             <div className="">
-              <button className="text-white bg-[#D30200] w-full h-[30px] rounded font-semibold">
+              <button className="text-white bg-[#D30200] lg:w-full w-[300px] h-[30px] rounded font-semibold">
                 Create account
               </button>
             </div>
@@ -107,7 +107,7 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             </div> */}
           </div>
 
-          <div className=" w-[350px] ">
+          <div className=" w-[350px] hidden md:block ">
             <Image src={signup} alt="signup" className="" />
           </div>
         </div>

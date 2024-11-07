@@ -11,18 +11,18 @@ import ordersumm from "../../assets/images/svg/ordersummary.svg";
 const BillingCard = () => {
   return (
     <div className="mt-5 mb-20">
-      <div className="flex justify-center gap-5 w-[100%]">
+      <div className="lg:flex lg:justify-center gap-5 w-[100%]">
         <div className="w-[900px]">
           <span className="font-semibold text-xl"> Billing Information</span>
 
           <div className="flex flex-col gap-2 mt-5">
-            <div className="flex justify-between  gap-2 ">
+            <div className="lg:flex lg:justify-between  gap-2 ">
               <div>
                 <label className="font-semibold">First Name</label>
                 <br />
                 <input
                   placeholder="First Name"
-                  className="border-[#CCCCCC] border rounded w-[210px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                  className="border-[#CCCCCC] border rounded lg:w-[210px] sm:w-full h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
                 />
               </div>
               <div>
@@ -221,7 +221,7 @@ const BillingCard = () => {
             />
           </div>
         </div>
-        <div className="left w-[400px] h-[500px] ">
+        <div className="left w-[400px] h-[500px]  ">
           <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2 rounded">
             <span className="text-xl font-semibold">Order Summery</span>
             <div className="flex items-center gap-2">

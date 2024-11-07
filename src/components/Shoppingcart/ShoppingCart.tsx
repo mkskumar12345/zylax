@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import cpu from "../../assets/images/png/cpu.png";
 
-const ShoppingCard = () => {
+const ShoppingCart = () => {
   return (
     <div className="flex justify-center  gap-5 mt-5 mb-5">
       <div>
@@ -136,4 +136,4 @@ const ShoppingCard = () => {
   );
 };
 
-export default ShoppingCard;
+export default ShoppingCart;

@@ -1,4 +1,4 @@
-import ShoppingCard from "@/components/Shoppingcard/ShoppingCard";
+import ShoppingCart from "@/components/Shoppingcart/ShoppingCart";
 export default function Cart() {
-  return <ShoppingCard />;
+  return <ShoppingCart />;
 }
