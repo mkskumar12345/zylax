@@ -12,8 +12,8 @@ const CommonBanner = ({
 }) => {
   return (
     <div className="relative mt-2 h-fit w-full">
-      <div className="bg-black relative">
-        <div className="absolute text-white gap-2 font-regular container flex items-center top-0 w-full h-full">
+      <div className="bg-black relative h-[127px]">
+        <div className="absolute text-white h-full gap-2 font-regular px-3 md:container flex items-center top-0 w-full ">
           <Image className="" src={icon} alt="Banner Home Icon" />
           {path?.map((item, index) => (
             <div className="flex gap-3" key={item}>
@@ -24,7 +24,11 @@ const CommonBanner = ({
             </div>
           ))}
         </div>
-        <Image src={pngCommonBanner} alt="banner" className="w-full h-full" />
+        <Image
+          src={pngCommonBanner}
+          alt="banner"
+          className="lg:object-fill object-cover  float-right h-full"
+        />
       </div>
     </div>
   );
