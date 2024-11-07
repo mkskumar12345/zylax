@@ -5,11 +5,12 @@ import cpu from "../../assets/images/png/cpu.png";
 
 const ShoppingCart = () => {
   return (
-    <div className="flex justify-center  gap-5 mt-5 mb-5">
+    <div className="flex lg:justify-center lg:flex-row flex-col  gap-5 mt-5 mb-5">
       <div>
         <div className="text-[30px] font-bold border-[#E4E7E9] border-l border-r border-t pl-3 h-[64px] flex justify-start items-center">
           Shopping Cart
         </div>
+
         <table className="border-[#E4E7E9] border w-[800px]">
           <thead>
             <tr className="bg-[#F2F4F5] h-[38px]">
@@ -89,7 +90,7 @@ const ShoppingCart = () => {
           </button>
         </div>
       </div>
-      <div className="w-[400px]">
+      <div className="lg:w-[400px] w-[350px]">
         <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2">
           <span className="text-[30px] font-bold">Cart Total</span>
 
