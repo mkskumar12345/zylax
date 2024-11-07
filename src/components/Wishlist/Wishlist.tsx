@@ -8,7 +8,7 @@ const Wishlist = () => {
     <div className="">
       <div className="grid place-items-center mt-5">
         <div>
-          <div className="font-bold  pl-2  text-left border-[#E4E7E9]  border-t border-l border-r  text-[30px]">
+          <div className="font-bold  pl-2  text-left border-[#E4E7E9]  border-t lg:border-l lg:border-r  text-[30px]">
             My Wishlist
           </div>
 
@@ -43,8 +43,8 @@ const Wishlist = () => {
                 </td>
 
                 <td>
-                  <button className="w-[174px] h-[48px] rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
-                    add to card <ShoppingCart size={16} />
+                  <button className="lg:w-[174px] lg:h-[48px] w-[100px] h-[30px] text-[12px] rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
+                    add to cart <ShoppingCart size={16} />
                   </button>
                 </td>
                 <td>
@@ -65,8 +65,8 @@ const Wishlist = () => {
                 </td>
 
                 <td>
-                  <button className="w-[174px] h-[48px] rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
-                    add to card <ShoppingCart size={16} />
+                  <button className="lg:w-[174px] lg:h-[48px] w-[100px] h-[30px] text-[12px]  rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
+                    add to cart <ShoppingCart size={16} />
                   </button>
                 </td>
                 <td>
@@ -75,7 +75,7 @@ const Wishlist = () => {
               </tr>
               <tr>
                 <td className="">
-                  <div className="flex items-center gap-2 h-[70px]">
+                  <div className="flex items-center gap-2 lg:h-[70px] h-[100px]">
                     <Image src={cpu} alt="product" className="w-[50px] " />
                     <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-lg ">
                       TIPASON – Gaming Desktop – AMD 3000G
@@ -87,8 +87,8 @@ const Wishlist = () => {
                 </td>
 
                 <td>
-                  <button className="w-[174px] h-[48px] rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
-                    add to card <ShoppingCart size={16} />
+                  <button className="lg:w-[174px] lg:h-[48px] w-[100px] h-[30px] text-[12px] rounded bg-[#EB4227] uppercase text-white font-semibold flex justify-center items-center gap-2 ">
+                    add to cart <ShoppingCart size={16} />
                   </button>
                 </td>
                 <td>
