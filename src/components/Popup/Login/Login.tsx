@@ -70,7 +70,7 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             </div>
           </div>
 
-          <div className=" w-[350px]">
+          <div className=" w-[350px] hidden md:block">
             <Image src={login} alt="Login" className="" />
           </div>
         </div>
