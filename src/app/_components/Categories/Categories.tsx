@@ -33,6 +33,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+
 const Categories = () => {
   const [values, setValues] = useState([20, 80]);
 
