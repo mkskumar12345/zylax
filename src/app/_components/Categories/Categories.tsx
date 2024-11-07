@@ -33,7 +33,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-
 const Categories = () => {
   const [values, setValues] = useState([20, 80]);
 
@@ -218,7 +217,7 @@ const Categories = () => {
           </div>
           <div className="grid grid-col-1 md:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2  mt-8 w-full gap-8 mb-12 ">
             {Array.from({ length: 12 }).map((_, index) => (
-              <Link href={`/product-details`} key={index}>
+              <Link href={`/categories/product-details`} key={index}>
                 <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
                   <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
                     Gigabyte B450M DS3H V3 AM4 Micro ATX Mot...
