@@ -38,35 +38,35 @@ const Signup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
               <div className="text-left">
                 <label className="font-semibold">First Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]   h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Last Name</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
             <div className="flex justify-between">
               <div className="text-left">
                 <label className="font-semibold">Email</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px] h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
               <div className="text-left">
                 <label className="font-semibold">Phone Number</label>
                 <br />
-                <input className="border-[#CCCCCC] border w-[200px]  h-[23px] rounded" />
+                <input className="border-[#CCCCCC] border w-[200px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
               </div>
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className="text-left">
               <label className="font-semibold">Confirm Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
             <div className=" w-full text-left">
               <div className="flex gap-2">

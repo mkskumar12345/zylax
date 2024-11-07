@@ -45,7 +45,7 @@ const ForgetPassword: React.FC<PopupProps> = ({
             <div className="text-left">
               <label className="font-semibold">Email</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" />
             </div>
 
             <div className="">

@@ -40,12 +40,12 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             <div className="text-left">
               <label className="font-semibold">Email</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2 " placeholder="Email" />
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[23px] rounded" />
+              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" placeholder="Password" />
             </div>
             <div className="flex justify-between w-full">
               <div className="flex gap-2">
