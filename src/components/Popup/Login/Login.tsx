@@ -18,7 +18,7 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
   const closePopup = () => setPopupOpen(false);
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">
-      <div className="bg-white p-4 rounded shadow-md relative w-[750px] h-auto">
+      <div className="bg-white lg:p-4 rounded shadow-md relative lg:w-[750px] h-auto">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 curser-pointer"
@@ -40,7 +40,7 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             <div className="text-left">
               <label className="font-semibold">Email</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2 " placeholder="Email" />
+              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2 " placeholder="Email" />
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
