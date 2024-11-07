@@ -72,7 +72,7 @@ const ForgetPassword: React.FC<PopupProps> = ({
             </div> */}
           </div>
 
-          <div className=" w-[350px]">
+          <div className=" w-[350px] hidden md:block">
             <Image src={forgetpassword} alt="forgetpassword" className="" />
           </div>
         </div>

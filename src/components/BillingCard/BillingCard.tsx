@@ -11,11 +11,11 @@ import ordersumm from "../../assets/images/svg/ordersummary.svg";
 const BillingCard = () => {
   return (
     <div className="mt-5 mb-20">
-      <div className="flex justify-center gap-5">
+      <div className="flex justify-center gap-5 w-[100%]">
         <div className="w-[900px]">
           <span className="font-semibold text-xl"> Billing Information</span>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mt-5">
             <div className="flex justify-between  gap-2 ">
               <div>
                 <label className="font-semibold">First Name</label>
