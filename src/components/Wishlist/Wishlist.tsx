@@ -8,7 +8,6 @@ const Wishlist = () => {
   return (
     <>
       <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} />
-
       <div className="">
         <div className="grid place-items-center mt-5">
           <div>

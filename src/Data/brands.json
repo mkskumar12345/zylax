@@ -1,0 +1,37 @@
+[
+    {
+      "logo": "/assets/images/png/brandimage.png",
+      "name": "3M",
+      "products": 107
+    },
+    {
+      "logo": "/path/to/logo2.png",
+      "name": "Apple",
+      "products": 210
+    },
+    {
+      "logo": "/path/to/logo3.png",
+      "name": "Samsung",
+      "products": 150
+    }
+    ,
+    {
+      "logo": "/path/to/logo3.png",
+      "name": "Bamsung",
+      "products": 150
+    }
+    ,
+    {
+      "logo": "/path/to/logo3.png",
+      "name": "Camsung",
+      "products": 150
+    }
+    ,
+    {
+      "logo": "/path/to/logo3.png",
+      "name": "Damsung",
+      "products": 150
+    }
+
+  ]
+  
