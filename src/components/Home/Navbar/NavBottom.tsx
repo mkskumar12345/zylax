@@ -1,6 +1,5 @@
-
 import React from "react";
-
+import Link from "next/link";
 
 const NavBottom = () => {
   return (
@@ -13,6 +12,9 @@ const NavBottom = () => {
         <h3>Shop</h3>
         <h3>Blog</h3>
         <h3>Contact</h3>
+        <Link href={"/brands"}>
+          <h3>Shop by Brands</h3>
+        </Link>
       </div>
     </div>
   );
