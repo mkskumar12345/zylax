@@ -221,7 +221,7 @@ const Categories = () => {
                 <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
                   <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
                     Gigabyte B450M DS3H V3 AM4 Micro ATX Mot...
-                  </div>
+                  </div> 
                   <div className="flex gap-2 justify-center">
                     <Image src={svgIcon5Star} className="h-3" alt="5star" />
                     <span className="font-regular text-xs">(3)</span>
