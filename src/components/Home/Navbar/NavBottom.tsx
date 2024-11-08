@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 
 const NavBottom = () => {
   return (
@@ -12,6 +12,7 @@ const NavBottom = () => {
         <Link href={""}>Shop</Link>
         <Link href={""}>Blog</Link>
         <Link href={"/contact"}>Contact</Link>
+        <Link href={"/brands"}>Shop by Brands</Link>
       </div>
     </div>
   );

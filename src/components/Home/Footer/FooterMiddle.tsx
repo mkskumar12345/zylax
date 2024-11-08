@@ -7,6 +7,7 @@ import {
   svgIconYoutube,
 } from "@/assets/images";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const FooterMiddle = () => {
@@ -31,8 +32,12 @@ const FooterMiddle = () => {
           </div>
           <div className="flex gap-2">
             <Image src={svgIconTwitter} alt="twitter" />
-            <Image src={svgIconFacebook} alt="twitter" />
-            <Image src={svgIconInstagram} alt="twitter" />
+            <a href="https://www.facebook.com/zylax">
+              <Image src={svgIconFacebook} alt="twitter" />
+            </a>
+            <a href="https://www.instagram.com/zylaxcomp/">
+              <Image src={svgIconInstagram} alt="instagram" />
+            </a>
             <Image src={svgIconYoutube} alt="twitter" />
             <Image src={svgIconPinterest} alt="twitter" />
           </div>
