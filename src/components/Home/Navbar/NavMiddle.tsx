@@ -163,7 +163,9 @@ const NavMiddle = () => {
                   <span>0</span>
                 </div>
               </div>
-              <Image src={svgIconBag} alt="support" />
+              <Link href={"/Cart"}>
+                <Image src={svgIconBag} alt="support" />
+              </Link>
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <Image src={svgIconSupport} alt="support" />
