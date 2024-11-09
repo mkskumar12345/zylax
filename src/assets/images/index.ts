@@ -37,6 +37,14 @@ import svgIconPinterest from "./svg/pintrest.svg";
 import svgIconBannerHome from "./svg/home.svg";
 import svgIconCategoriesFilterBtn from "./svg/categories-filter-btn.svg";
 import svgIconYellowStar from "./svg/yellow-star.svg";
+import svgIconTwitterInProductDetails from "./svg/twitterInProductDetails.svg";
+import svgIconFbInProductDetails from "./svg/fbInProductDetails.svg";
+import svgIconPinterestInProductDetails from "./svg/pintrestInProductDetails.svg";
+import svgIconFreWarrenty from "./svg/free-warrenty.svg";
+import svgIconFreShipping from "./svg/free-shipping.svg";
+import svgIconHeadphoneProdDetails from "./svg/headphone-prod-details.svg";
+import svgIconMoneyBackGurenty from "./svg/money-back-gurenty.svg";
+import svgIconSecurePayMethod from "./svg/secure-pay-method.svg";
 
 // ////////////////////////////
 // PNG
@@ -74,6 +82,7 @@ import pngProductDetailsMain from "./png/product-details-main.png";
 import pngProductDetails1 from "./png/product-details-1.png";
 import pngProductDetails2 from "./png/product-details-2.png";
 import pngProductDetails3 from "./png/product-details-3.png";
+import pngGurentyCheckout from "./png/gurentyCheckoutImg.png";
 
 export {
   // ////////////////////////////
@@ -85,13 +94,20 @@ export {
   svgIconBag,
   svgIconSearch,
   svgIconSupport,
+  svgIconTwitterInProductDetails,
+  svgIconFbInProductDetails,
+  svgIconPinterestInProductDetails,
   svgIconBannerHome,
   svgIconSupportHeadphone,
   svgIconDelevery,
   svgIconMemberDiscount,
   svgIconCategoriesFilterBtn,
   svgIconGraphicCard,
-  svgIconMotherBoard,
+  svgIconMotherBoard,svgIconFreWarrenty,
+  svgIconFreShipping,
+  svgIconHeadphoneProdDetails,
+  svgIconMoneyBackGurenty,
+  svgIconSecurePayMethod,
   svgIcon5Star,
   svgIconLeftArrow,
   svgIconRightArrow,
@@ -118,6 +134,7 @@ export {
   // PNG
   // ////////////////////////////
   pngIconLogo,
+  pngGurentyCheckout,
   pngHomeBannerCrousel1,
   pngHomeBannerRight1,
   pngHomeBannerRight2,
