@@ -1,11 +1,12 @@
-import React from 'react'
+import Wishlist from "@/components/Wishlist/Wishlist";
+import React from "react";
 
 const page = () => {
   return (
     <div>
-     my wishlist 
+      <Wishlist />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

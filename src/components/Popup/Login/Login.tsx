@@ -37,7 +37,7 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             <div className="text-left">
               <span className="font-semibold">Login</span>
               <br />
-              <span className="text-[#313131]">
+              <span className="text-[#dba0a0]">
                 Login to access your Zylax account
               </span>
             </div>
