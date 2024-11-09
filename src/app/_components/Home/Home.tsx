@@ -23,7 +23,7 @@ const HomeComponent = () => {
       <PopularBrands />
       <BestArrival />
       <Testimonials />
-      <LatestNewsAndBlog />
+      {/* <LatestNewsAndBlog /> */}
     </div>
   );
 };
