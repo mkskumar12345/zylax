@@ -7,6 +7,7 @@ import {
   svgIconSidebarOrderHistory,
   svgIconSidebarProfile,
 } from "@/assets/images";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,7 @@ const Sidebar = () => {
   const pathname = usePathname()?.split("/")[2];
   return (
     <div className="border border-[#E4E7E9]">
-      <Link href="/user/my-profile">
+      <Link href={allPagesRoutes.USER_PROFILE}>
         <div
           className={cn(
             "flex h-10 gap-2 px-6 items-center",
@@ -35,7 +36,7 @@ const Sidebar = () => {
           <span>My Profile</span>
         </div>
       </Link>
-      <Link href="/user/my-orders">
+      <Link href={allPagesRoutes.MY_ORDERS}>
         <div
           className={cn(
             "flex h-10 gap-2 px-6 items-center",
@@ -55,7 +56,7 @@ const Sidebar = () => {
         </div>
       </Link>
 
-      <Link href="/user/my-wishlist">
+      <Link href={allPagesRoutes.MY_WISHLIST}>
         <div
           className={cn(
             "flex h-10 gap-2 px-6 items-center",
@@ -74,7 +75,7 @@ const Sidebar = () => {
           <span>My Wishlist</span>
         </div>
       </Link>
-      <Link href="/user/change-password">
+      <Link href={allPagesRoutes.CHANGE_PASSWORD}>
         <div
           className={cn(
             "flex h-10 px-6 gap-2 items-center",
@@ -99,7 +100,7 @@ const Sidebar = () => {
       <div
         className="flex gap-2 h-10 px-6 items-center "
         onClick={() => {
-          router.push("/");
+          router.push(allPagesRoutes.HOME);
         }}
       >
         <Image src={svgIconSidebarLogout} alt="sidebar-logout" />
