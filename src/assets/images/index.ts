@@ -45,7 +45,11 @@ import svgIconFreShipping from "./svg/free-shipping.svg";
 import svgIconHeadphoneProdDetails from "./svg/headphone-prod-details.svg";
 import svgIconMoneyBackGurenty from "./svg/money-back-gurenty.svg";
 import svgIconSecurePayMethod from "./svg/secure-pay-method.svg";
-
+import svgIconSidebarChangePass from "./svg/sidebar-change-pass.svg";
+import svgIconSidebarLogout from "./svg/sidebar-logout.svg";
+import svgIconSidebarMyWishlist from "./svg/sidebar-my-wishlist.svg";
+import svgIconSidebarOrderHistory from "./svg/sidebar-order-history.svg";
+import svgIconSidebarProfile from "./svg/sidebar-profile.svg";
 // ////////////////////////////
 // PNG
 // ////////////////////////////
@@ -103,7 +107,8 @@ export {
   svgIconMemberDiscount,
   svgIconCategoriesFilterBtn,
   svgIconGraphicCard,
-  svgIconMotherBoard,svgIconFreWarrenty,
+  svgIconMotherBoard,
+  svgIconFreWarrenty,
   svgIconFreShipping,
   svgIconHeadphoneProdDetails,
   svgIconMoneyBackGurenty,
@@ -129,6 +134,11 @@ export {
   svgIconYoutube,
   svgIconPinterest,
   svgIconNext,
+  svgIconSidebarLogout,
+  svgIconSidebarChangePass,
+  svgIconSidebarMyWishlist,
+  svgIconSidebarOrderHistory,
+  svgIconSidebarProfile,
 
   // ////////////////////////////
   // PNG

@@ -22,7 +22,7 @@ const BestArrival = () => {
           </span>
         </button>
       </div>
-      <div className="grid grid-col-2 mb-12 md:grid-col-4  lg:grid-cols-5  mt-8 w-full gap-8  ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 mb-12 md:grid-col-4  lg:grid-cols-4 xl:grid-cols-5  mt-8 w-full gap-8  ">
         {Array.from({ length: 10 }).map((_, index) => (
           <div
             key={index}

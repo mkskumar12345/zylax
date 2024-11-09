@@ -21,15 +21,15 @@ const DealsOfTheDay = () => {
         <div className="flex gap-4 md:container pb-10 ">
           <div className="bg-white border-secondary border flex-col w-full rounded-xl flex gap-2 ">
             <div className="  p-8 flex gap-2 flex-col border-b-2 border-secondary">
-              <div className=" flex gap-8">
-                <div className=" basis-1/2 flex relative justify-center items-center">
+              <div className=" flex-wrap sm:flex-nowrap flex gap-8">
+                <div className="sm:basis-1/2  flex relative justify-center items-center">
                   <Image src={pngGamingMonitor} alt="gamingMonitor" />
                   <Heart className="absolute top-0 right-0 " />
                   <div className="absolute top-0 left-0 rounded-full text-white bg-primary w-8 flex justify-center items-center p-1 text-[10px] font-extrabold	tracking-tight">
                     <span>75%</span>
                   </div>
                 </div>
-                <div className="basis-1/2 flex flex-col gap-4">
+                <div className="sm:basis-1/2 flex flex-col gap-4">
                   <p className="font-semibold text-sm">
                     LG 29UB67-B 29 Inch QHD Flat Gaming Monitor (29UB67-B)
                   </p>
@@ -76,16 +76,16 @@ const DealsOfTheDay = () => {
                 </p>
               </div>
             </div>
-            <div className="  p-8 flex gap-2 flex-col border-b-2 border-secondary">
-              <div className=" flex gap-8">
-                <div className=" basis-1/2 flex relative justify-center items-center">
+            <div className="p-8 flex gap-2 flex-col border-b-2 border-secondary">
+              <div className="  flex-wrap sm:flex-nowrap flex gap-8">
+                <div className="sm:basis-1/2 flex relative justify-center items-center">
                   <Image src={pngWifyAms} alt="gamingMonitor" />
                   <Heart className="absolute top-0 right-0 " />
                   <div className="absolute top-0 left-0 rounded-full text-white bg-primary w-8 flex justify-center items-center p-1 text-[10px] font-extrabold	tracking-tight">
                     <span>75%</span>
                   </div>
                 </div>
-                <div className="basis-1/2 flex flex-col gap-4">
+                <div className="sm:basis-1/2 flex flex-col gap-4">
                   <p className="font-semibold text-sm">
                     LG 29UB67-B 29 Inch QHD Flat Gaming Monitor (29UB67-B)
                   </p>
@@ -132,16 +132,16 @@ const DealsOfTheDay = () => {
                 </p>
               </div>
             </div>
-            <div className="  p-8 flex gap-2 flex-col ">
-              <div className=" flex gap-8">
-                <div className=" basis-1/2 flex relative justify-center items-center">
+            <div className="  flex-wrap sm:flex-nowrap p-8 flex gap-2 flex-col ">
+              <div className=" flex-wrap sm:flex-nowrap flex gap-8">
+                <div className="sm:basis-1/2 flex relative justify-center items-center">
                   <Image src={pngMouse} alt="gamingMonitor" />
                   <Heart className="absolute top-0 right-0 " />
                   <div className="absolute top-0 left-0 rounded-full text-white bg-primary w-8 flex justify-center items-center p-1 text-[10px] font-extrabold	tracking-tight">
                     <span>75%</span>
                   </div>
                 </div>
-                <div className="basis-1/2 flex flex-col gap-4">
+                <div className="sm:basis-1/2 flex flex-col gap-4">
                   <p className="font-semibold text-sm">
                     LG 29UB67-B 29 Inch QHD Flat Gaming Monitor (29UB67-B)
                   </p>
