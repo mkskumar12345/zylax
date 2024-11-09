@@ -7,6 +7,8 @@ import {
   svgIconSidebarOrderHistory,
   svgIconSidebarProfile,
 } from "@/assets/images";
+import heart from "../../assets/images/svg/Heart.svg";
+import changepass from "../../assets/images/svg/changepassword.svg";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -68,7 +70,7 @@ const Sidebar = () => {
             className={
               pathname === "my-wishlist" ? "filter invert brightness-0 " : ""
             }
-            src={svgIconSidebarMyWishlist}
+            src={heart}
             alt="sidebar-my-wishlist"
           />
           <span>My Wishlist</span>
@@ -89,7 +91,7 @@ const Sidebar = () => {
                 ? "filter invert brightness-0 "
                 : ""
             }
-            src={svgIconSidebarChangePass}
+            src={changepass}
             alt="sidebar-change-pass"
           />
           <span>Change Password</span>

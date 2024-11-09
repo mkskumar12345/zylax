@@ -1,11 +1,12 @@
-import React from 'react'
+import OrderHistory from "@/components/OrderHistory/OrderHistory";
+import React from "react";
 
 const page = () => {
   return (
     <div>
-      my orders
+      <OrderHistory />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
