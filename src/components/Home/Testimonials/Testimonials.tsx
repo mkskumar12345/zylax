@@ -97,9 +97,9 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-      <div className=" md:container  ">
+      <div className="px-2 md:container  ">
         <div className="relative xl:h-[328px] md:border border-secondary">
-          <div className=" h-full p-8 rounded-xl  gap-10 bg-white flex-wrap lg:flex-nowrap flex xl:absolute -top-24  ">
+          <div className=" h-full sm:p-8 p-2 rounded-xl  gap-10 bg-white flex-wrap lg:flex-nowrap flex xl:absolute -top-24  ">
             <div className="xl:basis-7/12 lg:basis-6/12 w-full h-full ">
               <Image
                 src={pngTestimonialBanner}

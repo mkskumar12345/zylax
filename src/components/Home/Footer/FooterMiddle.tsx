@@ -13,7 +13,7 @@ import React from "react";
 const FooterMiddle = () => {
   return (
     <div className=" bg-black">
-      <div className="flex xl:flex-nowrap flex-wrap justify-between px-3  md:container pb-10">
+      <div className="flex xl:flex-nowrap flex-wrap justify-between container pb-10">
         <div className="xl:basis-4/12 w-full md:basis-8/12 flex flex-col my-10 gap-6">
           <div className="">
             <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
@@ -42,7 +42,7 @@ const FooterMiddle = () => {
             <Image src={svgIconPinterest} alt="twitter" />
           </div>
         </div>
-        <div className="xl:basis-2/12 clear-start md:basis-4/12 w-full sm:basis-1/2 my-10  text-white">
+        <div className="xl:basis-2/12 clear-start md:basis-4/12 w-full basis-1/2 my-10  text-white">
           <h2 className="font-bold text-lg">INFORMATION</h2>
           <div className="flex flex-col gap-2 mt-8  font-regular text-sm">
             <div>Laptops</div>
@@ -56,7 +56,7 @@ const FooterMiddle = () => {
             <div>Office</div>
           </div>
         </div>
-        <div className="xl:basis-2/12 clear-start w-full lg:basis-1/3 sm:basis-1/2 my-10 text-white">
+        <div className="xl:basis-2/12 clear-start w-full lg:basis-1/3 basis-1/2 my-10 text-white">
           <h2 className="font-bold text-lg">COMPANY</h2>
           <div className="flex flex-col gap-2 mt-8  font-regular text-sm">
             <div>About Swoo</div>
@@ -67,7 +67,7 @@ const FooterMiddle = () => {
             <div>Store Location</div>
           </div>
         </div>
-        <div className="xl:basis-2/12 clear-start w-full sm:basis-1/2 my-10 lg:basis-1/3 text-white">
+        <div className="xl:basis-2/12 clear-start w-full basis-1/2 my-10 lg:basis-1/3 text-white">
           <h2 className="font-bold text-lg">HELP CENTER</h2>
           <div className="flex flex-col gap-2 mt-8 font-regular text-sm">
             <div>Customer Services</div>
@@ -79,7 +79,7 @@ const FooterMiddle = () => {
             <div>Product Support</div>
           </div>
         </div>
-        <div className="xl:basis-2/12 clear-start w-full sm:basis-1/2 my-10 lg:basis-1/3 text-white">
+        <div className="xl:basis-2/12 clear-start w-full basis-1/2 my-10 lg:basis-1/3 text-white">
           <h2 className="font-bold text-lg">PARTNER</h2>
           <div className="flex flex-col gap-2 mt-8 font-regular text-sm">
             <div>Become Seller</div>
