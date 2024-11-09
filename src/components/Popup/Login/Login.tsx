@@ -3,6 +3,7 @@ import login from "@/assets/images/svg/login.svg";
 import Image from "next/image";
 import logo from "../../../assets/images/png/logo.png";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
+import SignUpPopup from "../Signup/Signup"
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
@@ -13,9 +14,12 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   const [isPopupOpen, setPopupOpen] = useState(false);
-
+  const [isSignUpOpen, setSignUpOpen] = useState(false);
   const openPopup = () => setPopupOpen(true);
   const closePopup = () => setPopupOpen(false);
+
+  const openSignUpPopup = () => setSignUpOpen(true);
+  const closeSignUpPopup = () => setSignUpOpen(false);
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">
       <div className="bg-white lg:p-4 rounded shadow-md relative lg:w-[750px] h-auto">
@@ -40,12 +44,18 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             <div className="text-left">
               <label className="font-semibold">Email</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2 " placeholder="Email" />
+              <input
+                className="border-[#CCCCCC] border w-full  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                placeholder="Email"
+              />
             </div>
             <div className="text-left">
               <label className="font-semibold">Password</label>
               <br />
-              <input className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2" placeholder="Password" />
+              <input
+                className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
+                placeholder="Password"
+              />
             </div>
             <div className="flex justify-between w-full">
               <div className="flex gap-2">
@@ -66,7 +76,13 @@ const Login: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
             </div>
             <div className="text-center w-full">
               Don’t have an account?{" "}
-              <span className="text-[#FF8682] font-semibold">Sign up</span>
+              <span
+                className="text-[#FF8682] font-semibold"
+                onClick={openSignUpPopup}
+              >
+                Sign up
+              </span>
+              <SignUpPopup isOpen={isSignUpOpen} onClose={closeSignUpPopup} />
             </div>
           </div>
 
