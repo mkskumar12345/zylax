@@ -16,8 +16,8 @@ import React from "react";
 const BestSeller = () => {
   return (
     <div className="bg-secondary py-16">
-      <div className="flex xl:flex-nowrap gap-6 md:container mx-3 justify-between flex-wrap">
-        <div className="xl:basis-4/12   w-full">
+      <div className="flex  lg:flex-nowrap gap-6 md:container mx-3 justify-between flex-wrap">
+        <div className="lg:basis-4/12   w-full">
           <div className="flex flex-col gap-4 mb-4">
             <p className="text-[#666666] text-xs font-medium">
               amazon award-winning monitor
@@ -43,7 +43,7 @@ const BestSeller = () => {
             />
           </div>
         </div>
-        <div className="xl:basis-6/12 lg:basis-12/12 w-full">
+        <div className="lg:basis-8/12 md:basis-12/12 w-full">
           <div className="mt-4">
             <div className="flex justify-between">
               <h1 className="font-bold text-3xl">Best Sellers</h1>
@@ -56,7 +56,7 @@ const BestSeller = () => {
                 </span>
               </div>
             </div>
-            <div className="flex flex-wrap lg:flex-nowrap gap-4 mt-12">
+            <div className="grid xl:grid-cols-3 sm:grid-cols-3 lg:grid-cols-2 gap-4 mt-12">
               <div className="bg-white card w-full border border-[#99999999] rounded-xl">
                 <div className="flex p-4 justify-between items-center">
                   <span className="border-[#D30200] text-xs font-medium text-[#D30200] border-2 rounded-full py-2 px-4 ">
@@ -86,7 +86,7 @@ const BestSeller = () => {
                   $325.00 - $410.00
                 </h2>
               </div>
-              <div className="bg-white card w-full border border-[#99999999] rounded-xl">
+              <div className="bg-white card w-full border sm:block hidden border-[#99999999] rounded-xl">
                 <div className="flex p-4 justify-between items-center">
                   <span className="uppercase text-xs bg-[#009900] font-medium text-[#ffffff] rounded-full py-2 px-6">
                     top rated
@@ -119,7 +119,7 @@ const BestSeller = () => {
                   $325.00 - $410.00
                 </h2>
               </div>
-              <div className="bg-white card w-full border border-[#99999999] rounded-xl">
+              <div className="bg-white card lg:hidden xl:block sm:block hidden w-full border border-[#99999999] rounded-xl">
                 <div className="flex p-4 justify-between items-center">
                   <span className=" text-xs bg-[#41C2F2] font-medium text-[#ffffff] rounded-full py-2 px-6">
                     NEW

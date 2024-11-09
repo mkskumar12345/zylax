@@ -390,13 +390,322 @@ const ProductDetails = () => {
               </div>
             </TabsContent>
             <TabsContent value="additional-information">
-              <div className="p-8">hi</div>
+              <div className="p-8 gap-6 grid  grid-cols-4">
+                <div className="xl:col-span-2 col-span-4">
+                  <h2 className="font-semibold ">Description</h2>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    The most powerful MacBook Pro ever is here. With the
+                    blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
+                    designed for pros — you get groundbreaking performance and
+                    amazing battery life. Add to that a stunning Liquid Retina
+                    XDR display, the best camera and audio ever in a Mac
+                    notebook, and all the ports you need. The first notebook of
+                    its kind, this MacBook Pro is a beast. M1 Pro takes the
+                    exceptional performance of the M1 architecture to a whole
+                    new level for pro users.
+                  </p>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    Even the most ambitious projects are easily handled with up
+                    to 10 CPU cores, up to 16 GPU cores, a 16‑core Neural
+                    Engine, and dedicated encode and decode media engines that
+                    support H.264, HEVC, and ProRes codecs.
+                  </p>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4">
+                  <h2 className="font-semibold">Feature</h2>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreWarrenty} alt="free-warrenty" />
+                      <span className="text-sm font-regular">
+                        Free 1 Year Warranty
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreShipping} alt="free-shipping" />
+                      <span className="text-sm font-regular">
+                        Free Shipping & Fasted Delivery
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconHeadphoneProdDetails}
+                        alt="headphone-prod-details"
+                      />
+                      <span className="text-sm font-regular">
+                        100% Money-back guarantee
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconMoneyBackGurenty}
+                        alt="money-back-gurenty"
+                      />
+                      <span className="text-sm font-regular">
+                        24/7 Customer support
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconSecurePayMethod}
+                        alt="secure-pay-method"
+                      />
+                      <span className="text-sm font-regular">
+                        Secure payment method
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4   md:border-l md:border-l-[#E4E7E9] py-1 px-3">
+                  <h2 className="font-semibold">Shipping Information</h2>
+                  <div className=" flex flex-col gap-2 mt-3">
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Courier:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        {" "}
+                        2 - 4 days, free shipping
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Local Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        up to one week, $19.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        UPS Ground Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        4 - 6 days, $29.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Unishop Global Export:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        3 - 4 days, $39.00
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="specification">
-              <div className="p-8">hi</div>
+              <div className="p-8 gap-6 grid  grid-cols-4">
+                <div className="xl:col-span-2 col-span-4">
+                  <h2 className="font-semibold ">Description</h2>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    The most powerful MacBook Pro ever is here. With the
+                    blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
+                    designed for pros — you get groundbreaking performance and
+                    amazing battery life. Add to that a stunning Liquid Retina
+                    XDR display, the best camera and audio ever in a Mac
+                    notebook, and all the ports you need. The first notebook of
+                    its kind, this MacBook Pro is a beast. M1 Pro takes the
+                    exceptional performance of the M1 architecture to a whole
+                    new level for pro users.
+                  </p>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    Even the most ambitious projects are easily handled with up
+                    to 10 CPU cores, up to 16 GPU cores, a 16‑core Neural
+                    Engine, and dedicated encode and decode media engines that
+                    support H.264, HEVC, and ProRes codecs.
+                  </p>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4">
+                  <h2 className="font-semibold">Feature</h2>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreWarrenty} alt="free-warrenty" />
+                      <span className="text-sm font-regular">
+                        Free 1 Year Warranty
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreShipping} alt="free-shipping" />
+                      <span className="text-sm font-regular">
+                        Free Shipping & Fasted Delivery
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconHeadphoneProdDetails}
+                        alt="headphone-prod-details"
+                      />
+                      <span className="text-sm font-regular">
+                        100% Money-back guarantee
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconMoneyBackGurenty}
+                        alt="money-back-gurenty"
+                      />
+                      <span className="text-sm font-regular">
+                        24/7 Customer support
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconSecurePayMethod}
+                        alt="secure-pay-method"
+                      />
+                      <span className="text-sm font-regular">
+                        Secure payment method
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4   md:border-l md:border-l-[#E4E7E9] py-1 px-3">
+                  <h2 className="font-semibold">Shipping Information</h2>
+                  <div className=" flex flex-col gap-2 mt-3">
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Courier:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        {" "}
+                        2 - 4 days, free shipping
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Local Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        up to one week, $19.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        UPS Ground Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        4 - 6 days, $29.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Unishop Global Export:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        3 - 4 days, $39.00
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="review">
-              <div className="p-8">hi</div>
+              <div className="p-8 gap-6 grid  grid-cols-4">
+                <div className="xl:col-span-2 col-span-4">
+                  <h2 className="font-semibold ">Description</h2>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    The most powerful MacBook Pro ever is here. With the
+                    blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
+                    designed for pros — you get groundbreaking performance and
+                    amazing battery life. Add to that a stunning Liquid Retina
+                    XDR display, the best camera and audio ever in a Mac
+                    notebook, and all the ports you need. The first notebook of
+                    its kind, this MacBook Pro is a beast. M1 Pro takes the
+                    exceptional performance of the M1 architecture to a whole
+                    new level for pro users.
+                  </p>
+                  <p className="mt-3 w-5/6 font-regular text-sm text-[#5F6C72]">
+                    Even the most ambitious projects are easily handled with up
+                    to 10 CPU cores, up to 16 GPU cores, a 16‑core Neural
+                    Engine, and dedicated encode and decode media engines that
+                    support H.264, HEVC, and ProRes codecs.
+                  </p>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4">
+                  <h2 className="font-semibold">Feature</h2>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreWarrenty} alt="free-warrenty" />
+                      <span className="text-sm font-regular">
+                        Free 1 Year Warranty
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image src={svgIconFreShipping} alt="free-shipping" />
+                      <span className="text-sm font-regular">
+                        Free Shipping & Fasted Delivery
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconHeadphoneProdDetails}
+                        alt="headphone-prod-details"
+                      />
+                      <span className="text-sm font-regular">
+                        100% Money-back guarantee
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconMoneyBackGurenty}
+                        alt="money-back-gurenty"
+                      />
+                      <span className="text-sm font-regular">
+                        24/7 Customer support
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Image
+                        src={svgIconSecurePayMethod}
+                        alt="secure-pay-method"
+                      />
+                      <span className="text-sm font-regular">
+                        Secure payment method
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl:col-span-1 md:col-span-2 col-span-4   md:border-l md:border-l-[#E4E7E9] py-1 px-3">
+                  <h2 className="font-semibold">Shipping Information</h2>
+                  <div className=" flex flex-col gap-2 mt-3">
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Courier:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        {" "}
+                        2 - 4 days, free shipping
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Local Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        up to one week, $19.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        UPS Ground Shipping:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        4 - 6 days, $29.00
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-medium text-sm text-[#191C1F]">
+                        Unishop Global Export:
+                      </span>
+                      <p className="font-regular text-sm tex-[#5F6C72]">
+                        3 - 4 days, $39.00
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
           </Tabs>
         </div>

@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "8rem",
+      padding: "2rem",
     },
     extend: {
       backgroundImage: {

@@ -106,7 +106,7 @@ const Categories = () => {
             {carouselItem.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="flex basis-1/2 sm:basis-1/3  md:basis-1/3 lg:basis-1/6 shrink-0 flex-col items-center"
+                className="flex basis-1/2 sm:basis-1/3  md:basis-1/3 lg:basis-1/5 xl:basis-1/6 shrink-0 flex-col items-center"
               >
                 <Image src={item.img} alt="" />
                 <span> {item.title}</span>

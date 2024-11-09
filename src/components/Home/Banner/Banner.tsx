@@ -18,7 +18,7 @@ import Autoplay from "embla-carousel-autoplay";
 const Banner = () => {
   return (
     <div className="bg-secondary py-8">
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 p-3  md:container ">
+      <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-4 container ">
         <div className="col-span-2 flex flex-col gap-4">
           <div>
             <Carousel
@@ -38,7 +38,7 @@ const Banner = () => {
               </CarouselContent>
             </Carousel>
           </div>
-          <div className="flex gap-4 flex-wrap lg:flex-nowrap justify-between ">
+          <div className="flex gap-4 flex-wrap md:flex-nowrap justify-between ">
             <div className="relative h-[119px] w-full lg:w-[336px]">
               <Image
                 src={pngHomeBannerBottom1}
@@ -74,9 +74,9 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <div className="grid-cols-1 flex flex-col gap-2 ">
-          <Image src={pngHomeBannerRight1} alt="right1" />
-          <Image src={pngHomeBannerRight2} alt="right2" />
+        <div className="grid-cols-1 flex mt-4 lg:mt-0 flex-col w-full gap-2 ">
+          <Image src={pngHomeBannerRight1} className="w-full" alt="right1" />
+          <Image src={pngHomeBannerRight2} alt="right2" className="w-full" />
         </div>
       </div>
     </div>
