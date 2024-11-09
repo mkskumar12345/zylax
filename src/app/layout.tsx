@@ -3,6 +3,7 @@ import rajdhani from "@/assets/fonts/rajdhani-fonts";
 import "../assets/styles/globals.css";
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Footer from "@/components/Home/Footer/Footer";
+import StoreProvider from "@/store/StoreProvider";
 
 export const metadata: Metadata = {
   title: "Zylax",
@@ -17,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rajdhani.className} antialiased`}>
-        <Navbar />
-
-        {children}
-        <Footer />
+        <StoreProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
