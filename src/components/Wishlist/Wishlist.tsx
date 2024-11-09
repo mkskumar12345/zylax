@@ -7,9 +7,9 @@ import CommonBanner from "../Common/CommonBanner";
 const Wishlist = () => {
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} />
+      {/* <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} /> */}
       <div className="">
-        <div className="grid place-items-center mt-5">
+        <div className="grid place-items-center">
           <div>
             <div className="font-bold  pl-2  text-left border-[#E4E7E9]  border-t lg:border-l lg:border-r  text-[30px]">
               My Wishlist

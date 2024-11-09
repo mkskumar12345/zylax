@@ -1,9 +1,12 @@
+import MyProfile from "@/components/MyProfile/MyProfile";
 import React from "react";
 
 const page = () => {
-  return <div>profile
-    
-  </div>;
+  return (
+    <div>
+      <MyProfile />
+    </div>
+  );
 };
 
 export default page;
