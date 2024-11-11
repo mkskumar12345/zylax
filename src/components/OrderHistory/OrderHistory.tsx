@@ -4,7 +4,7 @@ import React from "react";
 const OrderHistory = () => {
   return (
     <div>
-      <span className="font-semibold text-[30px]">Order History</span>
+      <span className="font-bold text-[30px]">Order History</span>
 
       <div className="mt-5">
         <table>

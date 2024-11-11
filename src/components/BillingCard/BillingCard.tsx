@@ -13,7 +13,7 @@ const BillingCard = () => {
   return (
     <>
       <CommonBanner icon={svgIconBannerHome} path={["billingcard"]} />
-      <div className="mt-5 mb-20">
+      <div className="mt-5 mb-20 overflow-hidden">
         <div className="flex lg:justify-center lg:flex-row flex-col lg:items-start items-center gap-5 ">
           <div className="lg:w-[900px]">
             <span className="font-semibold text-xl"> Billing Information</span>

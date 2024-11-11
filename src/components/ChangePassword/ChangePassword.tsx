@@ -8,7 +8,7 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <span className="font-semibold text-[30px]">Change Password</span>
+      <span className="font-bold text-[30px]">Change Password</span>
       <div className="w-[300px] text-[15px]">
         Create a New Password. Ensure it differs from previous ones for
         security.
