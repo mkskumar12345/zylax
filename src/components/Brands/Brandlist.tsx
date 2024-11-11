@@ -5,24 +5,30 @@ import Image from "next/image";
 import { svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
 import brandsData from "../../Data/brands.json";
+import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
 
 const Brandlist = () => {
   const [selectedLetter, setSelectedLetter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBrands, setFilteredBrands] = useState(brandsData);
+  const {
+    data: brandsList,
+    error,
+    isLoading,
+  } = useGetBrandsListQuery(undefined);
 
-  useEffect(() => {
-    const filtered = brandsData.filter((brand) => {
-      const matchesLetter =
-        selectedLetter === "All" || brand.name.startsWith(selectedLetter);
-      const matchesSearch = brand.name
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
+  // useEffect(() => {
+  //   const filtered = brandsData.filter((brand) => {
+  //     const matchesLetter =
+  //       selectedLetter === "All" || brand.name.startsWith(selectedLetter);
+  //     const matchesSearch = brand.name
+  //       .toLowerCase()
+  //       .includes(searchQuery.toLowerCase());
 
-      return matchesLetter && matchesSearch;
-    });
-    setFilteredBrands(filtered);
-  }, [selectedLetter, searchQuery]);
+  //     return matchesLetter && matchesSearch;
+  //   });
+  //   setFilteredBrands(filtered);
+  // }, [selectedLetter, searchQuery]);
 
   return (
     <>
@@ -70,20 +76,20 @@ const Brandlist = () => {
 
         {/* Filtered Brands Display */}
         <div className="mt-10 flex flex-wrap gap-10">
-          {filteredBrands.length > 0 ? (
-            filteredBrands.map((brand, index) => (
+          {brandsList?.manufactures?.length > 0 ? (
+            brandsList?.manufactures?.map((brand: any) => (
               <div
-                key={index}
-                className="w-[315px] h-[170px] bg-white shadow-2xl rounded-2xl flex-col flex justify-center items-center"
+                key={brand.id}
+                className="w-[315px] h-[170px] bg-white shadow-md rounded-2xl flex-col flex justify-center items-center"
               >
                 <Image
-                  src={brand.logo}
+                  src={`/${brand.manufacture_img}`}
                   alt={brand.name}
                   width={60}
                   height={60}
                 />
                 <span>{brand.name}</span>
-                <span>{brand.products} product(s)</span>
+                <span>{brand.totalP} product(s)</span>
               </div>
             ))
           ) : (

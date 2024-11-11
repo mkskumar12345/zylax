@@ -5,14 +5,14 @@ const productsApi = rootApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => ({
-        url: allApiRoutes.PRODUCTS,
+        url: allApiRoutes.products.PRODUCTS,
         method: "GET",
       }),
       providesTags: ["product-list"],
     }),
     createProduct: builder.mutation({
       query: (body) => ({
-        url: allApiRoutes.PRODUCTS,
+        url: allApiRoutes.products.PRODUCTS,
         method: "POST",
         body,
       }),
