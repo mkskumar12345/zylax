@@ -14,6 +14,9 @@ const allApiRoutes = {
   businessAndItSupport: {
     BUSINESS_AND_IT_SUPPORT: "/common/pages/business-it-support",
   },
+  faqs: {
+    FAQs: "/common/faqs",
+  },
 };
 
 export default allApiRoutes;
