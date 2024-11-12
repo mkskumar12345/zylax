@@ -10,6 +10,10 @@ const allPagesRoutes = {
   MY_ORDERS: "/user/my-orders",
   MY_WISHLIST: "/user/my-wishlist",
   CHANGE_PASSWORD: "/user/change-password",
+  PRIVACY_POLICY: "/privacy-policy",
+  FAQS: "faqs",
+  TERMS_AND_CONDITION: "terms-and-conditions",
+  BUSINESS_IT_SUPPORT: "business-it-support",
 };
 
 export default allPagesRoutes;
