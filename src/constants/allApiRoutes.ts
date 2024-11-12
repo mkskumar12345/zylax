@@ -1,5 +1,10 @@
 const allApiRoutes = {
-  PRODUCTS: "/products",
+  products: {
+    PRODUCTS: "/products",
+  },
+  brands: {
+    BRAND_LIST: "common/brands",
+  },
 };
 
 export default allApiRoutes;
