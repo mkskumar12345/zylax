@@ -7,7 +7,6 @@ const page = async () => {
   const response = await fetchDataWrapper(
     allApiRoutes?.termsAndCondition.TERMS_AND_CONDITION
   );
-  console.log(response);
 
   return <TermsAndConditions pageData={response?.data} />;
 };

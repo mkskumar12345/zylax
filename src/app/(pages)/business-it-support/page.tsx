@@ -8,7 +8,6 @@ const page = async () => {
   const response = await fetchDataWrapper(
     allApiRoutes?.businessAndItSupport.BUSINESS_AND_IT_SUPPORT
   );
-  console.log(response);
 
   return <BussinessAndItSupport pageData={response?.data} />;
 };

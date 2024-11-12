@@ -7,7 +7,6 @@ const page = async () => {
   const response = await fetchDataWrapper(
     allApiRoutes?.privacyPolicy?.PRIVACY_POLICY
   );
-  console.log(response);
 
   return <PrivacyPolicy pageData={response?.data} />;
 };
