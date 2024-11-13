@@ -16,12 +16,12 @@ const defaultHeaders = {
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_WEB_APP_URL,
-  prepareHeaders: async (headers) => {
-    Object.entries(defaultHeaders).forEach(([key, value]) => {
-      headers.set(key, value);
-    });
-    return headers;
-  },
+  // prepareHeaders: async (headers) => {
+  //   Object.entries(defaultHeaders).forEach(([key, value]) => {
+  //     headers.set(key, value);
+  //   });
+  //   return headers;
+  // },
 });
 
 const baseQueryWithReauth: BaseQueryFn<
