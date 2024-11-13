@@ -95,10 +95,10 @@ const NavMiddle = () => {
                     <div className="w-full">
                       <Input
                         className="border bg-secondary px-4 py-2 h-full rounded-full "
-                        placeholder="Search anything"
+                        placeholder="Search For products,categories..."
                       />
                     </div>
-                    <Select>
+                    {/* <Select>
                       <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full ">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
@@ -107,7 +107,7 @@ const NavMiddle = () => {
                         <SelectItem value="2">items 2</SelectItem>
                         <SelectItem value="3">items 3</SelectItem>
                       </SelectContent>
-                    </Select>
+                    </Select> */}
                     <Button className="bg-black w-full text-white font-semibold rounded-full px-4 py-2">
                       <Image
                         src={svgIconSearch}
