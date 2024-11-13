@@ -6,6 +6,7 @@ import {
   svgIconTwitter,
   svgIconYoutube,
 } from "@/assets/images";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -45,47 +46,52 @@ const FooterMiddle = () => {
         <div className="xl:basis-2/12 clear-start md:basis-4/12 w-full basis-1/2 my-10  text-white">
           <h2 className="font-bold text-lg">INFORMATION</h2>
           <div className="flex flex-col gap-2 mt-8  font-regular text-sm">
-            <div>Laptops</div>
-            <div>PC & Computers</div>
-            <div>Cell Phones</div>
-            <div>Tablets</div>
-            <div>Gaming & VR</div>
-            <div>Networks</div>
-            <div>Cameras</div>
-            <div>Sounds</div>
-            <div>Office</div>
+            <Link href="#">Laptops</Link>
+            <Link href="#">PC & Computers</Link>
+            <Link href="#">Cell Phones</Link>
+            <Link href="#">Tablets</Link>
+            <Link href="#">Gaming & VR</Link>
+            <Link href="#">Networks</Link>
+            <Link href="#">Cameras</Link>
+            <Link href="#">Sounds</Link>
+            <Link href="#">Office</Link>
           </div>
         </div>
         <div className="xl:basis-2/12 clear-start w-full lg:basis-1/3 basis-1/2 my-10 text-white">
           <h2 className="font-bold text-lg">COMPANY</h2>
           <div className="flex flex-col gap-2 mt-8  font-regular text-sm">
-            <div>About Swoo</div>
-            <div>Contact</div>
-            <div>Career</div>
-            <div>Blog</div>
-            <div>Site Map</div>
-            <div>Store Location</div>
+            <Link href="#">About Swoo</Link>
+            <Link href="#">Contact</Link>
+            <Link href="#">Career</Link>
+            <Link href="#">Blog</Link>
+            <Link href="#">Site Map</Link>
+            <Link href="#">Store Location</Link>
           </div>
         </div>
         <div className="xl:basis-2/12 clear-start w-full basis-1/2 my-10 lg:basis-1/3 text-white">
           <h2 className="font-bold text-lg">HELP CENTER</h2>
           <div className="flex flex-col gap-2 mt-8 font-regular text-sm">
-            <div>Customer Services</div>
-            <div>Policy</div>
-            <div>Terms & Conditions</div>
-            <div>Trake Orders</div>
-            <div>FAQs</div>
-            <div>My Account</div>
-            <div>Product Support</div>
+            <Link href="#">Customer Services</Link>
+            <Link href={allPagesRoutes.PRIVACY_POLICY}>Policy</Link>
+            <Link href={allPagesRoutes.TERMS_AND_CONDITION}>
+              Terms & Conditions
+            </Link>
+            <Link href="#">Trake Orders</Link>
+            <Link href={allPagesRoutes.FAQS}>FAQs</Link>
+            <Link href="#">My Account</Link>
+            <Link href="#">Product Support</Link>
           </div>
         </div>
         <div className="xl:basis-2/12 clear-start w-full basis-1/2 my-10 lg:basis-1/3 text-white">
           <h2 className="font-bold text-lg">PARTNER</h2>
           <div className="flex flex-col gap-2 mt-8 font-regular text-sm">
-            <div>Become Seller</div>
-            <div>Affilliate</div>
-            <div>Advertise</div>
-            <div>Partnership</div>
+            <Link href="#">Become Seller</Link>
+            <Link href="#">Affilliate</Link>
+            <Link href="#">Advertise</Link>
+            <Link href="#">Partnership</Link>
+            <Link href={allPagesRoutes.BUSINESS_IT_SUPPORT}>
+              Business and It support
+            </Link>
           </div>
         </div>
       </div>

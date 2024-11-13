@@ -37,7 +37,7 @@ const fetchWrapper = async <T = any>(
   }
 
   const headers = { ...defaultHeaders, ...config.headers };
-
+  console.log({ url: fetchParams.baseURL + url });
   try {
     const response = await fetch(fetchParams.baseURL + url, {
       ...config,
