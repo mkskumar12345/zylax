@@ -1,6 +1,7 @@
 const allApiRoutes = {
   products: {
     PRODUCTS: "/products",
+    FAVORITE_PRODUCT: "/favorites",
   },
   brands: {
     BRAND_LIST: "/common/brands",

@@ -35,7 +35,18 @@ const productsApi = rootApiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    favoriteProduct: builder.mutation({
+      query: ({ id }) => ({
+        url: `${allApiRoutes.products.FAVORITE_PRODUCT}/${id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["product-list"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductDetailsQuery } = productsApi;
+export const {
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+  useFavoriteProductMutation,
+} = productsApi;

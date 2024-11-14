@@ -1,98 +1,250 @@
+"use client";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import profile from "../../assets/images/png/profile.png";
 import { Edit3 } from "lucide-react";
-const MyProfile = () => {
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../ui/form";
+
+const profileSchema = z.object({
+  firstName: z.string().min(1, { message: "Please enter your name" }),
+  lastName: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  country: z.string().optional(),
+  address: z.string().optional(),
+  pinCode: z.string().optional(),
+});
+const MyProfile = ({ profileData }: { profileData: any }) => {
+  const form = useForm({
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      name: profileData?.name,
+      "profile-photo": "",
+      firstName: profileData?.firstName,
+      lastName: profileData?.lastName,
+      email: profileData?.email,
+      phone: profileData?.phone,
+      country: profileData?.country,
+      address: profileData?.address,
+      pinCode: profileData?.pinCode,
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    console.log({ data });
+  };
   return (
     <div>
       <div className="border-b border-[#E4E7E9]">
         <span className="font-bold text-[30px]">My Profile</span>
       </div>
-      <div className="mt-5 flex justify-between items-center">
-        <div className="relative inline-block">
-          <Image
-            src={profile}
-            alt="profile photo"
-            className="rounded-full w-[81px] h-[81px]"
-          />
-          <button
-            className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg"
-            aria-label="Edit profile photo"
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="mt-5 flex justify-between items-center">
+            <div className="relative inline-block">
+              <FormField
+                control={form.control}
+                name="profile-photo"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label
+                      htmlFor="profile-photo"
+                      className="cursor-pointer rounded-full"
+                    >
+                      <Image
+                        src={profile}
+                        alt="profile photo"
+                        className="rounded-full w-[81px] h-[81px]"
+                      />
+                      <Button
+                        variant="ghost"
+                        className=" absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg"
+                        aria-label="Edit profile photo"
+                      >
+                        <Pencil
+                          className="w-4 h-4 text-gray-600"
+                          color="#EB4227"
+                        />
+                      </Button>
+                    </Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="profile-photo"
+                        type="file"
+                        className="hidden"
+                        name="profile-photo"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <button className="bg-[#EB4227] w-[172px] h-[54px] rounded text-white flex justify-center items-center gap-2 font-bold text-[16px]">
+              <Pencil />
+              Edit Profile
+            </button>
+          </div>
+          <div className="mt-5 gap-4 flex justify-between items-center ">
+            <div className="">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">First Name</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="First Name"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="">
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Last Name</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Last Name"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <div className="mt-5 flex gap-4 justify-between items-center ">
+            <div className="">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Mail ID</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Mail ID"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Phone Number</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Phone Number"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <div className="mt-5 gap-4 flex justify-between items-center ">
+            <div className="">
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Country/Region</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Country/Region"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="">
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Address</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Country/Region"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="">
+              <FormField
+                control={form.control}
+                name="pinCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label className="font-semibold">Pin Code</Label>
+                    <FormControl>
+                      <Input
+                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                        placeholder="Pin Code"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <Button
+            type="submit"
+            className="mt-10 w-[194px] h-[43px] bg-[#D30200] rounded text-white font-bold"
           >
-            <Pencil className="w-4 h-4 text-gray-600" color="#EB4227" />
-          </button>
-        </div>
-        <button className="bg-[#EB4227] w-[172px] h-[54px] rounded text-white flex justify-center items-center gap-2 font-bold text-[16px]">
-          <Pencil />
-          Edit Profile
-        </button>
-      </div>
-      <div className="mt-5 flex justify-between items-center ">
-        <div className="">
-          <label className="font-semibold">First Name</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="First Name"
-          />
-        </div>
-        <div className="">
-          <label className="font-semibold">Last Name</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Last Name"
-          />
-        </div>
-      </div>
-      <div className="mt-5 flex justify-between items-center ">
-        <div className="">
-          <label className="font-semibold">Mail ID</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Mail ID"
-          />
-        </div>
-        <div className="">
-          <label className="font-semibold">Phone Number</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Phone Number"
-          />
-        </div>
-      </div>
-      <div className="mt-5 flex justify-between items-center ">
-        <div className="">
-          <label className="font-semibold">Country/Region</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Country/Region"
-          />
-        </div>
-        <div className="">
-          <label className="font-semibold">Country/Region</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Country/Region"
-          />
-        </div>
-        <div className="">
-          <label className="font-semibold">Pin Code</label>
-          <br />
-          <input
-            className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-            placeholder="Pin Code"
-          />
-        </div>
-      </div>
-      <button className="mt-10 w-[194px] h-[43px] bg-[#D30200] rounded text-white font-bold">
-        Save Changes
-      </button>
+            Save Changes
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 };

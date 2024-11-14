@@ -7,10 +7,11 @@ export const clearCookies = () => {
   cookies().set("token", "", { path: "/", expires: new Date(0) });
 };
 
-export const getToken = () => {
+export const getToken = async () => {
   try {
     const token = cookies().get("token");
-    return { authToken: token?.value || null };
+    // const parsedToken = token ? JSON.parse(token.value) : null;
+    return { authToken: `${token?.value}` };
   } catch (error) {
     return { success: false, message: "No token found" };
   }
@@ -32,11 +33,9 @@ export const setToken = async (token: string) => {
 
 export const logOutHandler = async () => {
   try {
-    const { authToken } = getToken();
+    const token = await getToken();
     const { data } = await fetchDataWithHeaders("", {
-      headers: {
-        Authorization: authToken,
-      },
+      Authorization: token?.authToken || "",
     });
     if (data.status === 401) {
       clearCookies();
