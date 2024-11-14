@@ -8,20 +8,21 @@ import {
 import { createApi } from "@reduxjs/toolkit/query/react";
 
 const defaultHeaders = {
-  "x-api-version": "1.0.0",
-  "accept-language": "en",
-  "x-platform": "web",
+  // "x-api-version": "1.0.0",
+  // "accept-language": "en",
+  // "x-platform": "web",
   "Content-Type": "application/json",
 };
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_WEB_APP_URL,
-  // prepareHeaders: async (headers) => {
-  //   Object.entries(defaultHeaders).forEach(([key, value]) => {
-  //     headers.set(key, value);
-  //   });
-  //   return headers;
-  // },
+  prepareHeaders: async (headers) => {
+    Object.entries(defaultHeaders).forEach(([key, value]) => {
+      headers.set(key, value);
+    });
+    
+    return headers;
+  },
 });
 
 const baseQueryWithReauth: BaseQueryFn<

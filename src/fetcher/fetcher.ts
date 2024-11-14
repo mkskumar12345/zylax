@@ -22,9 +22,9 @@ const fetchParams: FetchParams = {
 };
 
 const defaultHeaders: Record<string, string> = {
-  "x-api-version": "1.0.0",
-  "accept-language": "en",
-  "x-platform": "web",
+  // "x-api-version": "1.0.0",
+  // "accept-language": "en",
+  // "x-platform": "web",
   "Content-Type": "application/json",
 };
 
@@ -36,12 +36,13 @@ const fetchWrapper = async <T = any>(
     throw new Error("Base URL is not defined");
   }
 
+  // Merge headers properly
   const headers = { ...defaultHeaders, ...config.headers };
-  console.log({ url: fetchParams.baseURL + url });
+
   try {
     const response = await fetch(fetchParams.baseURL + url, {
       ...config,
-      headers,
+      headers, // Ensure headers are correctly set
     });
 
     const data: T = await response.json();

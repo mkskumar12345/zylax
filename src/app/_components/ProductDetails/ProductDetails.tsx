@@ -36,9 +36,11 @@ import { SelectContent } from "@radix-ui/react-select";
 import { Button } from "@/components/ui/button";
 import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useFavoriteProductMutation } from "@/store/apiServices/productsApi";
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   console.log(productDetails);
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
+  const [favoriteProduct] = useFavoriteProductMutation();
   const [selectedImage, setSelectedImage] = useState({
     img: pngProductDetails1,
     id: 2,
@@ -220,7 +222,10 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
             <div className="flex justify-between xl:flex-nowrap flex-wrap gap-4">
               <div className="flex gap-4  ">
                 <div className="flex gap-2 items-center">
-                  <Heart className="text-[#475156]" />
+                  <Heart
+                    className="text-[#475156]"
+                    onClick={() => favoriteProduct(productDetails.id).unwrap()}
+                  />
                   <span className=" font-refular text-sm text-[#475156]">
                     Add to Wishlist
                   </span>
