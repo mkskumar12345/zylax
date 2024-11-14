@@ -9,9 +9,6 @@ import BestSeller from "@/components/Home/BestSeller/BestSeller";
 import PopularBrands from "@/components/Home/PopularBrands/PopularBrands";
 import BestArrival from "@/components/Home/BestArrival/BestArrival";
 import Testimonials from "@/components/Home/Testimonials/Testimonials";
-import LatestNewsAndBlog from "@/components/Home/LatestNewsAndBlog/LatestNewsAndBlog";
-import Footer from "@/components/Home/Footer/Footer";
-import Wishlist from "@/components/Wishlist/Wishlist";
 
 const HomeComponent = () => {
   return (

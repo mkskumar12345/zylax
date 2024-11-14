@@ -36,7 +36,8 @@ import { SelectContent } from "@radix-ui/react-select";
 import { Button } from "@/components/ui/button";
 import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-const ProductDetails = () => {
+const ProductDetails = ({ productDetails }: { productDetails: any }) => {
+  console.log(productDetails);
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
   const [selectedImage, setSelectedImage] = useState({
     img: pngProductDetails1,
@@ -90,8 +91,7 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="font-medium leading-7 text-xl mt-2">
-              2020 Apple MacBook Pro with Apple M1 Chip (13-inch, 8GB RAM, 256GB
-              SSD Storage) - Space Gray
+              {productDetails?.name}
             </div>
             <div className="grid xl:grid-cols-2 lg:grid-cols-1 mt-3 gap-2">
               <div className="flex gap-1 text-sm">
@@ -119,7 +119,7 @@ const ProductDetails = () => {
             </div>
             <div className="flex items-center gap-1">
               <span className="font-semibold text-2xl text-[#EB4227]">
-                $1699
+                ${productDetails?.price}
               </span>
               <span className="text-[#77878F] text-lg">$1999.00</span>
               <span className="bg-[#FBAE24] ml-1 px-2 py-[6px] font-semibold text-sm">

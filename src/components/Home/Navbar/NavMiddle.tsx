@@ -13,13 +13,6 @@ import NavSearch from "./NavSearch";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { svgIconSearch } from "@/assets/images";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import {
   pngIconLogo,
@@ -30,8 +23,8 @@ import {
 } from "@/assets/images";
 import Link from "next/link";
 
-import Login from "@/components/Popup/Login/Login";
 import Signup from "@/components/Popup/Signup/Signup";
+import Login from "@/components/Popup/Login/Login";
 
 interface PopupProps {
   isOpen: boolean;
@@ -63,24 +56,12 @@ const NavMiddle = () => {
               </span>
               <span className="font-semibold text-xs">Truck Order</span>
             </button>
-            <button className="flex items-center h-full">
+            <div className="flex items-center h-full">
               <span>
                 <Image src={svgIconPerson} alt="person" />
               </span>
-              <span className="font-semibold text-xs" onClick={openPopup}>
-                Signin/
-              </span>
-              <span className="font-semibold text-xs" onClick={signupopen}>
-                Register
-              </span>
-              {/* Pass empty fragment or null as children */}
-              <Signup isOpen={isSignupOpen} onClose={signupclose}>
-                {/* Optional children content */}
-              </Signup>
-              <Login isOpen={isPopupOpen} onClose={closePopup}>
-                {/* Optional children content */}
-              </Login>
-            </button>
+              <Login />/ <Signup />
+            </div>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">
                 <Menu />
