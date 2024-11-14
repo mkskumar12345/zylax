@@ -17,6 +17,15 @@ const allApiRoutes = {
   faqs: {
     FAQs: "/common/faqs",
   },
+  login: {
+    LOGIN: "/users/login",
+  },
+  register: {
+    REGISTER: "/users/register",
+  },
+  profile: {
+    PROFILE: "/users/profile",
+  },
 };
 
 export default allApiRoutes;

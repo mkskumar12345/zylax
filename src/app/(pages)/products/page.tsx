@@ -1,8 +1,11 @@
 import Products from "@/app/_components/Products/Products";
 import React from "react";
-
-const page = () => {
-  return <Products />;
+interface URLSearchParams {
+  brand: string | number | undefined;
+}
+const page = ({ searchParams }: { searchParams: URLSearchParams }) => {
+  const brand = searchParams?.brand;
+  return <Products brand={brand} />;
 };
 
 export default page;

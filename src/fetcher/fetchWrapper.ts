@@ -27,10 +27,11 @@ const postDataWrapper = async (
 ): Promise<ApiResponse> => {
   try {
     const response = await api.post(endpoint, payload);
+    console.log(response);
     if (response.status === 201) {
       return { data: response.data, error: null };
     } else {
-      return { data: null, error: response.statusText };
+      return { data: response.data, error: response.statusText };
     }
   } catch (error: any) {
     console.error("Post Error:", error);
