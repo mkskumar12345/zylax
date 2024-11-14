@@ -32,10 +32,23 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useGetProductsQuery } from "@/store/apiServices/productsApi";
+import usePagination from "@/lib/hooks/usePagination";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 
-const Categories = () => {
+const Products = ({ brand }: { brand?: string | number | undefined }) => {
   const [values, setValues] = useState([20, 80]);
+  const [page, setPage] = useState<number>(1);
+  const [search, setSearch] = useState("");
+  const { data: products, isLoading } = useGetProductsQuery({
+    page: page,
+    items_per_page: 10,
+    search: search,
+    brand: brand,
+  });
+  const pages = usePagination(products?.totalPages, products?.currentPage);
 
+  console.log(products);
   return (
     <>
       <CommonBanner icon={svgIconBannerHome} path={["Categories"]} />
@@ -112,7 +125,7 @@ const Categories = () => {
                     />
                     <div className="w-full flex justify-between mt-4 font-semibold text-sm">
                       {values?.map((item) => (
-                        <span key={item}>${item}</span>
+                        <span key={`ac-${item}`}>${item}</span>
                       ))}
                     </div>
                   </div>
@@ -179,8 +192,8 @@ const Categories = () => {
         </div>
         <div className="lg:col-span-3 col-span-1">
           <div className="flex lg:justify-between flex-wrap  xl:flex-nowrap gap-3 w-full items-center">
-            <div className="min-w-28 flex gap-1">
-              <span className="font-semibold ">52</span>
+            <div className="min-w-32 flex gap-1">
+              <span className="font-semibold ">{products?.totalProducts}</span>
               <span className="font-regular text-nowrap text-[#666666]">
                 Results Found
               </span>
@@ -191,6 +204,7 @@ const Categories = () => {
                   placeholder="Search"
                   className="h-full w-full"
                   type="text"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
                 <Image
                   src={svgIconSearch}
@@ -216,62 +230,94 @@ const Categories = () => {
             </div>
           </div>
           <div className="grid grid-col-1 md:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2  mt-8 w-full gap-8 mb-12 ">
-            {Array.from({ length: 12 }).map((_, index) => (
-              <Link href={`/categories/product-details`} key={index}>
-                <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
-                  <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
-                    Gigabyte B450M DS3H V3 AM4 Micro ATX Mot...
-                  </div> 
-                  <div className="flex gap-2 justify-center">
-                    <Image src={svgIcon5Star} className="h-3" alt="5star" />
-                    <span className="font-regular text-xs">(3)</span>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <Image src={pngGBMicroAtx} alt="" className="w-36 h-36 " />
-                  </div>
-                  <div className="flex items-center justify-between p-4 ">
-                    <h2 className="text-[#EB4227] font-semibold text-lg">
-                      $59.000
-                    </h2>
-                    <h2 className="line-through font-semibold text-[13px] text-[#666666]">
-                      $159.00
-                    </h2>
-                    <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
-                      45% OFF
+            {products?.data?.map(
+              (item: {
+                id: number;
+                name: string;
+                product_img: string;
+                price: number;
+                ex_gst_price: number;
+              }) => (
+                <Link
+                  href={`${allPagesRoutes.PRODUCT_DETAILS}?product=${item?.id}`}
+                  key={`product-${item?.id}`}
+                >
+                  <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
+                    <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
+                      {item.name}
+                    </div>
+                    <div className="flex gap-2 justify-center">
+                      <Image src={svgIcon5Star} className="h-3" alt="5star" />
+                      <span className="font-regular text-xs">(3)</span>
+                    </div>
+                    <div className="flex justify-center items-center">
+                      <Image
+                        width={36}
+                        height={36}
+                        src={pngGBMicroAtx}
+                        alt="product image"
+                        className="w-36 h-36 "
+                      />
+                    </div>
+                    <div className="flex items-center justify-between p-4 ">
+                      <h2 className="text-[#EB4227] font-semibold text-lg">
+                        ${item?.ex_gst_price}
+                      </h2>
+                      <h2 className="line-through font-semibold text-[13px] text-[#666666]">
+                        ${item?.price}
+                      </h2>
+                      <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
+                        45% OFF
+                      </div>
+                    </div>
+                    <div className="flex justify-between p-4 items-center">
+                      <div className="font-medium text-xs gap-2 flex items-center">
+                        <span className="text-black">1,897</span>
+                        <span className="text-[#666666]">Purchases</span>
+                      </div>
+                      <div>
+                        <Image src={svgIconBestArivalHeart} alt="" />
+                      </div>
                     </div>
                   </div>
-                  <div className="flex justify-between p-4 items-center">
-                    <div className="font-medium text-xs gap-2 flex items-center">
-                      <span className="text-black">1,897</span>
-                      <span className="text-[#666666]">Purchases</span>
-                    </div>
-                    <div>
-                      <Image src={svgIconBestArivalHeart} alt="" />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            )}
           </div>
           <div className="flex gap-2 justify-center items-center">
-            <span className="w-9 h-9 rounded-full border bg-[#F2F2F2] flex justify-center items-center border-[#E6E6E6]">
+            <span
+              className="w-9 h-9 rounded-full border bg-[#F2F2F2] flex justify-center cursor-pointer items-center border-[#E6E6E6]"
+              onClick={() => {
+                setPage((prev: number) => {
+                  if (prev == 1) return prev;
+                  else return prev - 1;
+                });
+              }}
+            >
               <ChevronLeft />
             </span>
-            {Array.from({ length: 21 }).map(
-              (_, index) =>
-                (index + 1 <= 5 || index + 1 == 21) && (
-                  <span
-                    key={index}
-                    className={cn(
-                      "w-9 h-9 flex justify-center items-center rounded-full",
-                      index == 0 && "bg-[#EB4227]"
-                    )}
-                  >
-                    {index + 1}
-                  </span>
-                )
-            )}
-            <span className="w-9 h-9 rounded-full border flex justify-center items-center border-[#E6E6E6]">
+            {pages?.map((page: number) => (
+              <span
+                onClick={() => setPage(page)}
+                key={`page-${page}`}
+                className={cn(
+                  "w-9 h-9 flex justify-center items-center rounded-full",
+                  page == products?.currentPage && "bg-[#EB4227] text-white"
+                )}
+              >
+                {page}
+              </span>
+            ))}
+            <span
+              className="w-9 h-9 rounded-full cursor-pointer border flex justify-center items-center border-[#E6E6E6]"
+              onClick={() => {
+                if (!products?.totalPages) return;
+                setPage((prev: number) => {
+                  if (prev == products?.totalPages) return prev;
+                  else return prev + 1;
+                });
+              }}
+            >
               <ChevronRight />
             </span>
           </div>
@@ -281,4 +327,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default Products;

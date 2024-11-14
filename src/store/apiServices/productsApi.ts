@@ -2,22 +2,40 @@ import allApiRoutes from "@/constants/allApiRoutes";
 import { rootApiSlice } from "../rootApi";
 
 const productsApi = rootApiSlice.injectEndpoints({
+  overrideExisting: true,
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
-        url: allApiRoutes.products.PRODUCTS,
-        method: "GET",
-      }),
+      query: ({ page = 1, items_per_page = 10, search = "", brand }) => {
+        const params = new URLSearchParams();
+        params.append("page", page.toString());
+        params.append("items_per_page", items_per_page.toString());
+        if (search) params.append("search", search);
+        return params.toString() && brand
+          ? {
+              url: `${allApiRoutes.products.PRODUCTS}/brands/${brand}`,
+              method: "GET",
+              params,
+            }
+          : params.toString()
+          ? {
+              url: allApiRoutes.products.PRODUCTS,
+              method: "GET",
+              params,
+            }
+          : {
+              url: allApiRoutes.products.PRODUCTS,
+              method: "GET",
+            };
+      },
       providesTags: ["product-list"],
     }),
-    createProduct: builder.mutation({
-      query: (body) => ({
-        url: allApiRoutes.products.PRODUCTS,
-        method: "POST",
-        body,
+    getProductDetails: builder.query({
+      query: ({ id }) => ({
+        url: `${allApiRoutes.products.PRODUCTS}/${id}`,
+        method: "GET",
       }),
     }),
   }),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation } = productsApi;
+export const { useGetProductsQuery, useGetProductDetailsQuery } = productsApi;

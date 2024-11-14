@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import { svgIconBannerHome } from "@/assets/images";
+import { pngGBMicroAtx, svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
 import brandsData from "../../Data/brands.json";
 import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
+import { useRouter } from "next/navigation";
 
 interface Brand {
   id: string;
@@ -15,6 +16,7 @@ interface Brand {
 }
 
 const Brandlist = () => {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
   const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
@@ -78,7 +80,7 @@ const Brandlist = () => {
         {/* Alphabet Filter */}
         <div className="flex items-center flex-wrap gap-2 mt-5">
           <div
-            onClick={() => setSelectedLetter("All")}
+            onClick={() => setSelectedLetter("")}
             className={`border ${
               selectedLetter === "All" ? "border-[#006bb4]" : "border-gray-300"
             } text-[#006bb4] w-[90px] h-[40px] flex justify-center items-center rounded cursor-pointer`}
@@ -107,11 +109,12 @@ const Brandlist = () => {
           {filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
               <div
+                onClick={() => router.push(`/products?brand=${brand.id}`)}
                 key={brand.id}
-                className="w-[315px] h-[170px] bg-white shadow-md rounded-2xl flex-col flex justify-center items-center"
+                className="w-[315px] cursor-pointer h-[170px] bg-white shadow-md rounded-2xl flex-col flex justify-center items-center"
               >
                 <Image
-                  src={`/${brand.manufacture_img}`}
+                  src={pngGBMicroAtx}
                   alt={brand.name}
                   width={60}
                   height={60}
