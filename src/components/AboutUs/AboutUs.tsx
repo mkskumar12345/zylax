@@ -62,7 +62,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        <div className="mt-20 flex  lg:justify-between lg:flex-row flex-col gap-5">
+        <div className="mt-20 pb-20 flex  lg:justify-between lg:flex-row flex-col gap-5">
           <div className="w-[309px] h-[230px] border flex justify-center items-center flex-col gap-4 ">
             <Image src={services} alt="" />
             <div className="flex flex-col items-center">
