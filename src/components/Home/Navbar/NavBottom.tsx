@@ -106,14 +106,18 @@ const NavBottom = () => {
           </div>
         </div>
         <Link href={"/"}>Home</Link>
-        <Link href={""}>About </Link>
+
+        <Link href={"#"}>About </Link>
+
+        <Link href={"#"}>About </Link>
+
         <div className="">
           <Categories />
         </div>
 
-        <Link href={""}>Best Seller</Link>
+        <Link href={"#"}>Best Seller</Link>
         {/* <Link href={""}>Shop</Link> */}
-        <Link href={""}>Blog</Link>
+        <Link href={"#"}>Blog</Link>
         <Link href={"/contact"}>Contact</Link>
         <Link href={"/brands"}>Shop by Brands</Link>
       </div>
