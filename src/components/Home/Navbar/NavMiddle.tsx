@@ -76,7 +76,7 @@ const NavMiddle = () => {
                     <div className="w-full">
                       <Input
                         className="border bg-secondary px-4 py-2 h-full rounded-full "
-                        placeholder="Search anything"
+                        placeholder="Search For products,categories..."
                       />
                     </div>
                     {/* <Select>
