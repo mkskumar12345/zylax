@@ -25,39 +25,6 @@ const Faqs = ({ data }: { data: FaqsProps[] }) => {
             Frequently Asked Questions (FAQs)
           </span>
           <div className="mt-5">
-<<<<<<< HEAD
-            <Accordion
-              type="single"
-              collapsible
-              className="lg:w-full min-w-[400px]"
-            >
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  Suspendisse ultrices pharetra libero sed interdum.
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  Suspendisse ultrices pharetra libero sed interdum.
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It comes with default styles that matches the other
-                  components&apos; aesthetic.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  Suspendisse ultrices pharetra libero sed interdum.
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It&apos;s animated by default, but you can disable it if
-                  you prefer.
-                </AccordionContent>
-              </AccordionItem>
-=======
             <Accordion type="single" collapsible className="w-full">
               {data?.map((item: FaqsProps) => (
                 <AccordionItem key={item?.id} value={`item-${item?.id}`}>
@@ -67,7 +34,6 @@ const Faqs = ({ data }: { data: FaqsProps[] }) => {
                   </AccordionContent>
                 </AccordionItem>
               ))}
->>>>>>> origin/main
             </Accordion>
           </div>
         </div>

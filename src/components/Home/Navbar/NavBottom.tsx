@@ -7,7 +7,6 @@ const NavBottom = () => {
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
-<<<<<<< HEAD
         <div className="relative group z-50">
           <div className="cursor-pointer flex items-center">
             Shop by Categories <ChevronDown />
@@ -108,13 +107,9 @@ const NavBottom = () => {
         </div>
         <Link href={"/"}>Home</Link>
         <Link href={""}>About </Link>
-=======
-        <Link href={"/"}>Home</Link>
-        <Link href={"#"}>About </Link>
         <div className="">
           <Categories />
         </div>
->>>>>>> origin/main
 
         <Link href={""}>Best Seller</Link>
         {/* <Link href={""}>Shop</Link> */}
