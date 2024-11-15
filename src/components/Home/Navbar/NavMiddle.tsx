@@ -101,13 +101,25 @@ const NavMiddle = () => {
 
                   {/* Menu */}
                   <div className="flex flex-col items-start text-black py-2 font-semibold">
-                    <h3>Home</h3>
-                    <h3>About </h3>
-                    <h3>List Categories</h3>
-                    <h3>Best Seller</h3>
+                    <Link href={"/"}>
+                      {" "}
+                      <h3>Home</h3>
+                    </Link>
                     <h3>Shop</h3>
+                    <h3>List Categories</h3>
+                    <Link href={"/brands"}>
+                      <h3>Shop by Brands</h3>{" "}
+                    </Link>
+                    <h3>Best Seller</h3>
+                    <Link href={"/aboutus"}>
+                      {" "}
+                      <h3>About </h3>
+                    </Link>
+
                     <h3>Blog</h3>
-                    <h3>Contact</h3>
+                    <Link href={"/contact"}>
+                      <h3>Contact</h3>{" "}
+                    </Link>
                   </div>
                 </div>
                 <SheetFooter>
