@@ -8,10 +8,27 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { TOGGLE } from "@/store/slices/popupSlice";
+import { popupTypes } from "../popupTypes";
 
 const Signup = () => {
+  const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
+  const dispatch = useDispatch();
   return (
-    <Dialog>
+    <Dialog
+      open={isPopupOpen === popupTypes.REGISTER}
+      onOpenChange={(value) =>
+        dispatch(
+          TOGGLE(
+            isPopupOpen === popupTypes?.CLOSE
+              ? popupTypes.REGISTER
+              : popupTypes?.CLOSE
+          )
+        )
+      }
+    >
       <DialogTrigger>
         <span className="font-semibold text-xs">Register</span>
       </DialogTrigger>
@@ -107,7 +124,10 @@ const Signup = () => {
                 </div>
                 <div className="text-left w-full">
                   Already have an account?
-                  <span className="text-[rgb(255,134,130)] font-semibold">
+                  <span
+                    className="text-[rgb(255,134,130)] font-semibold cursor-pointer"
+                    onClick={() => dispatch(TOGGLE(popupTypes?.LOGIN))}
+                  >
                     Login
                   </span>
                 </div>

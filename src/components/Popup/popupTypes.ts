@@ -1,0 +1,7 @@
+export const popupTypes = {
+  LOGIN: "LOGIN",
+  REGISTER: "REGISTER",
+  FORGOT_PASSWORD: "FORGOT_PASSWORD",
+  SUCCESS: "SUCCESS",
+  CLOSE: "CLOSE",
+};

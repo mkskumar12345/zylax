@@ -25,6 +25,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginAction } from "@/serverActions/authActions";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import clsx from "clsx";
+import { TOGGLE } from "@/store/slices/popupSlice";
+import { toast } from "@/hooks/use-toast";
+import { popupTypes } from "../popupTypes";
 
 const loginSchema = z.object({
   email: z
@@ -36,6 +42,8 @@ const loginSchema = z.object({
   }),
 });
 const Login = () => {
+  const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const form = useForm({
@@ -46,15 +54,34 @@ const Login = () => {
     },
   });
 
+  toast({ title: "You registered successfully", description: "Please login" });
+
   const onSubmit = async (data: { email: string; password: string }) => {
     const response = await loginAction(data);
     console.log(response);
     router.push("/user/my-profile");
     setOpen(false);
-    
   };
+  // return (
+  //   <div>
+  //     <div onClick={() => dispatch(CLOSE())}>close</div>
+  //     <div onClick={() => dispatch(OPEN("LOGIN"))}>open</div>
+  //   </div>
+  // );
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={isPopupOpen === popupTypes.LOGIN}
+      onOpenChange={(value) =>
+        dispatch(
+          TOGGLE(
+            isPopupOpen === popupTypes.CLOSE
+              ? popupTypes.LOGIN
+              : popupTypes.CLOSE
+          )
+        )
+      }
+    >
       <DialogTrigger>
         <span className="font-semibold text-xs">Signin</span>
       </DialogTrigger>
@@ -138,7 +165,12 @@ const Login = () => {
                 </Form>
                 <div className="text-center w-full">
                   Don’t have an account?{" "}
-                  <span className="text-[#FF8682] font-semibold">Sign up</span>
+                  <span
+                    className="text-[#FF8682] font-semibold cursor-pointer"
+                    onClick={() => dispatch(TOGGLE(popupTypes?.REGISTER))}
+                  >
+                    Sign up
+                  </span>
                   {/* <SignUpPopup
                     isOpen={isSignUpOpen}
                     onClose={closeSignUpPopup}
