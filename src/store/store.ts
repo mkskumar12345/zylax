@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootApiSlice } from "./rootApi";
+import { popupSlice } from "./slices/popupSlice";
 
 const store = configureStore({
   reducer: {
     [rootApiSlice.reducerPath]: rootApiSlice.reducer,
+    popups: popupSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
