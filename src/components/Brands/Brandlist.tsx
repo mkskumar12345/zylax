@@ -111,7 +111,10 @@ const Brandlist = () => {
               <div
                 onClick={() => router.push(`/products?brand=${brand.id}`)}
                 key={brand.id}
-                className="w-[315px] cursor-pointer h-[170px] bg-white shadow-md rounded-2xl flex-col flex justify-center items-center"
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                }}
+                className="w-[315px] cursor-pointer h-[170px] bg-white rounded-2xl flex-col flex justify-center items-center"
               >
                 <Image
                   src={pngGBMicroAtx}
