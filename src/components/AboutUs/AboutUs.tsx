@@ -10,9 +10,9 @@ import videoabout from "../../assets/images/png/video-about.png";
 import logoipsum from "../../assets/images/png/logoipsum.png";
 import backgroundabout from "../../assets/images/png/backgroundabout.png";
 import secureicon from "../../assets/images/svg/secure-icon .svg";
-import calendericon from "../../assets/images/svg/calendar-icon.svg"
-import originalproduct from "../../assets/images/svg/original-product.svg"
-import getfreedelivery from "../../assets/images/svg/getfreedelivery.svg"
+import calendericon from "../../assets/images/svg/calendar-icon.svg";
+import originalproduct from "../../assets/images/svg/original-product.svg";
+import getfreedelivery from "../../assets/images/svg/getfreedelivery.svg";
 const AboutUs = () => {
   return (
     <>
@@ -241,59 +241,55 @@ const AboutUs = () => {
           Lorem ipsum dolor sit amet conse ctetur adipisicing elit
         </div>
         <div className="mt-10 mb-10 flex lg:justify-around flex-col justify-center items-center gap-5 lg:flex-row">
-          <div className="flex items-center gap-2"> 
+          <div className="flex items-center gap-2">
             <div className="bg-[#EB4227] w-[60px] h-[60px] rounded-full flex justify-center items-center">
               <Image src={secureicon} alt="secureicon" />
             </div>
             <div className="w-[180px] flex flex-col">
               <span className="text-[18px] font-semibold">
-              100% Secure Payment
+                100% Secure Payment
               </span>
               <span className="text-[12px]">
-              Your payments are secure with 
-              our private security network.
+                Your payments are secure with our private security network.
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2"> 
+          <div className="flex items-center gap-2">
             <div className="bg-[#EB4227] w-[60px] h-[60px] rounded-full flex justify-center items-center">
               <Image src={originalproduct} alt="" />
             </div>
             <div className="w-[180px] flex flex-col">
               <span className="text-[18px] font-semibold">
-              Original Product
+                Original Product
               </span>
               <span className="text-[12px]">
-              100% Original product that 
-              covered warranty by the vendor.
+                100% Original product that covered warranty by the vendor.
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2"> 
+          <div className="flex items-center gap-2">
             <div className="bg-[#EB4227] w-[60px] h-[60px] rounded-full flex justify-center items-center">
               <Image src={calendericon} alt="calendericon" />
             </div>
             <div className="w-[180px] flex flex-col">
               <span className="text-[18px] font-semibold">
-              10 Days Warranty
+                10 Days Warranty
               </span>
               <span className="text-[12px]">
-              You have the right to return your 
-              orders within 10 days.
+                You have the right to return your orders within 10 days.
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2"> 
+          <div className="flex items-center gap-2">
             <div className="bg-[#EB4227] w-[60px] h-[60px] rounded-full flex justify-center items-center">
               <Image src={getfreedelivery} alt="getfreedelivery" />
             </div>
             <div className="w-[180px] flex flex-col">
               <span className="text-[18px] font-semibold">
-              Get Free Delivery
+                Get Free Delivery
               </span>
               <span className="text-[12px]">
-              Enjoy Free shipping on 
-              all orders
+                Enjoy Free shipping on all orders
               </span>
             </div>
           </div>
