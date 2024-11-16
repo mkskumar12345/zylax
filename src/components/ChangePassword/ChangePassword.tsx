@@ -14,11 +14,11 @@ const ChangePassword = () => {
         security.
       </div>
       <div>
-        <div className="flex flex-col gap-4 mt-5">
+        <div className="flex flex-col gap-4 mt-5 ">
           <div className="">
             <label className="font-semibold">Password</label>
             <br />
-            <div className="relative w-[500px]">
+            <div className="relative lg:w-[500px]">
               <input
                 type={showPassword ? "text" : "password"}
                 className="border-[#CCCCCC] border w-full h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 pr-10"
@@ -36,7 +36,7 @@ const ChangePassword = () => {
           <div className="">
             <label className="font-semibold">Confirm Password</label>
             <br />
-            <div className="relative w-[500px]">
+            <div className="relative lg:w-[500px]">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 className="border-[#CCCCCC] border w-full h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 pr-10"
@@ -54,7 +54,7 @@ const ChangePassword = () => {
           <div className="">
             <label className="font-semibold">New Password</label>
             <br />
-            <div className="relative w-[500px]">
+            <div className="relative lg:w-[500px]">
               <input
                 type={showNewPassword ? "text" : "password"}
                 className="border-[#CCCCCC] border w-full h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 pr-10"

@@ -9,11 +9,10 @@ const page = async () => {
   const response = await fetchDataWithHeaders(allApiRoutes.profile.PROFILE, {
     "x-access-token": token?.authToken || "",
   });
-  console.log("---------------", response?.data); // For debugging; remove in production
 
   return (
     <div>
-      <MyProfile profileData={response?.data} />
+      <MyProfile profileData={response?.data?.data} />
     </div>
   );
 };

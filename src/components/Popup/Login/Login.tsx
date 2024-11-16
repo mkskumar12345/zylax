@@ -44,7 +44,6 @@ const loginSchema = z.object({
 const Login = () => {
   const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -57,10 +56,14 @@ const Login = () => {
   toast({ title: "You registered successfully", description: "Please login" });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const response = await loginAction(data);
+    const response: any = await loginAction(data);
     console.log(response);
     router.push("/user/my-profile");
-    setOpen(false);
+    if (response?.data?.success) {
+      dispatch(TOGGLE(popupTypes?.CLOSE));
+    } else {
+      console.log(response);
+    }
   };
   // return (
   //   <div>
@@ -85,7 +88,7 @@ const Login = () => {
       <DialogTrigger>
         <span className="font-semibold text-xs">Signin</span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="border-0">
         <DialogTitle>Login</DialogTitle>
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">
           <div className="bg-white lg:p-4 rounded shadow-md relative lg:w-[750px] h-auto">
@@ -178,7 +181,7 @@ const Login = () => {
                 </div>
               </div>
 
-              <div className=" w-[350px] hidden md:block">
+              <div className=" w-[350px] hidden lg:block">
                 <Image src={login} alt="Login" className="" />
               </div>
             </div>

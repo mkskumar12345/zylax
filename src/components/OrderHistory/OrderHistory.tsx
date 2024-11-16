@@ -3,18 +3,26 @@ import React from "react";
 
 const OrderHistory = () => {
   return (
-    <div>
-      <span className="font-bold text-[30px]">Order History</span>
+    <div className="">
+      <span className="font-bold text-[30px] ">Order History</span>
 
-      <div className="mt-5">
-        <table>
+      <div className="mt-5 w-full min-w-full overflow-x-auto">
+        <table className=" w-full ">
           <thead>
             <tr className="h-[38px] bg-[#F2F4F5] border-[#E4E7E9] border">
-              <th className="text-[#475156] font-medium w-[150px]">Order ID</th>
-              <th className="text-[#475156] font-medium w-[200px]">Status</th>
-              <th className="text-[#475156] font-medium w-[200px]">Date</th>
-              <th className="text-[#475156] font-medium w-[250px]">Total</th>
-              <th className="text-[#475156] font-medium w-[150px] text-left">
+              <th className="text-[#475156] min-w-36 font-medium w-[150px]">
+                Order ID
+              </th>
+              <th className="text-[#475156] min-w-36 font-medium w-[200px]">
+                Status
+              </th>
+              <th className="text-[#475156] min-w-36  font-medium w-[200px]">
+                Date
+              </th>
+              <th className="text-[#475156] min-w-36 font-medium w-[250px]">
+                Total
+              </th>
+              <th className="text-[#475156] min-w-36 font-medium w-[150px] text-left">
                 Action
               </th>
             </tr>
