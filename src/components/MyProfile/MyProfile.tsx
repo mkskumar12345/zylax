@@ -17,34 +17,44 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+import { updateProfileAction } from "@/serverActions/authActions";
 
 const profileSchema = z.object({
-  firstName: z.string().min(1, { message: "Please enter your name" }),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  country: z.string().optional(),
-  address: z.string().optional(),
-  pinCode: z.string().optional(),
+  firstName: z.string().min(1, { message: "Please enter your first name" }),
+  lastName: z.string().min(1, { message: "Please enter your last name" }),
+  email: z.string().min(1, { message: "Please enter your email" }),
+  phone: z.string().min(1, { message: "Please enter your phone number." }),
+  country: z.string().min(1, { message: "Please enter your country name." }),
+  address: z.string().min(1, { message: "Please enter your address." }),
+  pinCode: z.string().min(1, { message: "Please enter your pincode" }),
 });
 const MyProfile = ({ profileData }: { profileData: any }) => {
+  console.log(profileData);
   const form = useForm({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      name: profileData?.name,
       "profile-photo": "",
-      firstName: profileData?.firstName,
-      lastName: profileData?.lastName,
-      email: profileData?.email,
-      phone: profileData?.phone,
-      country: profileData?.country,
-      address: profileData?.address,
-      pinCode: profileData?.pinCode,
+      firstName: profileData?.name?.split(" ")[0] || "",
+      lastName: profileData?.name?.split(" ")[1] || "",
+      email: profileData?.email || "",
+      phone: profileData?.phone || "",
+      country: profileData?.country || "",
+      address: profileData?.address || "",
+      pinCode: profileData?.postcode || "",
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log({ data });
+  const onSubmit = async (data: any) => {
+    const payload = {
+      name: data.firstName + " " + data.lastName,
+      email: data.email,
+      phone: data.phone,
+      country: data.country,
+      address: data.address,
+      postcode: data.pinCode,
+    };
+    const response = await updateProfileAction(payload);
+    console.log(response);
   };
   return (
     <div>
@@ -54,7 +64,7 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="mt-5 flex justify-between items-center">
-            <div className="relative inline-block">
+            <div className="relative inline-block ">
               <FormField
                 control={form.control}
                 name="profile-photo"
@@ -99,143 +109,134 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
               Edit Profile
             </button>
           </div>
-          <div className="mt-5 gap-4 flex justify-between items-center ">
-            <div className="">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">First Name</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="First Name"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="">
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Last Name</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Last Name"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+          <div className="mt-5 gap-4 flex flex-wrap md:flex-nowrap  justify-between items-center ">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">First Name</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="First Name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Last Name</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Last Name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-          <div className="mt-5 flex gap-4 justify-between items-center ">
-            <div className="">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Mail ID</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Mail ID"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="">
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Phone Number</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[470px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Phone Number"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+          <div className="mt-5 flex gap-4 justify-between md:flex-nowrap flex-wrap items-center ">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Mail ID</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Mail ID"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Phone Number</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Phone Number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-          <div className="mt-5 gap-4 flex justify-between items-center ">
-            <div className="">
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Country/Region</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Country/Region"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="">
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Address</Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Country/Region"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="">
-              <FormField
-                control={form.control}
-                name="pinCode"
-                render={({ field }) => (
-                  <FormItem>
-                    <Label className="font-semibold">Pin Code</Label>
-                    <FormControl>
-                      <Input
-                        className="border-[#CCCCCC] border w-[300px]  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                        placeholder="Pin Code"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+          <div className="mt-5 gap-4 grid lg:grid-cols-3  items-center ">
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Country/Region</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Country/Region"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Address</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Country/Region"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="pinCode"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">Pin Code</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="Pin Code"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <Button
             type="submit"

@@ -1,7 +1,7 @@
 import { toast } from "@/components/ui/use-toast";
 import allApiRoutes from "@/constants/allApiRoutes";
-import { postDataWrapper } from "@/fetcher/fetchWrapper";
-import { setToken } from "./cookies";
+import { postDataWrapper, updateDataWrapper } from "@/fetcher/fetchWrapper";
+import { getToken, setToken } from "./cookies";
 
 // Login
 export const loginAction = async (payload: any) => {
@@ -23,6 +23,20 @@ export const registerAction = async (payload: any) => {
   toast({
     title: "You registered successfully",
     description: "Please login to access your account",
+  });
+  return response;
+};
+export const updateProfileAction = async (payload: any) => {
+  const token = await getToken();
+
+  const response = await updateDataWrapper(
+    allApiRoutes.profile.PROFILE,
+    payload,
+    { "x-access-token": token?.authToken || "" }
+  );
+  toast({
+    title: "Profile Updated Successfully",
+    description: "Profile Updated Successfully",
   });
   return response;
 };

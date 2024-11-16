@@ -41,10 +41,11 @@ const postDataWrapper = async (
 
 const deleteDataWrapper = async (
   endpoint: string,
-  payload: any
+  payload: any,
+  headers: Record<string, string>
 ): Promise<ApiResponse> => {
   try {
-    const response = await api.delete(endpoint, payload);
+    const response = await api.delete(endpoint, { headers });
     if (response.status === 200) {
       return { data: response.data, error: null };
     } else {
@@ -58,10 +59,11 @@ const deleteDataWrapper = async (
 
 const updateDataWrapper = async (
   endpoint: string,
-  payload: any
+  payload: any,
+  headers: Record<string, string>
 ): Promise<ApiResponse> => {
   try {
-    const response = await api.put(endpoint, payload);
+    const response = await api.put(endpoint, payload, { headers });
     if (response.status === 200) {
       return { data: response.data, error: null };
     } else {
