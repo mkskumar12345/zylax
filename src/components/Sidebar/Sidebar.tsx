@@ -24,7 +24,7 @@ const Sidebar = () => {
   const pathname = usePathname()?.split("/")[2];
   return (
     <>
-      <div className="border border-[#E4E7E9] ">
+      <div className="border border-[#E4E7E9] max-w-[300px] ">
         <Link href={allPagesRoutes.USER_PROFILE}>
           <div
             className={cn(

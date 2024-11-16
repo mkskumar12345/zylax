@@ -81,13 +81,10 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
                       />
                       <Button
                         variant="ghost"
-                        className=" absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg"
+                        className=" absolute bottom-0 bg-[#EB4227]  right-0 w-[25px] h-[25px]  p-1 rounded-full shadow-lg"
                         aria-label="Edit profile photo"
                       >
-                        <Pencil
-                          className="w-4 h-4 text-gray-600"
-                          color="#EB4227"
-                        />
+                        <Pencil className="w-4 h-4 " color="white" />
                       </Button>
                     </Label>
                     <FormControl>
