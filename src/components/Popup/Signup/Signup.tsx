@@ -28,6 +28,7 @@ import { Label } from "@/components/ui/label";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import toast from "react-hot-toast";
 
 const signupSchema = z
   .object({
@@ -85,8 +86,9 @@ const Signup = () => {
       company: "test",
     };
     const response = await registerAction(payload);
-    console.log(response);
-    dispatch(TOGGLE(popupTypes?.LOGIN));
+    if (response?.data?.success) {
+      dispatch(TOGGLE(popupTypes?.LOGIN));
+    }
   };
 
   return (

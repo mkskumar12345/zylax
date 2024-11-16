@@ -4,6 +4,7 @@ import "../assets/styles/globals.css";
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Footer from "@/components/Home/Footer/Footer";
 import StoreProvider from "@/store/StoreProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Zylax",
@@ -23,6 +24,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </StoreProvider>
+        <Toaster />
       </body>
     </html>
   );
