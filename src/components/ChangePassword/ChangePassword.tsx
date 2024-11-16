@@ -7,13 +7,13 @@ const ChangePassword = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
 
   return (
-    <div>
+    <div className="max-w-[350px]">
       <span className="font-bold text-[30px]">Change Password</span>
       <div className="w-[300px] text-[15px]">
         Create a New Password. Ensure it differs from previous ones for
         security.
       </div>
-      <div>
+      <div className="">
         <div className="flex flex-col gap-4 mt-5 ">
           <div className="">
             <label className="font-semibold">Password</label>
