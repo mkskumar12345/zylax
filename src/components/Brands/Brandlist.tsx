@@ -105,7 +105,7 @@ const Brandlist = () => {
         </div>
 
         {/* Filtered Brands Display */}
-        <div className="mt-10 flex flex-wrap gap-10">
+        <div className="mt-10 grid grid-cols-2 xl:grid-cols-8 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3  gap-10">
           {filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
               <div
@@ -114,7 +114,7 @@ const Brandlist = () => {
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 }}
-                className="w-[315px] cursor-pointer h-[170px] bg-white rounded-2xl flex-col flex justify-center items-center"
+                className=" cursor-pointer h-[150px] bg-white rounded-2xl flex-col flex justify-center items-center"
               >
                 <Image
                   src={pngGBMicroAtx}
