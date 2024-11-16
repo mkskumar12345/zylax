@@ -106,7 +106,7 @@ const NavMiddle = () => {
                       <h3>Home</h3>
                     </Link>
                     <h3>Shop</h3>
-                    <h3>List Categories</h3>
+                    <h3>Shop By Categories</h3>
                     <Link href={"/brands"}>
                       <h3>Shop by Brands</h3>{" "}
                     </Link>
@@ -150,7 +150,7 @@ const NavMiddle = () => {
         <div className="w-full flex justify-end">
           <div className="flex items-center gap-6">
             <div className="flex gap-2">
-              <div className="relative font-semibold ">
+              <div className="relative font-semibold">
                 <span className="text-xs">$0</span>
                 <div className="absolute text-[6px] w-2 h-2 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
                   <span>0</span>
