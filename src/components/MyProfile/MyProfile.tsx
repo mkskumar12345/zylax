@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { updateProfileAction } from "@/serverActions/authActions";
+import toast from "react-hot-toast";
 
 const profileSchema = z.object({
   firstName: z.string().min(1, { message: "Please enter your first name" }),
@@ -53,8 +54,7 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
       address: data.address,
       postcode: data.pinCode,
     };
-    const response = await updateProfileAction(payload);
-    console.log(response);
+    const response: any = await updateProfileAction(payload);
   };
   return (
     <div>

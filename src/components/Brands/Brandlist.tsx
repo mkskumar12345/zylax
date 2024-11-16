@@ -7,6 +7,7 @@ import CommonBanner from "../Common/CommonBanner";
 import brandsData from "../../Data/brands.json";
 import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface Brand {
   id: string;
@@ -126,8 +127,10 @@ const Brandlist = () => {
                 <span>{brand.totalP} product(s)</span>
               </div>
             ))
+          ) : isLoading ? (
+            <p className="text-center col-span-12">Loading.</p>
           ) : (
-            <p>No brands match your search.</p>
+            <p className="text-center col-span-12">No brands in the list.</p>
           )}
         </div>
       </div>

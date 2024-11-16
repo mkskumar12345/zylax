@@ -29,8 +29,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import clsx from "clsx";
 import { TOGGLE } from "@/store/slices/popupSlice";
-import { toast } from "@/hooks/use-toast";
 import { popupTypes } from "../popupTypes";
+import toast from "react-hot-toast";
 
 const loginSchema = z.object({
   email: z
@@ -53,16 +53,11 @@ const Login = () => {
     },
   });
 
-  toast({ title: "You registered successfully", description: "Please login" });
-
   const onSubmit = async (data: { email: string; password: string }) => {
     const response: any = await loginAction(data);
-    console.log(response);
     router.push("/user/my-profile");
     if (response?.data?.success) {
       dispatch(TOGGLE(popupTypes?.CLOSE));
-    } else {
-      console.log(response);
     }
   };
   // return (
