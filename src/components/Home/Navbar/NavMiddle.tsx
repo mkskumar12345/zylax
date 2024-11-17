@@ -2,6 +2,7 @@
 import { useState } from "react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
@@ -26,22 +27,7 @@ import Link from "next/link";
 import Signup from "@/components/Popup/Signup/Signup";
 import Login from "@/components/Popup/Login/Login";
 
-interface PopupProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children?: React.ReactNode; // Optional children prop
-}
-
 const NavMiddle = () => {
-  const [isPopupOpen, setPopupOpen] = useState(false);
-
-  const openPopup = () => setPopupOpen(true);
-  const closePopup = () => setPopupOpen(false);
-
-  const [isSignupOpen, setSignup] = useState(false);
-  const signupopen = () => setSignup(true);
-  const signupclose = () => setSignup(false);
-
   return (
     <div className="flex flex-col gap-1">
       <div className="border-b border-b-[#F0F0F0]">
@@ -68,20 +54,24 @@ const NavMiddle = () => {
               <SheetTrigger className="w-6 lg:hidden block">
                 <Menu />
               </SheetTrigger>
-              <SheetContent side={"left"} className="bg-white">
-                <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col p-4">
-                  {/* Search */}
-                  <div className="flex flex-col items-start gap-4 ">
-                    <div className="w-full">
-                      <Input
-                        className="border bg-secondary px-4 py-2 h-full rounded-full "
-                        placeholder="Search For products,categories..."
-                      />
-                    </div>
-                    {/* <Select>
+              <SheetContent
+                side={"left"}
+                className="bg-white flex flex-col justify-between "
+              >
+                <div>
+                  <SheetHeader className="">
+                    <SheetTitle>Menu</SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col p-4">
+                    {/* Search */}
+                    <div className="flex flex-col items-start gap-4 ">
+                      <div className="w-full">
+                        <Input
+                          className="border bg-secondary px-4 py-2 h-full rounded-full "
+                          placeholder="Search For products,categories..."
+                        />
+                      </div>
+                      {/* <Select>
                       <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full ">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
@@ -91,45 +81,61 @@ const NavMiddle = () => {
                         <SelectItem value="3">items 3</SelectItem>
                       </SelectContent>
                     </Select> */}
-                    <Button className="bg-black w-full text-white font-semibold rounded-full px-4 py-2">
-                      <Image
-                        src={svgIconSearch}
-                        className="filter invert"
-                        alt="search"
-                      />
-                      Search
-                    </Button>
-                  </div>
+                      <Button className="bg-black w-full text-white font-semibold rounded-full px-4 py-2">
+                        <Image
+                          src={svgIconSearch}
+                          className="filter invert"
+                          alt="search"
+                        />
+                        Search
+                      </Button>
+                    </div>
 
-                  {/* Menu */}
-                  <div className="flex flex-col items-start text-black py-2 font-semibold">
-                    <Link href={"/"}>
-                      {" "}
-                      <h3>Home</h3>
-                    </Link>
-                    <h3>Shop</h3>
-                    <h3>Shop By Categories</h3>
-                    <Link href={"/brands"}>
-                      <h3>Shop by Brands</h3>{" "}
-                    </Link>
-                    <h3>Best Seller</h3>
-                    <Link href={"/aboutus"}>
-                      {" "}
-                      <h3>About </h3>
-                    </Link>
+                    {/* Menu */}
+                    <div className="flex flex-col mt-4 items-start text-black py-2 font-semibold">
+                      <Link href={"/"}>
+                        <SheetClose>
+                          <h3>Home</h3>
+                        </SheetClose>
+                      </Link>
+                      <Link href={"/products"}>
+                        <h3>Shop By Categories</h3>
+                      </Link>
+                      <Link href={"/brands"}>
+                        <h3>Shop by Brands</h3>{" "}
+                      </Link>
+                      {/* <Link href={"/#best-seller"}>
+                        <SheetClose>
+                          <h3>Best Seller</h3>
+                        </SheetClose>
+                      </Link> */}
+                      <Link href={"/aboutus"}>
+                        <h3>About Us</h3>
+                      </Link>
 
-                    <h3>Blog</h3>
-                    <Link href={"/contact"}>
-                      <h3>Contact</h3>{" "}
-                    </Link>
+                      {/* <h3>Blog</h3> */}
+                      <Link href={"/contact"}>
+                        <h3>Contact</h3>{" "}
+                      </Link>
+                    </div>
                   </div>
                 </div>
                 <SheetFooter>
-                  <div className="flex items-center gap-2">
+                  <div className="flex gap-2">
                     <Image src={svgIconSupport} alt="support" />
-                    <div>
-                      <p className="text-xs leading-3">(+021) 345 678 910</p>
-                      <p className="text-xs leading-3">support@gmail.com</p>
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href={"tel:+021345678910"}
+                        className="text-xs leading-3"
+                      >
+                        (+021) 345 678 910
+                      </Link>
+                      <Link
+                        href={"mailto:support@gmail.com"}
+                        className="text-xs leading-3"
+                      >
+                        support@gmail.com
+                      </Link>
                     </div>
                   </div>
                 </SheetFooter>
@@ -164,9 +170,16 @@ const NavMiddle = () => {
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <Image src={svgIconSupport} alt="support" />
-              <div>
-                <p className="text-xs leading-3">(+021) 345 678 910</p>
-                <p className="text-xs leading-3">support@gmail.com</p>
+              <div className="flex flex-col gap-2">
+                <Link href={"tel:+021345678910"} className="text-xs leading-3">
+                  (+021) 345 678 910
+                </Link>
+                <Link
+                  href={"mailto:support@gmail.com"}
+                  className="text-xs leading-3"
+                >
+                  support@gmail.com
+                </Link>
               </div>
             </div>
           </div>

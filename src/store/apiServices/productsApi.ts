@@ -42,6 +42,31 @@ const productsApi = rootApiSlice.injectEndpoints({
       }),
       invalidatesTags: ["product-list"],
     }),
+    addToFavorite: builder.mutation({
+      query: ({ id }) => ({
+        url: `${allApiRoutes.products.FAVORITE_PRODUCT}/${id}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["product-list", "favorite-product"],
+    }),
+    removeFromFavorite: builder.mutation({
+      query: ({ id }) => ({
+        url: `${allApiRoutes.products.FAVORITE_PRODUCT}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["product-list", "favorite-product"],
+    }),
+    favoriteProductsList: builder.query({
+      query: ({ page = 1, items_per_page = 10 }) => ({
+        url: `${allApiRoutes.products.FAVORITE_PRODUCT}`,
+        method: "GET",
+        params: {
+          page,
+          items_per_page,
+        },
+      }),
+      providesTags: ["favorite-product"],
+    }),
   }),
 });
 
@@ -49,4 +74,7 @@ export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useFavoriteProductMutation,
+  useAddToFavoriteMutation,
+  useRemoveFromFavoriteMutation,
+  useFavoriteProductsListQuery,
 } = productsApi;
