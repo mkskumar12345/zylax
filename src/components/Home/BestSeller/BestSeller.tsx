@@ -45,7 +45,7 @@ const BestSeller = () => {
         </div>
         <div className="lg:basis-8/12 md:basis-12/12 w-full">
           <div className="mt-4">
-            <div className="flex justify-between">
+            <div id="best-seller" className="flex justify-between">
               <h1 className="font-bold text-3xl">Best Sellers</h1>
               <div className="flex gap-4">
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white  ">

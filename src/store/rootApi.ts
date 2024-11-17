@@ -1,4 +1,4 @@
-import { clearCookies } from "@/serverActions/cookies";
+import { clearCookies, getToken } from "@/serverActions/cookies";
 import {
   BaseQueryFn,
   FetchArgs,
@@ -17,10 +17,12 @@ const defaultHeaders = {
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_WEB_APP_URL,
   prepareHeaders: async (headers) => {
+    const token = await getToken();
     Object.entries(defaultHeaders).forEach(([key, value]) => {
       headers.set(key, value);
     });
-    
+
+
     return headers;
   },
 });
@@ -41,5 +43,5 @@ const baseQueryWithReauth: BaseQueryFn<
 export const rootApiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({}),
-  tagTypes: ["product-list", "brands-list"],
+  tagTypes: ["product-list", "brands-list", "favorite-product"],
 });

@@ -1,10 +1,16 @@
+"use client";
+
 import { CircleX, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import cpu from "../../assets/images/png/cpu.png";
 import { svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
+import { useFavoriteProductsListQuery } from "@/store/apiServices/productsApi";
 const Wishlist = () => {
+  const { data: favoriteProducts, isLoading } =
+    useFavoriteProductsListQuery(undefined);
+  console.log(favoriteProducts);
   return (
     <>
       {/* <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} /> */}
