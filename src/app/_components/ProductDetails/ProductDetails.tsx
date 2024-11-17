@@ -59,7 +59,10 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     <div>
       <CommonBanner
         icon={svgIconBannerHome}
-        path={["Categories", "Product Details"]}
+        path={[
+          { title: "Categories", href: "/products" },
+          { title: "Product Details", href: "/products/product-details" },
+        ]}
       />
       <div className="px-3 my-8 md:container">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

@@ -62,7 +62,10 @@ const Brandlist = () => {
 
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["brands"]} />
+      <CommonBanner
+        icon={svgIconBannerHome}
+        path={[{ title: "Brands", href: "/brands" }]}
+      />
 
       <div className="p-10">
         <span className="text-2xl font-semibold">Brandlist</span>

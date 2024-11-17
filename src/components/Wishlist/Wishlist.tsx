@@ -8,12 +8,13 @@ import { svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
 import { useFavoriteProductsListQuery } from "@/store/apiServices/productsApi";
 const Wishlist = () => {
-  const { data: favoriteProducts, isLoading } =
-    useFavoriteProductsListQuery(undefined);
+  const { data: favoriteProducts, isLoading } = useFavoriteProductsListQuery({
+    page: 1,
+    items_per_page: 10,
+  });
   console.log(favoriteProducts);
   return (
     <>
-      {/* <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} /> */}
       <div className="">
         <div className="grid place-items-center">
           <div className="w-full ">

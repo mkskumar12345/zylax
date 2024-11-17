@@ -2,7 +2,6 @@ import allApiRoutes from "@/constants/allApiRoutes";
 import { rootApiSlice } from "../rootApi";
 
 const productsApi = rootApiSlice.injectEndpoints({
-  overrideExisting: true,
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: ({ page = 1, items_per_page = 10, search = "", brand }) => {
@@ -60,10 +59,10 @@ const productsApi = rootApiSlice.injectEndpoints({
       query: ({ page = 1, items_per_page = 10 }) => ({
         url: `${allApiRoutes.products.FAVORITE_PRODUCT}`,
         method: "GET",
-        params: {
-          page,
-          items_per_page,
-        },
+        // params: {
+        //   page,
+        //   items_per_page,
+        // },
       }),
       providesTags: ["favorite-product"],
     }),

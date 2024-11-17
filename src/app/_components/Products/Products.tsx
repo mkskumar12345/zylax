@@ -51,7 +51,10 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
   console.log(products);
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["Categories"]} />
+      <CommonBanner
+        icon={svgIconBannerHome}
+        path={[{ title: "Categories", href: "/products" }]}
+      />
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6  px-4 md:container my-9">
         <div className="lg:col-span-1 md:col-span-1">
           <Button className="flex gap-2 bg-[#EB4227] w-[130px] h-[47px] rounded-full ">

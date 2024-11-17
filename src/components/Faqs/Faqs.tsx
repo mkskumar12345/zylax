@@ -18,7 +18,10 @@ interface FaqsProps {
 const Faqs = ({ data }: { data: FaqsProps[] }) => {
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["faqs"]} />
+      <CommonBanner
+        icon={svgIconBannerHome}
+        path={[{ title: "FAQs", href: "/faqs" }]}
+      />
       <div className="flex justify-center flex-col items-center">
         <div className="w-[1100px] mt-10 mb-10 ">
           <span className="font-semibold text-[30px]">

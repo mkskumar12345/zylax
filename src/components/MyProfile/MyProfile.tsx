@@ -116,7 +116,7 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
                   <FormControl>
                     <Input
                       {...field}
-                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      className="border-[#CCCCCC] border h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
                       placeholder="First Name"
                     />
                   </FormControl>
@@ -237,7 +237,7 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
           </div>
           <Button
             type="submit"
-            className="mt-10 w-[194px] h-[43px] bg-[#D30200] rounded text-white font-bold"
+            className="mt-10 w-48 h-[43px] bg-[#D30200] rounded text-white font-bold"
           >
             Save Changes
           </Button>
