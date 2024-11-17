@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 
 // import Categories from "@/components/Popup/CategoriesPopup/Categories";
 
-const NavBottom = () => {
+const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 

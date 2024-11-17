@@ -18,10 +18,12 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { UserRound } from "lucide-react";
+import { clearCookies } from "@/serverActions/cookies";
 
 const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname()?.split("/")[2];
+
   return (
     <>
       <div className="border border-[#E4E7E9] max-w-[300px] w-full ">
@@ -107,9 +109,10 @@ const Sidebar = () => {
         </Link>
 
         <div
-          className="flex gap-2 h-10 px-6 items-center "
+          className="flex gap-2 h-10 px-6 cursor-pointer items-center "
           onClick={() => {
-            router.push(allPagesRoutes.HOME);
+            clearCookies();
+            router.refresh();
           }}
         >
           <Image src={svgIconSidebarLogout} alt="sidebar-logout" />

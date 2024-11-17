@@ -24,7 +24,7 @@ export const registerAction = async (payload: any) => {
   if (response?.data?.success) {
     toast.success("Registration Successful, Please login to continue.");
   } else {
-    toast.error(response.data.message);
+    toast.error(response.data.error);
   }
   return response;
 };

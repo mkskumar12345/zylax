@@ -18,7 +18,7 @@ const HomeComponent = () => {
       <DealsOfTheDay />
       <BestSeller />
       <PopularBrands />
-      <BestArrival />
+      {/* <BestArrival /> */}
       <Testimonials />
       {/* <LatestNewsAndBlog /> */}
     </div>

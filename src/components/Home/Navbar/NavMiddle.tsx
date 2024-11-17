@@ -27,7 +27,7 @@ import Link from "next/link";
 import Signup from "@/components/Popup/Signup/Signup";
 import Login from "@/components/Popup/Login/Login";
 
-const NavMiddle = () => {
+const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
   return (
     <div className="flex flex-col gap-1">
       <div className="border-b border-b-[#F0F0F0]">
@@ -44,11 +44,21 @@ const NavMiddle = () => {
             </button>
             <div className="flex items-center h-full">
               <span title="My Profile">
-                <Link href="/user/my-profile">
+                <Link
+                  href="/user/my-profile"
+                  className="flex gap-1 items-center"
+                >
                   <Image src={svgIconPerson} alt="person" />
+                  {authToken && (
+                    <span className="text-xs font-semibold">My Profile</span>
+                  )}
                 </Link>
               </span>
-              <Login />/ <Signup />
+              {!authToken && (
+                <>
+                  <Login />/ <Signup />
+                </>
+              )}
             </div>
             <Sheet>
               <SheetTrigger className="w-6 lg:hidden block">

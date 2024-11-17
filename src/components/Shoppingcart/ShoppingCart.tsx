@@ -1,13 +1,40 @@
+"use client";
 import { ArrowLeft, ArrowRight, CircleX, Minus, Plus } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import cpu from "../../assets/images/png/cpu.png";
 import CommonBanner from "../Common/CommonBanner";
 import { svgIconBannerHome } from "@/assets/images";
+import useCart from "@/hooks/useCart";
+import { useDispatch } from "react-redux";
+import {
+  clearCart,
+  removeItemFromCart,
+  updateItemQuantity,
+} from "@/store/slices/cartSlice";
 const ShoppingCart = () => {
+  const cart = useCart(); // Use custom hook to get cart data
+  const dispatch = useDispatch();
+
+  const handleRemoveItem = (id: string) => {
+    dispatch(removeItemFromCart(id)); // Dispatch action to remove item from cart
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    dispatch(updateItemQuantity({ id, quantity })); // Dispatch action to update item quantity
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart()); // Dispatch action to clear the cart
+  };
+
+  console.log(cart);
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={[{ title: "Shopping Cart", href: "/cart" }]} />
+      <CommonBanner
+        icon={svgIconBannerHome}
+        path={[{ title: "Shopping Cart", href: "/cart" }]}
+      />
 
       <div className="flex lg:justify-center lg:flex-row flex-col  gap-5 mt-5 mb-5">
         <div>
@@ -15,6 +42,9 @@ const ShoppingCart = () => {
             <div className="text-[30px] w-[800px] font-bold border-[#E4E7E9] border-l border-r border-t pl-3 h-[64px] flex justify-start items-center">
               Shopping Cart
             </div>
+            <button onClick={(e) => handleUpdateQuantity("2", 2)}>
+              Add to Cart
+            </button>
             <table className="border-[#E4E7E9] border w-[800px] ">
               <thead>
                 <tr className="bg-[#F2F4F5] h-[38px]">
