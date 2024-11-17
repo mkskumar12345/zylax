@@ -24,22 +24,42 @@ import {
   svgIconYoutube,
 } from "@/assets/images";
 import Image from "next/image";
+import { z } from "zod";
+import { contactActions } from "@/serverActions/contactUsActions";
+const contactSchema = z.object({
+  first_name: z.string().min(1, { message: "First name is required" }),
+  last_name: z.string().min(1, { message: "Last name is required" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email" }),
+  phone: z.string().min(1, { message: "Phone number is required" }),
+  newsletter: z.boolean().default(false).optional(),
+  subject: z.string().optional(),
+  message: z.string().min(1, { message: "Message is required" }),
+});
 
 const ContactForm = () => {
   const form = useForm({
-    // resolver: zodResolver(),
-    mode: "onChange",
+    resolver: zodResolver(contactSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
-      terms: false,
       phone: "",
-      // country: "",
       subject: "",
       message: "",
+      newsletter: false,
     },
   });
+
+  const onSubmit = async (values: any) => {
+    const payload = {
+      ...values,
+    };
+    await contactActions(payload);
+  };
+
   return (
     <div className="relative">
       <div className="inset-0 bg-cover absolute h-[432px] bg-center bg-[url('/deal-of-day-bg.png')] bg-[#D30200]/90 bg-blend-darken"></div>
@@ -53,12 +73,12 @@ const ContactForm = () => {
         </p>
         <div className="bg-white rounded-xl  border-[#DFDFDF] border my-2 gap-6 p-3 sm:p-6 grid grid-cols-12">
           <div className="lg:col-span-7 col-span-12 ">
-            <form>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
               <Form {...form}>
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-6 ">
                   <FormField
                     control={form.control}
-                    name="firstName"
+                    name="first_name"
                     render={({ field }) => (
                       <FormItem className="mt-3">
                         <FormLabel className="required font-semibold text-sm">
@@ -78,7 +98,7 @@ const ContactForm = () => {
                   />
                   <FormField
                     control={form.control}
-                    name="lastName"
+                    name="last_name"
                     render={({ field }) => (
                       <FormItem className="mt-3">
                         <FormLabel className=" required font-semibold text-sm">
@@ -123,12 +143,12 @@ const ContactForm = () => {
                   render={({ field }) => (
                     <FormItem className="mt-5">
                       <FormLabel className="optional font-semibold text-sm">
-                        Phone{" "}
+                        Phone
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          type="tel"
+                          type="number"
                           placeholder="Phone"
                           className="border-[#CCCCCC] border rounded-[6px]"
                         />
@@ -137,7 +157,6 @@ const ContactForm = () => {
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   control={form.control}
                   name="subject"
@@ -163,7 +182,7 @@ const ContactForm = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem className="mt-5">
-                      <FormLabel className="font-semibold text-sm">
+                      <FormLabel className="font-semibold required text-sm">
                         Message
                       </FormLabel>
                       <FormControl>
@@ -179,12 +198,16 @@ const ContactForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="terms"
+                  name="newsletter"
                   render={({ field }) => (
                     <FormItem className="mt-4 flex items-center">
-                      <Checkbox id="terms" />
+                      <Checkbox
+                        id="newsletter"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                       <FormLabel
-                        htmlFor="terms"
+                        htmlFor="newsletter"
                         className="text-sm font-semibold leading-none ml-2 !mt-0 "
                       >
                         I want to receive news and updates once in a while. By

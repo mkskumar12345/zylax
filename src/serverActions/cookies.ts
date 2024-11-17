@@ -4,14 +4,14 @@ import { fetchDataWithHeaders } from "@/fetcher/fetchWrapper";
 import { cookies } from "next/headers";
 
 export const clearCookies = () => {
-  cookies().set("token", "", { path: "/", expires: new Date(0) });
+  cookies().delete("token");
 };
 
 export const getToken = async () => {
   try {
     const token = cookies().get("token");
     // const parsedToken = token ? JSON.parse(token.value) : null;
-    return { authToken: `${token?.value}` };
+    return { authToken: token?.value };
   } catch (error) {
     return { success: false, message: "No token found" };
   }

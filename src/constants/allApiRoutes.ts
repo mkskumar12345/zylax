@@ -27,6 +27,9 @@ const allApiRoutes = {
   profile: {
     PROFILE: "/users/profile",
   },
+  contact: {
+    CONTACT: "/common/contact-us",
+  },
 };
 
 export default allApiRoutes;

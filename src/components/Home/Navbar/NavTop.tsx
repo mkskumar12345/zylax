@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const NavTop = () => {
+const NavTop = ({ authToken }: { authToken: string | undefined }) => {
   return (
     <div className="bg-primary hidden md:block  text-secondary  ">
       <div className="container flex flex-wrap lg:flex-nowrap justify-around items-center h-10  ">

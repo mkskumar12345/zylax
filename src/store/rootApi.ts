@@ -22,9 +22,9 @@ const baseQuery = fetchBaseQuery({
       headers.set(key, value);
     });
 
-    // if (token) {
-    //   headers.set("x-access-token", token.authToken || "");
-    // }
+    if (token) {
+      headers.set("x-access-token", token.authToken || "");
+    }
 
     return headers;
   },
@@ -36,7 +36,6 @@ const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
-
   if (result.error && result.error.status === 401) {
     clearCookies();
   }
