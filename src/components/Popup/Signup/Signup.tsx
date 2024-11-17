@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import signup from "@/assets/images/svg/signup.svg";
 import Image from "next/image";
 import logo from "../../../assets/images/png/logo.png";
@@ -29,6 +29,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import toast from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 const signupSchema = z
   .object({
@@ -54,6 +55,7 @@ const signupSchema = z
     path: ["confirmPassword"],
   });
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
   const dispatch = useDispatch();
 
@@ -217,12 +219,27 @@ const Signup = () => {
                         render={({ field }) => (
                           <FormItem>
                             <Label className="font-semibold">Password</Label>
-                            <Input
-                              {...field}
-                              type="password"
-                              placeholder="Password"
-                              className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
-                            />
+                            <div className="relative">
+                              <Input
+                                {...field}
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
+                              />
+                              {showPassword ? (
+                                <EyeOff
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  size={15}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              ) : (
+                                <Eye
+                                  size={15}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              )}
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -237,12 +254,27 @@ const Signup = () => {
                             <Label className="font-semibold">
                               Confirm Password
                             </Label>
-                            <Input
-                              {...field}
-                              type="password"
-                              placeholder="Confirm Password"
-                              className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
-                            />
+                            <div className="relative">
+                              <Input
+                                {...field}
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Confirm Password"
+                                className="border-[#CCCCCC] border lg:w-full w-[300px]  h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
+                              />
+                              {showPassword ? (
+                                <EyeOff
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  size={15}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              ) : (
+                                <Eye
+                                  size={15}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              )}
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}

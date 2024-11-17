@@ -31,6 +31,7 @@ import clsx from "clsx";
 import { TOGGLE } from "@/store/slices/popupSlice";
 import { popupTypes } from "../popupTypes";
 import toast from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 const loginSchema = z.object({
   email: z
@@ -42,6 +43,7 @@ const loginSchema = z.object({
   }),
 });
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -60,13 +62,6 @@ const Login = () => {
       dispatch(TOGGLE(popupTypes?.CLOSE));
     }
   };
-  // return (
-  //   <div>
-  //     <div onClick={() => dispatch(CLOSE())}>close</div>
-  //     <div onClick={() => dispatch(OPEN("LOGIN"))}>open</div>
-  //   </div>
-  // );
-
   return (
     <Dialog
       open={isPopupOpen === popupTypes.LOGIN}
@@ -134,11 +129,27 @@ const Login = () => {
                         render={({ field }) => (
                           <FormItem>
                             <Label className="font-semibold">Password</Label>
-                            <Input
-                              {...field}
-                              className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
-                              placeholder="Password"
-                            />
+                            <div className="relative">
+                              <Input
+                                {...field}
+                                className="border-[#CCCCCC] border w-full h-[30px] rounded outline-none focus:border-[#CCCCCC] pl-2"
+                                placeholder="Password"
+                                type={showPassword ? "text" : "password"}
+                              />
+                              {showPassword ? (
+                                <EyeOff
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  size={15}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              ) : (
+                                <Eye
+                                  size={15}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  className="absolute right-2 top-2 cursor-pointer"
+                                />
+                              )}
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}

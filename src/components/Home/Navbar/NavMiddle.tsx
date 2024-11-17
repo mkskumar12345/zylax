@@ -58,7 +58,9 @@ const NavMiddle = () => {
             </button>
             <div className="flex items-center h-full">
               <span>
-                <Image src={svgIconPerson} alt="person" />
+                <Link href="/user/my-profile">
+                  <Image src={svgIconPerson} alt="person" />
+                </Link>
               </span>
               <Login />/ <Signup />
             </div>
