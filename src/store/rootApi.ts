@@ -22,7 +22,7 @@ const baseQuery = fetchBaseQuery({
       headers.set(key, value);
     });
 
-    if (token) {
+    if (token?.authToken) {
       headers.set("x-access-token", token.authToken || "");
     }
 
@@ -45,5 +45,5 @@ const baseQueryWithReauth: BaseQueryFn<
 export const rootApiSlice = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({}),
-  tagTypes: ["product-list", "brands-list", "favorite-product"],
+  tagTypes: ["product-list", "brands-list", "favorite-product", "cart"],
 });

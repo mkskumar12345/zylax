@@ -2,7 +2,7 @@ const allPagesRoutes = {
   HOME: "/",
   LOGIN: "/login",
   SIGNUP: "/signup",
-  CONTACT_US: "/contact-us",
+  CONTACT_US: "/contact",
   ABOUT_US: "/about-us",
   USER_PROFILE: "/user/my-profile",
   MY_ORDERS: "/user/my-orders",
@@ -14,6 +14,8 @@ const allPagesRoutes = {
   BUSINESS_IT_SUPPORT: "business-it-support",
   PRODUCTS: "/products",
   PRODUCT_DETAILS: "/products/product-details",
+  CART: "/cart",
+  BRANDS: "/brands",
 };
 
 export default allPagesRoutes;
