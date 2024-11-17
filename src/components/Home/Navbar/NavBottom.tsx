@@ -2,8 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronRight } from "lucide-react";
-
-// import Categories from "@/components/Popup/CategoriesPopup/Categories";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 
 const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +32,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
-        <Link href={"/"} title="Home">
+        <Link href={allPagesRoutes.HOME} title="Home">
           Home
         </Link>
 
@@ -194,21 +193,21 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
             </div>
           )}
         </div>
-        <Link href={"/products"} title="products">
+        <Link href={allPagesRoutes?.PRODUCTS} title="products">
           Products
         </Link>
-        <Link href={"/brands"} title="shop by brands">
+        <Link href={allPagesRoutes.BRANDS} title="shop by brands">
           Shop by Brands
         </Link>
         <Link href={"/#best-seller"} title="best seller">
           Best Seller
         </Link>
         {/* <Link href={"#"}>Blog</Link> */}
-        <Link href={"/aboutus"} title="about us">
+        <Link href={allPagesRoutes.ABOUT_US} title="about us">
           About Us
         </Link>
 
-        <Link href={"/contact"} title="Contact us">
+        <Link href={allPagesRoutes?.CONTACT_US} title="Contact us">
           Contact Us
         </Link>
       </div>

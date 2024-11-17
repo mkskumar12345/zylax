@@ -26,6 +26,7 @@ import Link from "next/link";
 
 import Signup from "@/components/Popup/Signup/Signup";
 import Login from "@/components/Popup/Login/Login";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 
 const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
   return (
@@ -45,7 +46,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
             <div className="flex items-center h-full">
               <span title="My Profile">
                 <Link
-                  href="/user/my-profile"
+                  href={allPagesRoutes.USER_PROFILE}
                   className="flex gap-1 items-center"
                 >
                   <Image src={svgIconPerson} alt="person" />
@@ -106,17 +107,20 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
 
                     {/* Menu */}
                     <div className="flex flex-col mt-4 items-start text-black py-2 font-semibold">
-                      <Link title="Home" href={"/"}>
+                      <Link title="Home" href={allPagesRoutes.HOME}>
                         <SheetClose>
                           <h3>Home</h3>
                         </SheetClose>
                       </Link>
-                      <Link title="Shop By Categories" href={"/products"}>
+                      <Link
+                        title="Shop By Categories"
+                        href={allPagesRoutes.PRODUCTS}
+                      >
                         <SheetClose>
                           <h3>Shop By Categories</h3>
                         </SheetClose>
                       </Link>
-                      <Link title="Shop by Brands" href={"/brands"}>
+                      <Link title="Shop by Brands" href={allPagesRoutes.BRANDS}>
                         <SheetClose>
                           <h3>Shop by Brands</h3>{" "}
                         </SheetClose>
@@ -126,14 +130,14 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                           <h3>Best Seller</h3>
                         </SheetClose>
                       </Link> */}
-                      <Link title="About us" href={"/aboutus"}>
+                      <Link title="About us" href={allPagesRoutes.ABOUT_US}>
                         <SheetClose>
                           <h3>About Us</h3>
                         </SheetClose>
                       </Link>
 
                       {/* <h3>Blog</h3> */}
-                      <Link title="Contact us" href={"/contact"}>
+                      <Link title="Contact us" href={allPagesRoutes.CONTACT_US}>
                         <SheetClose>
                           <h3>Contact</h3>{" "}
                         </SheetClose>
@@ -168,7 +172,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
       <div className="flex justify-between gap-2 md:container px-3 pb-2 lg:h-[49px]">
         <div className="grid md:grid-cols-3 w-full">
           <div className="col-span-1">
-            <Link href={"/"}>
+            <Link href={allPagesRoutes.HOME}>
               <Image
                 src={pngIconLogo}
                 title="Site Logo"
@@ -184,7 +188,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
         </div>
         <div className="w-full flex justify-end">
           <div className="flex items-center gap-6">
-            <Link href={"/Cart"} title="Cart">
+            <Link href={allPagesRoutes.CART} title="Cart">
               <div className="flex gap-2">
                 <div className="relative font-semibold">
                   <span className="text-xs">$0</span>
