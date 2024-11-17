@@ -107,7 +107,9 @@ const Signup = () => {
       }
     >
       <DialogTrigger>
-        <span className="font-semibold text-xs">Register</span>
+        <span className="font-semibold text-xs" title="Register">
+          Register
+        </span>
       </DialogTrigger>
       <DialogContent className="border-0">
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">

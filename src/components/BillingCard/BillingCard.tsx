@@ -12,7 +12,7 @@ import CommonBanner from "../Common/CommonBanner";
 const BillingCard = () => {
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["billingcard"]} />
+      <CommonBanner icon={svgIconBannerHome} path={[{ title: "My Profile", href: "/user/my-profile" }]} />
       <div className="mt-5 mb-20 overflow-hidden">
         <div className="flex lg:justify-center lg:flex-row flex-col lg:items-start items-center gap-5 ">
           <div className="lg:w-[900px]">

@@ -10,9 +10,12 @@ const layout = ({
 }>) => {
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["wishlist"]} />
+      <CommonBanner
+        icon={svgIconBannerHome}
+        path={[{ title: "wishlist", href: "/user/my-wishlist" }]}
+      />
       <div className="container  ">
-        <div className="lg:border my-10 min-h-[560px]  border-[#E4E7E9] rounded-[6px] p-8 grid grid-cols-12 gap-8 ">
+        <div className="lg:border my-10 min-h-[560px]  border-[#E4E7E9] rounded-[6px] sm:p-8 grid grid-cols-12 gap-8 ">
           <div className=" lg:col-span-3 col-span-12 ">
             <Sidebar />
           </div>

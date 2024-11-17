@@ -38,12 +38,12 @@ const NavMiddle = () => {
           <div className="h-8 md:gap-3 items-center justify-between md:justify-normal flex w-full lg:w-auto lg:justify-normal">
             <button className="flex gap-1 items-center h-full">
               <span>
-                <Image src={svgIconTruck} alt="truck" />
+                <Image title="Truck Order" src={svgIconTruck} alt="truck" />
               </span>
               <span className="font-semibold text-xs">Truck Order</span>
             </button>
             <div className="flex items-center h-full">
-              <span>
+              <span title="My Profile">
                 <Link href="/user/my-profile">
                   <Image src={svgIconPerson} alt="person" />
                 </Link>
@@ -81,7 +81,10 @@ const NavMiddle = () => {
                         <SelectItem value="3">items 3</SelectItem>
                       </SelectContent>
                     </Select> */}
-                      <Button className="bg-black w-full text-white font-semibold rounded-full px-4 py-2">
+                      <Button
+                        title="Search"
+                        className="bg-black w-full text-white font-semibold rounded-full px-4 py-2"
+                      >
                         <Image
                           src={svgIconSearch}
                           className="filter invert"
@@ -93,17 +96,17 @@ const NavMiddle = () => {
 
                     {/* Menu */}
                     <div className="flex flex-col mt-4 items-start text-black py-2 font-semibold">
-                      <Link href={"/"}>
+                      <Link title="Home" href={"/"}>
                         <SheetClose>
                           <h3>Home</h3>
                         </SheetClose>
                       </Link>
-                      <Link href={"/products"}>
+                      <Link title="Shop By Categories" href={"/products"}>
                         <SheetClose>
                           <h3>Shop By Categories</h3>
                         </SheetClose>
                       </Link>
-                      <Link href={"/brands"}>
+                      <Link title="Shop by Brands" href={"/brands"}>
                         <SheetClose>
                           <h3>Shop by Brands</h3>{" "}
                         </SheetClose>
@@ -113,14 +116,14 @@ const NavMiddle = () => {
                           <h3>Best Seller</h3>
                         </SheetClose>
                       </Link> */}
-                      <Link href={"/aboutus"}>
+                      <Link title="About us" href={"/aboutus"}>
                         <SheetClose>
                           <h3>About Us</h3>
                         </SheetClose>
                       </Link>
 
                       {/* <h3>Blog</h3> */}
-                      <Link href={"/contact"}>
+                      <Link title="Contact us" href={"/contact"}>
                         <SheetClose>
                           <h3>Contact</h3>{" "}
                         </SheetClose>
@@ -156,7 +159,13 @@ const NavMiddle = () => {
         <div className="grid md:grid-cols-3 w-full">
           <div className="col-span-1">
             <Link href={"/"}>
-              <Image src={pngIconLogo} alt="site logo" width={83} height={36} />
+              <Image
+                src={pngIconLogo}
+                title="Site Logo"
+                alt="site logo"
+                width={83}
+                height={36}
+              />
             </Link>
           </div>
           <div className="col-span-2 h-full hidden items-center lg:flex">
@@ -165,20 +174,20 @@ const NavMiddle = () => {
         </div>
         <div className="w-full flex justify-end">
           <div className="flex items-center gap-6">
-            <div className="flex gap-2">
-              <div className="relative font-semibold">
-                <span className="text-xs">$0</span>
-                <div className="absolute text-[6px] w-2 h-2 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
-                  <span>0</span>
+            <Link href={"/Cart"} title="Cart">
+              <div className="flex gap-2">
+                <div className="relative font-semibold">
+                  <span className="text-xs">$0</span>
+                  <div className="absolute text-[6px] w-2 h-2 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
+                    <span>0</span>
+                  </div>
                 </div>
-              </div>
-              <Link href={"/Cart"}>
                 <Image src={svgIconBag} alt="support" />
-              </Link>
-            </div>
+              </div>
+            </Link>
             <div className="hidden sm:flex items-center gap-2">
               <Image src={svgIconSupport} alt="support" />
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2" title="Contact us">
                 <Link href={"tel:+021345678910"} className="text-xs leading-3">
                   (+021) 345 678 910
                 </Link>

@@ -33,7 +33,9 @@ const NavBottom = () => {
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
-        <Link href={"/"}>Home</Link>
+        <Link href={"/"} title="Home">
+          Home
+        </Link>
 
         {/* <div className="relative group z-50">
           <div className="cursor-pointer flex items-center">
@@ -192,14 +194,23 @@ const NavBottom = () => {
             </div>
           )}
         </div>
-        <Link href={"/brands"}>Shop by Brands</Link>
+        <Link href={"/products"} title="products">
+          Products
+        </Link>
+        <Link href={"/brands"} title="shop by brands">
+          Shop by Brands
+        </Link>
+        <Link href={"/#best-seller"} title="best seller">
+          Best Seller
+        </Link>
+        {/* <Link href={"#"}>Blog</Link> */}
+        <Link href={"/aboutus"} title="about us">
+          About Us
+        </Link>
 
-        <Link href={"#"}>Best Seller</Link>
-        {/* <Link href={""}>Shop</Link> */}
-        <Link href={"#"}>Blog</Link>
-        <Link href={"/aboutus"}>About </Link>
-
-        <Link href={"/contact"}>Contact</Link>
+        <Link href={"/contact"} title="Contact us">
+          Contact Us
+        </Link>
       </div>
     </div>
   );

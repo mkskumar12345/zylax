@@ -22,6 +22,9 @@ const baseQuery = fetchBaseQuery({
       headers.set(key, value);
     });
 
+    // if (token) {
+    //   headers.set("x-access-token", token.authToken || "");
+    // }
 
     return headers;
   },

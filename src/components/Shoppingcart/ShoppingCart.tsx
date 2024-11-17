@@ -7,7 +7,7 @@ import { svgIconBannerHome } from "@/assets/images";
 const ShoppingCart = () => {
   return (
     <>
-      <CommonBanner icon={svgIconBannerHome} path={["cart"]} />
+      <CommonBanner icon={svgIconBannerHome} path={[{ title: "Shopping Cart", href: "/cart" }]} />
 
       <div className="flex lg:justify-center lg:flex-row flex-col  gap-5 mt-5 mb-5">
         <div>

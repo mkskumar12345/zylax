@@ -76,7 +76,9 @@ const Login = () => {
       }
     >
       <DialogTrigger>
-        <span className="font-semibold text-xs">Signin</span>
+        <span className="font-semibold text-xs" title="Signin">
+          Signin
+        </span>
       </DialogTrigger>
       <DialogContent className="border-0">
         <DialogTitle>Login</DialogTitle>
