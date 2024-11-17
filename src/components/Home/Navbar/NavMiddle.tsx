@@ -99,10 +99,14 @@ const NavMiddle = () => {
                         </SheetClose>
                       </Link>
                       <Link href={"/products"}>
-                        <h3>Shop By Categories</h3>
+                        <SheetClose>
+                          <h3>Shop By Categories</h3>
+                        </SheetClose>
                       </Link>
                       <Link href={"/brands"}>
-                        <h3>Shop by Brands</h3>{" "}
+                        <SheetClose>
+                          <h3>Shop by Brands</h3>{" "}
+                        </SheetClose>
                       </Link>
                       {/* <Link href={"/#best-seller"}>
                         <SheetClose>
@@ -110,12 +114,16 @@ const NavMiddle = () => {
                         </SheetClose>
                       </Link> */}
                       <Link href={"/aboutus"}>
-                        <h3>About Us</h3>
+                        <SheetClose>
+                          <h3>About Us</h3>
+                        </SheetClose>
                       </Link>
 
                       {/* <h3>Blog</h3> */}
                       <Link href={"/contact"}>
-                        <h3>Contact</h3>{" "}
+                        <SheetClose>
+                          <h3>Contact</h3>{" "}
+                        </SheetClose>
                       </Link>
                     </div>
                   </div>
