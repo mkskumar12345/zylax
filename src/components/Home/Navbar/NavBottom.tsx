@@ -30,8 +30,8 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
     };
   }, []);
 
-  const [isServicesOpen, setIsServicesOpen] = useState(false); // Custom state name
-  const servicesRef = useRef<HTMLDivElement | null>(null); // Type for ref
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement | null>(null);
 
   const toggleServices = () => {
     setIsServicesOpen((prev) => !prev);
@@ -46,10 +46,14 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
     }
   };
 
+  const handleLinkClick = () => {
+    setIsServicesOpen(false);
+  };
+
   useEffect(() => {
-    document.addEventListener("mousedown", closeServices);
+    document.addEventListener("click", closeServices);
     return () => {
-      document.removeEventListener("mousedown", closeServices);
+      document.removeEventListener("click", closeServices);
     };
   }, []);
   return (
@@ -64,7 +68,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
             className="cursor-pointer flex items-center"
             onClick={toggleDropdown}
           >
-            Shop by Categories <ChevronDown className="ml-2" size={18} />
+            Shop by Categories <ChevronDown className="ml-1" size={18} />
           </div>
 
           {isOpen && (
@@ -119,57 +123,67 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           )}
         </div>
         <div className="relative" ref={servicesRef}>
-          <button onClick={toggleServices} className="dropdown-toggle">
-            Services
+          <button
+            onClick={toggleServices}
+            className="dropdown-toggle flex items-center"
+          >
+            Services <ChevronDown className="ml-1" size={18} />
           </button>
           {isServicesOpen && (
             <div className="absolute mt-2 w-56 bg-white border border-gray-200 shadow-md rounded-md z-10">
               <Link
                 href={allPagesRoutes.BUSINESS_IT_SUPPORT}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                business-it-support
+                Business-it-support
               </Link>
               <Link
                 href={allPagesRoutes.CLOUD_STORAGE_AND_BACKUP}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
                 Cloud Storage and Backup
               </Link>
               <Link
                 href={allPagesRoutes.EMAIL_SUPPORT_AND_BACKUP}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                email-support-and-services
+                Email-support-and-services
               </Link>
               <Link
                 href={allPagesRoutes.computer_repairs}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                computer-repairs
+                Computer-repairs
               </Link>
               <Link
                 href={allPagesRoutes.Laptop_Repairs_Sydney}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
                 Laptop Repairs Sydney
               </Link>
-
               <Link
                 href={allPagesRoutes.Mobile_Repairs}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
                 Mobile-Repairs
               </Link>
               <Link
                 href={allPagesRoutes.tablet_repairs}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
                 Tablet-Repairs
               </Link>
               <Link
                 href={allPagesRoutes.Macbook_repairs}
-                className="block px-4 py-2 text-black hover:text-[#D30200]"
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
                 Macbook-Repairs
               </Link>
