@@ -12,6 +12,7 @@ const allPagesRoutes = {
   FAQS: "faqs",
   TERMS_AND_CONDITION: "terms-and-conditions",
   BUSINESS_IT_SUPPORT: "business-it-support",
+  
   PRODUCTS: "/products",
   PRODUCT_DETAILS: "/products/product-details",
   CART: "/cart",
