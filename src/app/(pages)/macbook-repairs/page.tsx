@@ -1,4 +1,4 @@
-import BussinessAndItSupport from "@/app/_components/BusinessItSupport/BussinessItSupport";
+import Macbookrepairs from "@/components/Macbookrepairs/Macbookrepairs";
 
 import allApiRoutes from "@/constants/allApiRoutes";
 import { fetchDataWrapper } from "@/fetcher/fetchWrapper";
@@ -6,10 +6,13 @@ import React from "react";
 
 const page = async () => {
   const response = await fetchDataWrapper(
-    allApiRoutes?.businessAndItSupport.BUSINESS_AND_IT_SUPPORT
+    allApiRoutes?.macbook_repair.macbook_repair
   );
-
-  return <BussinessAndItSupport pageData={response?.data} />;
+  return (
+    <div>
+      <Macbookrepairs pageData={response?.data} />
+    </div>
+  );
 };
 
 export default page;

@@ -29,6 +29,29 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const [isServicesOpen, setIsServicesOpen] = useState(false); // Custom state name
+  const servicesRef = useRef<HTMLDivElement | null>(null); // Type for ref
+
+  const toggleServices = () => {
+    setIsServicesOpen((prev) => !prev);
+  };
+
+  const closeServices = (e: MouseEvent) => {
+    if (
+      servicesRef.current &&
+      !servicesRef.current.contains(e.target as Node)
+    ) {
+      setIsServicesOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeServices);
+    return () => {
+      document.removeEventListener("mousedown", closeServices);
+    };
+  }, []);
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
@@ -36,104 +59,6 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           Home
         </Link>
 
-        {/* <div className="relative group z-50">
-          <div className="cursor-pointer flex items-center">
-            Shop by Categories <ChevronDown />
-          </div>
-          <div className="absolute hidden p-5 w-[1000px] h-[500px] group-hover:flex flex-col bg-white text-primary shadow-lg  mt-2 rounded-md">
-            <div className="flex gap-5">
-              <div className="w-[200px] h-[400px]">
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Computer Accessories <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Adapters <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Batteries <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Cables <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Laptop <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Cameras <ChevronRight />
-                </div>
-                <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                  Lighting <ChevronRight />
-                </div>
-              </div>
-              <div className=" w-[800px] h-[400px] flex flex-wrap gap-5">
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-
-                <div className="flex flex-col ">
-                  <span>Computer Accessories</span>
-                  <span className="text-black">Cables</span>
-                  <span className="text-black">Consumables</span>
-                  <span className="text-black">Gaming Products</span>
-                  <span className="text-black">Point of Sale (Pos)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="relative z-50" ref={dropdownRef}>
           <div
             className="cursor-pointer flex items-center"
@@ -190,6 +115,64 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                   ))}
                 </div>
               </div>
+            </div>
+          )}
+        </div>
+        <div className="relative" ref={servicesRef}>
+          <button onClick={toggleServices} className="dropdown-toggle">
+            Services
+          </button>
+          {isServicesOpen && (
+            <div className="absolute mt-2 w-56 bg-white border border-gray-200 shadow-md rounded-md z-10">
+              <Link
+                href={allPagesRoutes.BUSINESS_IT_SUPPORT}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                business-it-support
+              </Link>
+              <Link
+                href={allPagesRoutes.CLOUD_STORAGE_AND_BACKUP}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                Cloud Storage and Backup
+              </Link>
+              <Link
+                href={allPagesRoutes.EMAIL_SUPPORT_AND_BACKUP}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                email-support-and-services
+              </Link>
+              <Link
+                href={allPagesRoutes.computer_repairs}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                computer-repairs
+              </Link>
+              <Link
+                href={allPagesRoutes.Laptop_Repairs_Sydney}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                Laptop Repairs Sydney
+              </Link>
+
+              <Link
+                href={allPagesRoutes.Mobile_Repairs}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                Mobile-Repairs
+              </Link>
+              <Link
+                href={allPagesRoutes.tablet_repairs}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                Tablet-Repairs
+              </Link>
+              <Link
+                href={allPagesRoutes.Macbook_repairs}
+                className="block px-4 py-2 text-black hover:text-[#D30200]"
+              >
+                Macbook-Repairs
+              </Link>
             </div>
           )}
         </div>

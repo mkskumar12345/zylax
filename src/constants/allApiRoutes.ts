@@ -15,6 +15,27 @@ const allApiRoutes = {
   businessAndItSupport: {
     BUSINESS_AND_IT_SUPPORT: "/common/pages/business-it-support",
   },
+  cloudStorageAndBackup: {
+    CLOUD_STORAGE_AND_BACKUP: "/common/pages/cloud-storage-and-backup",
+  },
+  EmailSupportAndBackup: {
+    Email_Support_And_Backup: "/common/pages/email-support-and-services",
+  },
+  ComputerRepairs: {
+    Computer_Repairs: "/common/pages/computer-repairs",
+  },
+  LaptopRepairsSydney: {
+    Laptop_Repairs_Sydney: "/common/pages/laptop-repairs-sydney",
+  },
+  MobileRepairs: {
+    Mobile_Repairs: "/common/pages/Mobile-Repairs",
+  },
+  TabletRepairs: {
+    Tablet_Repairs: "/common/pages/Tablet-Repairs",
+  },
+  macbook_repair: {
+    macbook_repair: "/common/pages/macbook-repair",
+  },
   faqs: {
     FAQs: "/common/faqs",
   },

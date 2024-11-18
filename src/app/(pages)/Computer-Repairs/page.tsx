@@ -1,15 +1,17 @@
-import BussinessAndItSupport from "@/app/_components/BusinessItSupport/BussinessItSupport";
-
+import ComputerRepairs from "@/components/Computer-Repairs/ComputerRepairs";
 import allApiRoutes from "@/constants/allApiRoutes";
 import { fetchDataWrapper } from "@/fetcher/fetchWrapper";
 import React from "react";
 
 const page = async () => {
   const response = await fetchDataWrapper(
-    allApiRoutes?.businessAndItSupport.BUSINESS_AND_IT_SUPPORT
+    allApiRoutes?.ComputerRepairs.Computer_Repairs
   );
-
-  return <BussinessAndItSupport pageData={response?.data} />;
+  return (
+    <div>
+      <ComputerRepairs pageData={response?.data} />
+    </div>
+  );
 };
 
 export default page;
