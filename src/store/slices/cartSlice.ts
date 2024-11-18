@@ -31,16 +31,16 @@ export const cartSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
-    updateItemQuantity: (
-      state,
-      action: PayloadAction<{ id: string; quantity: number }>
-    ) => {
-      const item = state.items.find((item) => item.id === action.payload.id);
-      if (item) {
-        item.quantity = action.payload.quantity;
-      }
-      localStorage.setItem("cart", JSON.stringify(state.items));
-    },
+    // updateItemQuantity: (
+    //   state,
+    //   action: PayloadAction<{ id: string; quantity: number }>
+    // ) => {
+    //   const item = state.items.find((item) => item.id === action.payload.id);
+    //   if (item) {
+    //     item.quantity = action.payload.quantity;
+    //   }
+    //   localStorage.setItem("cart", JSON.stringify(state.items));
+    // },
     removeItemFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(state.items));
@@ -49,19 +49,19 @@ export const cartSlice = createSlice({
       state.items = [];
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
-    setCart: (state, action: PayloadAction<CartItem[]>) => {
-      state.items = action.payload;
-      localStorage.setItem("cart", JSON.stringify(state.items));
-    },
+    // setCart: (state, action: PayloadAction<CartItem[]>) => {
+    //   state.items = action.payload;
+    //   localStorage.setItem("cart", JSON.stringify(state.items));
+    // },
   },
 });
 
 export const {
   addItemToCart,
-  updateItemQuantity,
+  // updateItemQuantity,
   removeItemFromCart,
   clearCart,
-  setCart,
+  // setCart,
 } = cartSlice.actions;
 
 export const selectCartItems = (state: RootState) => state.cart.items;
