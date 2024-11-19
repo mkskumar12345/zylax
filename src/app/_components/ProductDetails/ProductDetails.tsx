@@ -38,7 +38,11 @@ import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFavoriteProductMutation } from "@/store/apiServices/productsApi";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, selectCartItems } from "@/store/slices/cartSlice";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  selectCartItems,
+} from "@/store/slices/cartSlice";
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
   const cartItems = useSelector(selectCartItems);
@@ -60,7 +64,14 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     { img: pngProductDetails3, id: 6 },
   ];
 
-  console.log(productDetails);
+  const checkQuantity = () => {
+    if (cartItems?.find((item) => item?.id === productDetails?.id)) {
+      return cartItems?.find((item) => item?.id === productDetails?.id)
+        ?.quantity;
+    }
+    return 0;
+  };
+
   return (
     <div>
       <CommonBanner
@@ -205,29 +216,51 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
               </div>
             </div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-4 my-8 gap-4">
-              <div className="col-span-1 text-[#475156] justify-between flex items-center border border-[#E4E7E9] h-14">
-                <Button variant="ghost" className="hover:bg-transparent">
-                  <Plus />
-                </Button>
-                <span>01</span>
-                <Button variant="ghost" className="hover:bg-transparent">
-                  <Minus />
-                </Button>
-              </div>
-              <div className="xl:col-span-2 lg:col-span-1">
-                <Button
-                  onClick={() =>
-                    dispatch(
-                      addItemToCart({
-                        ...productDetails,
-                        quantity: 1,
-                      })
-                    )
-                  }
-                >
-                  Add to cart
-                </Button>
-              </div>
+              {checkQuantity() >= 1 && (
+                <div className="xl:col-span-2 lg:col-span-1 grid grid-cols-2">
+                  <div className="col-span-1 text-[#475156] justify-between flex items-center border border-[#E4E7E9] h-14">
+                    <Button
+                      onClick={() =>
+                        dispatch(removeItemFromCart(productDetails?.id))
+                      }
+                      variant="ghost"
+                      className="hover:bg-transparent"
+                    >
+                      <Minus />
+                    </Button>
+                    {checkQuantity()}
+                    <Button
+                      variant="ghost"
+                      className="hover:bg-transparent"
+                      onClick={() =>
+                        dispatch(
+                          addItemToCart({ ...productDetails, quantity: 1 })
+                        )
+                      }
+                    >
+                      <Plus />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {checkQuantity() === 0 && (
+                <div className="xl:col-span-2 lg:col-span-1">
+                  <Button
+                    onClick={() =>
+                      dispatch(
+                        addItemToCart({
+                          ...productDetails,
+                          quantity: 1,
+                        })
+                      )
+                    }
+                  >
+                    Add to cart
+                  </Button>
+                </div>
+              )}
+
               <div className="col-span-1">
                 <Button
                   variant="outline"
