@@ -12,11 +12,8 @@ import {
   removeItemFromCart,
   selectCartItems,
 } from "@/store/slices/cartSlice";
-import { RootState } from "@/store/store";
-import useFetchCart from "@/hooks/useFetchCart";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 const ShoppingCart = () => {
-  // const cart = useFetchCart();
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
