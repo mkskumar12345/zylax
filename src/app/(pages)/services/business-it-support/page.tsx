@@ -1,4 +1,4 @@
-import BussinessAndItSupport from "@/app/_components/BusinessItSupport/BussinessItSupport";
+import BussinessAndItSupport from "@/components/BusinessItSupport/BussinessItSupport";
 
 import allApiRoutes from "@/constants/allApiRoutes";
 import { fetchDataWrapper } from "@/fetcher/fetchWrapper";
