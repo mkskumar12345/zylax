@@ -43,6 +43,13 @@ import {
   removeItemFromCart,
   selectCartItems,
 } from "@/store/slices/cartSlice";
+
+function checkQuantity(cartItems: any[], productDetails: any) {
+  if (cartItems?.find((item: any) => item?.id === productDetails?.id)) {
+    return cartItems?.find((item) => item?.id === productDetails?.id)?.quantity;
+  } else return 0;
+}
+
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
   const cartItems = useSelector(selectCartItems);
@@ -63,14 +70,6 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     { img: pngProductDetails2, id: 5 },
     { img: pngProductDetails3, id: 6 },
   ];
-
-  const checkQuantity = () => {
-    if (cartItems?.find((item) => item?.id === productDetails?.id)) {
-      return cartItems?.find((item) => item?.id === productDetails?.id)
-        ?.quantity;
-    }
-    return 0;
-  };
 
   return (
     <div>
@@ -216,7 +215,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
               </div>
             </div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-4 my-8 gap-4">
-              {checkQuantity() >= 1 && (
+              {checkQuantity(cartItems, productDetails) > 0 && (
                 <div className="xl:col-span-2 lg:col-span-1 grid grid-cols-2">
                   <div className="col-span-1 text-[#475156] justify-between flex items-center border border-[#E4E7E9] h-14">
                     <Button
@@ -228,7 +227,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                     >
                       <Minus />
                     </Button>
-                    {checkQuantity()}
+                    {checkQuantity(cartItems, productDetails)}
                     <Button
                       variant="ghost"
                       className="hover:bg-transparent"
@@ -244,7 +243,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 </div>
               )}
 
-              {checkQuantity() === 0 && (
+              {checkQuantity(cartItems, productDetails) === 0 && (
                 <div className="xl:col-span-2 lg:col-span-1">
                   <Button
                     onClick={() =>
