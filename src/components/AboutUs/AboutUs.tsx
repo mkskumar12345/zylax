@@ -18,6 +18,7 @@ const AboutUs = () => {
     <>
       <div>
         <CommonBanner icon={svgIconBannerHome} path={[{ title: "About Us", href: "/aboutus" }]} />
+        about me
         <div className="container">
           <div className="flex justify-center flex-col items-center mt-10">
             <span className="text-black font-bold text-2xl ">About Zylax</span>
