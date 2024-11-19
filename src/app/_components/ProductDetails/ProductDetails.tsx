@@ -37,15 +37,30 @@ import { Button } from "@/components/ui/button";
 import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFavoriteProductMutation } from "@/store/apiServices/productsApi";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  selectCartItems,
+} from "@/store/slices/cartSlice";
+
+function checkQuantity(cartItems: any[], productDetails: any) {
+  if (cartItems?.find((item: any) => item?.id === productDetails?.id)) {
+    return cartItems?.find((item) => item?.id === productDetails?.id)?.quantity;
+  } else return 0;
+}
+
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
-  console.log(productDetails);
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
+  const cartItems = useSelector(selectCartItems);
   const [favoriteProduct] = useFavoriteProductMutation();
+  const dispatch = useDispatch();
+
+  console.log(cartItems);
   const [selectedImage, setSelectedImage] = useState({
     img: pngProductDetails1,
     id: 2,
   });
-
   const allColors = ["#B1B5B8", "#E0E1E1"];
   const allImages = [
     { img: pngProductDetailsMain, id: 1 },
@@ -55,6 +70,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     { img: pngProductDetails2, id: 5 },
     { img: pngProductDetails3, id: 6 },
   ];
+
   return (
     <div>
       <CommonBanner
@@ -199,20 +215,51 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
               </div>
             </div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-4 my-8 gap-4">
-              <div className="col-span-1 text-[#475156] justify-between flex items-center border border-[#E4E7E9] h-14">
-                <Button variant="ghost" className="hover:bg-transparent">
-                  <Plus />
-                </Button>
-                <span>01</span>
-                <Button variant="ghost" className="hover:bg-transparent">
-                  <Minus />
-                </Button>
-              </div>
-              <div className="xl:col-span-2 lg:col-span-1">
-                <Button className="w-full font-bold h-14 bg-[#EB4227] text-white uppercase">
-                  Add to cart
-                </Button>
-              </div>
+              {checkQuantity(cartItems, productDetails) > 0 && (
+                <div className="xl:col-span-2 lg:col-span-1 grid grid-cols-2">
+                  <div className="col-span-1 text-[#475156] justify-between flex items-center border border-[#E4E7E9] h-14">
+                    <Button
+                      onClick={() =>
+                        dispatch(removeItemFromCart(productDetails?.id))
+                      }
+                      variant="ghost"
+                      className="hover:bg-transparent"
+                    >
+                      <Minus />
+                    </Button>
+                    {checkQuantity(cartItems, productDetails)}
+                    <Button
+                      variant="ghost"
+                      className="hover:bg-transparent"
+                      onClick={() =>
+                        dispatch(
+                          addItemToCart({ ...productDetails, quantity: 1 })
+                        )
+                      }
+                    >
+                      <Plus />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {checkQuantity(cartItems, productDetails) === 0 && (
+                <div className="xl:col-span-2 lg:col-span-1">
+                  <Button
+                    onClick={() =>
+                      dispatch(
+                        addItemToCart({
+                          ...productDetails,
+                          quantity: 1,
+                        })
+                      )
+                    }
+                  >
+                    Add to cart
+                  </Button>
+                </div>
+              )}
+
               <div className="col-span-1">
                 <Button
                   variant="outline"

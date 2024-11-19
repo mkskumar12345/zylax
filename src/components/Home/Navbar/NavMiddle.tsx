@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Sheet,
   SheetClose,
@@ -27,8 +27,12 @@ import Link from "next/link";
 import Signup from "@/components/Popup/Signup/Signup";
 import Login from "@/components/Popup/Login/Login";
 import allPagesRoutes from "@/constants/allPagesRoutes";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "@/store/slices/cartSlice";
 
 const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
+  const cartItems = useSelector(selectCartItems);
+
   return (
     <div className="flex flex-col gap-1">
       <div className="border-b border-b-[#F0F0F0]">
@@ -190,13 +194,13 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
           <div className="flex items-center gap-6">
             <Link href={allPagesRoutes.CART} title="Cart">
               <div className="flex gap-2">
+                <span className="text-xs">$0</span>
                 <div className="relative font-semibold">
-                  <span className="text-xs">$0</span>
-                  <div className="absolute text-[6px] w-2 h-2 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
-                    <span>0</span>
+                  <Image src={svgIconBag} alt="support" />
+                  <div className="absolute text-[8px] flex justify-center items-center w-3 h-3 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
+                    <span>{cartItems?.length}</span>
                   </div>
                 </div>
-                <Image src={svgIconBag} alt="support" />
               </div>
             </Link>
             <div className="hidden sm:flex items-center gap-2">

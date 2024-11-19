@@ -4,8 +4,6 @@ import { fetchDataWrapper } from "@/fetcher/fetchWrapper";
 import React from "react";
 
 const page = async ({ params }: { params: { product: string } }) => {
-  console.log({ params });
-
   const productDetails = await fetchDataWrapper(
     `${allApiRoutes.products.PRODUCTS}/${params.product}`
   );
