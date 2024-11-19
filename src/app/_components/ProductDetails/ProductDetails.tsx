@@ -37,15 +37,19 @@ import { Button } from "@/components/ui/button";
 import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFavoriteProductMutation } from "@/store/apiServices/productsApi";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, selectCartItems } from "@/store/slices/cartSlice";
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
-  console.log(productDetails);
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
+  const cartItems = useSelector(selectCartItems);
   const [favoriteProduct] = useFavoriteProductMutation();
+  const dispatch = useDispatch();
+
+  console.log(cartItems);
   const [selectedImage, setSelectedImage] = useState({
     img: pngProductDetails1,
     id: 2,
   });
-
   const allColors = ["#B1B5B8", "#E0E1E1"];
   const allImages = [
     { img: pngProductDetailsMain, id: 1 },
@@ -55,6 +59,8 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     { img: pngProductDetails2, id: 5 },
     { img: pngProductDetails3, id: 6 },
   ];
+
+  console.log(productDetails);
   return (
     <div>
       <CommonBanner
@@ -209,7 +215,16 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 </Button>
               </div>
               <div className="xl:col-span-2 lg:col-span-1">
-                <Button className="w-full font-bold h-14 bg-[#EB4227] text-white uppercase">
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      addItemToCart({
+                        ...productDetails,
+                        quantity: 1,
+                      })
+                    )
+                  }
+                >
                   Add to cart
                 </Button>
               </div>

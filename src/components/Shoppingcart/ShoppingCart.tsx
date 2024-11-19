@@ -1,23 +1,23 @@
 "use client";
 import { ArrowLeft, ArrowRight, CircleX, Minus, Plus } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cpu from "../../assets/images/png/cpu.png";
 import CommonBanner from "../Common/CommonBanner";
 import { svgIconBannerHome } from "@/assets/images";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addItemToCart,
   clearCart,
   removeItemFromCart,
   selectCartItems,
-  updateItemQuantity,
 } from "@/store/slices/cartSlice";
 import { RootState } from "@/store/store";
 import useFetchCart from "@/hooks/useFetchCart";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 const ShoppingCart = () => {
   // const cart = useFetchCart();
-  const cartItems = useSelector((state: RootState) => selectCartItems(state));
+  const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   return (
@@ -45,34 +45,53 @@ const ShoppingCart = () => {
                 </tr>
               </thead>
               <tbody className="h-[70px]">
-                <tr>
-                  <td>
-                    <div className="flex items-center gap-2 h-[70px] pl-2">
-                      <CircleX color="#929FA5" />
-                      <Image src={cpu} alt="product" className="w-[50px] " />
-                      <div>TIPASON – Gaming Desktop – AMD 3000G</div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <span className="text-[#929FA5] line-through">
-                      &nbsp;<span className="">$199</span>
-                    </span>
-                    $70
-                  </td>
-                  <td className="flex justify-center items-center h-[70px]">
-                    <div className="border border-[#E4E7E9] rounded w-[148px] h-[48px] flex justify-center items-center gap-4">
-                      <span className="cursor-pointer">
-                        <Minus />
-                      </span>
-                      <span className="text-[18px]">23</span>
-                      <span className="cursor-pointer">
-                        <Plus />
-                      </span>
-                    </div>
-                  </td>
-                  <td className="text-center">$70</td>
-                </tr>
-                <tr>
+                {cartItems?.map((item) => (
+                  <tr key={`cart-item-${item?.id}`}>
+                    <td>
+                      <div className="flex items-center gap-2 h-[70px] pl-2">
+                        <CircleX color="#929FA5" />
+                        <Image src={cpu} alt="product" className="w-[50px] " />
+                        <div className="max-w-96 line-clamp-2">
+                          {item?.name}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      {/* <span className="text-[#929FA5] line-through">
+                        &nbsp;<span className="">$199</span>
+                      </span> */}
+                      ${item?.price}
+                    </td>
+                    <td className="flex justify-center items-center  h-[70px]">
+                      <div className="border border-[#E4E7E9] rounded w-[148px] h-[48px] flex justify-center items-center gap-4">
+                        <span
+                          className="cursor-pointer"
+                          onClick={() => dispatch(removeItemFromCart(item?.id))}
+                        >
+                          <Minus />
+                        </span>
+                        <span className="text-[18px]">{item?.quantity}</span>
+                        <span
+                          className="cursor-pointer"
+                          onClick={() =>
+                            dispatch(
+                              addItemToCart({
+                                ...item,
+                                quantity: 1,
+                              })
+                            )
+                          }
+                        >
+                          <Plus />
+                        </span>
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      ${item?.price * item?.quantity}
+                    </td>
+                  </tr>
+                ))}
+                {/* <tr>
                   <td>
                     <div className="flex items-center gap-2 h-[70px] pl-2">
                       <CircleX color="#EE5858" />
@@ -98,7 +117,7 @@ const ShoppingCart = () => {
                     </div>
                   </td>
                   <td className="text-center">$70</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
             <div className="w-[800px] border-[#E4E7E9] border-l border-r border-b  flex justify-between p-4  ">
