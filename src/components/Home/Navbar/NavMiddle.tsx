@@ -82,7 +82,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                     <div className="flex flex-col items-start gap-4 ">
                       <div className="w-full">
                         <Input
-                          className="border bg-secondary px-4 py-2 h-full rounded-full "
+                          className="border bg-secondary px-4 py-2 h-full rounded "
                           placeholder="Search For products,categories..."
                         />
                       </div>
@@ -98,7 +98,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                     </Select> */}
                       <Button
                         title="Search"
-                        className="bg-black w-full text-white font-semibold rounded-full px-4 py-2"
+                        className="bg-black w-full text-white font-semibold rounded px-4 py-2"
                       >
                         <Image
                           src={svgIconSearch}
@@ -174,7 +174,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
         </div>
       </div>
       <div className="flex justify-between gap-2 md:container px-3 pb-2 lg:h-[49px]">
-        <div className="grid md:grid-cols-3 w-full">
+        <div className="grid md:grid-cols-6 w-full">
           <div className="col-span-1">
             <Link href={allPagesRoutes.HOME}>
               <Image
@@ -186,11 +186,11 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
               />
             </Link>
           </div>
-          <div className="col-span-2 h-full hidden items-center lg:flex">
+          <div className="col-span-5 h-full hidden items-center lg:flex">
             <NavSearch />
           </div>
         </div>
-        <div className="w-full flex justify-end">
+        <div className="w-[300px] flex justify-end">
           <div className="flex items-center gap-6">
             <Link href={allPagesRoutes.CART} title="Cart">
               <div className="flex gap-2">

@@ -4,10 +4,8 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import { pngGBMicroAtx, svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
-import brandsData from "../../Data/brands.json";
 import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 interface Brand {
   id: string;
@@ -27,19 +25,16 @@ const Brandlist = () => {
     isLoading,
   } = useGetBrandsListQuery(undefined);
 
-  // Filtering logic
   useEffect(() => {
     if (brandsList?.manufactures) {
       let filtered = brandsList?.manufactures;
 
-      // Filter by selected letter
       if (selectedLetter) {
         filtered = filtered.filter((brand: { name: string }) =>
           brand.name.toLowerCase().startsWith(selectedLetter.toLowerCase())
         );
       }
 
-      // Filter by search term
       if (searchTerm) {
         filtered = filtered?.filter((brand: Brand) =>
           brand.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,14 +45,13 @@ const Brandlist = () => {
     }
   }, [brandsList?.manufactures, selectedLetter, searchTerm]);
 
-  // Handlers for search input and letter selection
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   const handleLetterClick = (letter: string) => {
     setSelectedLetter(letter);
-    setSearchTerm(""); // Clear the search input when a letter is selected
+    setSearchTerm("");
   };
 
   return (
@@ -70,7 +64,6 @@ const Brandlist = () => {
       <div className="p-10">
         <span className="text-2xl font-semibold">Brandlist</span>
 
-        {/* Search Input */}
         <div className="flex items-center mt-5 border border-gray-300 rounded px-3 py-2 w-full max-w-md">
           <Search className="text-gray-500 mr-2" />
           <input
@@ -81,13 +74,15 @@ const Brandlist = () => {
           />
         </div>
 
-        {/* Alphabet Filter */}
-        <div className="flex items-center flex-wrap gap-2 mt-5">
+        <div
+          className="flex items-center flex-wrap gap-2 mt-5 p-5"
+          style={{ boxShadow: "0 3px 10px 0 #eaeaea" }}
+        >
           <div
             onClick={() => setSelectedLetter("")}
             className={`border ${
               selectedLetter === "All" ? "border-[#006bb4]" : "border-gray-300"
-            } text-[#006bb4] w-[90px] h-[40px] flex justify-center items-center rounded cursor-pointer`}
+            } text-[#006bb4] w-[90px] h-[40px] flex justify-center font-semibold items-center rounded cursor-pointer`}
           >
             All Brands
           </div>
@@ -99,9 +94,9 @@ const Brandlist = () => {
               onClick={() => handleLetterClick(letter)}
               className={`border ${
                 selectedLetter === letter
-                  ? "border-[#006bb4]"
+                  ? "border-[#D30200] text-[#D30200]"
                   : "border-gray-300"
-              } w-[40px] h-[40px] flex justify-center items-center text-[18px] rounded cursor-pointer`}
+              } w-[40px] h-[40px] flex justify-center items-center text-[18px] font-semibold hover:text-[#D30200] rounded cursor-pointer`}
             >
               {letter}
             </span>
@@ -109,8 +104,19 @@ const Brandlist = () => {
         </div>
 
         {/* Filtered Brands Display */}
-        <div className="mt-10 grid grid-cols-2 xl:grid-cols-8 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3  gap-10">
-          {filteredBrands?.length > 0 ? (
+        <div className="mt-10 grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-10">
+          {isLoading ? (
+            Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse cursor-pointer h-[150px] w-[300px] bg-gray-200 rounded flex-col flex justify-center items-center"
+              >
+                <div className="bg-gray-300 w-[100px] h-[100px] rounded-full mb-2"></div>
+                <div className="bg-gray-300 w-3/4 h-4 rounded mb-1"></div>
+                <div className="bg-gray-300 w-1/2 h-4 rounded"></div>
+              </div>
+            ))
+          ) : filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
               <div
                 onClick={() => router.push(`/products?brand=${brand.id}`)}
@@ -118,20 +124,20 @@ const Brandlist = () => {
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 }}
-                className=" cursor-pointer h-[150px] bg-white rounded-2xl flex-col flex justify-center items-center"
+                className="cursor-pointer h-[150px] w-[300px] bg-white rounded flex-col flex justify-center items-center"
               >
                 <Image
                   src={pngGBMicroAtx}
                   alt={brand.name}
-                  width={60}
-                  height={60}
+                  width={100}
+                  height={100}
                 />
-                <span>{brand.name}</span>
-                <span>{brand.totalP} product(s)</span>
+                <span className="font-semibold">{brand.name}</span>
+                <span className="hover:text-[#D30200]">
+                  {brand.totalP} product(s)
+                </span>
               </div>
             ))
-          ) : isLoading ? (
-            <p className="text-center col-span-12">Loading.</p>
           ) : (
             <p className="text-center col-span-12">No brands in the list.</p>
           )}
