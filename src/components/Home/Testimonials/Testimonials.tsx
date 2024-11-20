@@ -134,9 +134,9 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-        <div className="relative transform mb-10 xl:mb-0 xl:-translate-y-1/2">
+        {/* <div className="relative transform mb-10 xl:mb-0 xl:-translate-y-1/2">
           <Image src={pngTestimonialAd} alt="Testimonial Ad" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
