@@ -13,8 +13,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.BUSINESS_IT_SUPPORT
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span> Business It Services</span>
@@ -24,8 +24,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.CLOUD_STORAGE_AND_BACKUP
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                 ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Cloud storage and backup</span>
@@ -35,8 +35,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.EMAIL_SUPPORT_AND_BACKUP
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                 ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Email Support and Services</span>
@@ -46,8 +46,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.computer_repairs
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                  ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Computer Repairs</span>
@@ -57,8 +57,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.Laptop_Repairs_Sydney
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Laptop Repairs Sdyney</span>
@@ -68,8 +68,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.Mobile_Repairs
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+                 ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Mobile Repairs</span>
@@ -79,8 +79,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.tablet_repairs
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+             ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Tablet Repairs</span>
@@ -90,8 +90,8 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.Macbook_repairs
-                ? "bg-white text-black"
-                : "bg-[#EB4227] text-white hover:bg-white hover:text-black"
+              ? "bg-white text-[#D30200]"
+                : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
             <span>Macbook Repairs</span>
