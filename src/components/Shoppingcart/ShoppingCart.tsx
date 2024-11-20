@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   clearCart,
+  removeItemCompletely,
   removeItemFromCart,
   selectCartItems,
 } from "@/store/slices/cartSlice";
@@ -39,6 +40,7 @@ const ShoppingCart = () => {
                   <th className="text-[#475156] font-medium">Price</th>
                   <th className="text-[#475156] font-medium">Quantity</th>
                   <th className="text-[#475156] font-medium">Sub-Total</th>
+                  <th className="text-[#475156] font-medium"></th>
                 </tr>
               </thead>
               <tbody className="h-[70px]">
@@ -46,7 +48,6 @@ const ShoppingCart = () => {
                   <tr key={`cart-item-${item?.id}`}>
                     <td>
                       <div className="flex items-center gap-2 h-[70px] pl-2">
-                        <CircleX color="#929FA5" />
                         <Image src={cpu} alt="product" className="w-[50px] " />
                         <div className="max-w-96 line-clamp-2">
                           {item?.name}
@@ -85,6 +86,12 @@ const ShoppingCart = () => {
                     </td>
                     <td className="text-center">
                       ${item?.price * item?.quantity}
+                    </td>
+                    <td>
+                      <CircleX
+                        className="cursor-pointer text-primary hover:text-[#929FA5]"
+                        onClick={() => dispatch(removeItemCompletely(item?.id))}
+                      />
                     </td>
                   </tr>
                 ))}

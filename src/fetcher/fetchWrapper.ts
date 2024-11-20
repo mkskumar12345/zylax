@@ -77,10 +77,10 @@ const updateDataWrapper = async (
 
 const fetchDataWithHeaders = async (
   endpoint: string,
-  headers: Record<string, string>
+  headers: any
 ): Promise<ApiResponse> => {
   try {
-    const response = await api.get(endpoint, { headers }); // Correctly pass headers
+    const response = await api.get(endpoint, headers); // Correctly pass headers
     if (response.status === 200) {
       return { data: response.data, error: null };
     } else {

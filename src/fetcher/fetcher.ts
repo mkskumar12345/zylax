@@ -35,10 +35,7 @@ const fetchWrapper = async <T = any>(
   if (!fetchParams.baseURL) {
     throw new Error("Base URL is not defined");
   }
-
-  // Merge headers properly
   const headers = { ...defaultHeaders, ...config.headers };
-
   try {
     const response = await fetch(fetchParams.baseURL + url, {
       ...config,

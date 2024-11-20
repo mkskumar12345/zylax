@@ -4,7 +4,6 @@ import {
   pngGBMicroAtx,
   svgIcon5Star,
   svgIconBannerHome,
-  svgIconBestArivalHeart,
   svgIconCategoriesFilterBtn,
   svgIconSearch,
 } from "@/assets/images";
@@ -32,14 +31,25 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useGetProductsQuery } from "@/store/apiServices/productsApi";
+import {
+  useAddToFavoriteMutation,
+  useGetProductsQuery,
+  useRemoveFromFavoriteMutation,
+} from "@/store/apiServices/productsApi";
 import usePagination from "@/lib/hooks/usePagination";
 import allPagesRoutes from "@/constants/allPagesRoutes";
+import { revalidateTagInCache } from "@/serverActions/cookies";
+import toast from "react-hot-toast";
+import Heart from "@/assets/images/tsx-svg/heart";
 
 const Products = ({ brand }: { brand?: string | number | undefined }) => {
   const [values, setValues] = useState([20, 80]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState("");
+  const [addToFavoriteMutation, { isSuccess: isSuccessFavorite }] =
+    useAddToFavoriteMutation();
+  const [removeFromFavorite, { isSuccess: isSuccessRemove }] =
+    useRemoveFromFavoriteMutation();
   const { data: products, isLoading } = useGetProductsQuery({
     page: page,
     items_per_page: 10,
@@ -48,7 +58,26 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
   });
   const pages = usePagination(products?.totalPages, products?.currentPage);
 
-  console.log(products);
+  const addToFavorite = async (id: string | number) => {
+    const response = await addToFavoriteMutation({ id }).unwrap();
+    if (isSuccessFavorite) {
+      revalidateTagInCache("favorite-product");
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+
+  const onRemoveFromFavorite = async (id: string) => {
+    const response = await removeFromFavorite({ id }).unwrap();
+    if (isSuccessRemove) {
+      revalidateTagInCache("favorite-product");
+    } else {
+      toast.error(response.message);
+    }
+  };
+  console.log(isSuccessFavorite);
+
   return (
     <>
       <CommonBanner
@@ -279,7 +308,14 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
                         <span className="text-[#666666]">Purchases</span>
                       </div>
                       <div>
-                        <Image src={svgIconBestArivalHeart} alt="" />
+                        <Heart
+                          favorite={true}
+                          onClick={(event: any) => {
+                            event.stopPropagation(); // Prevents the click from propagating to the Link
+                            event.preventDefault(); // Prevents default navigation behavior
+                            addToFavorite(item?.id);
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
