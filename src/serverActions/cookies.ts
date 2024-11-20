@@ -1,6 +1,7 @@
 "use server";
 
 import { fetchDataWithHeaders } from "@/fetcher/fetchWrapper";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const clearCookies = () => {
@@ -22,8 +23,8 @@ export const setToken = async (token: string) => {
     cookies().set("token", token, {
       path: "/",
       httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
     });
     return { success: true, message: "Token set successfully" };
   } catch (error) {
@@ -45,4 +46,8 @@ export const logOutHandler = async () => {
   } catch (error) {
     return { success: false, message: "Error logging out" };
   }
+};
+
+export const revalidateTagInCache = (tag: string) => {
+  revalidateTag(tag);
 };
