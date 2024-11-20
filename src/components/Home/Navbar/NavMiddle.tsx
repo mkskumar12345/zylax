@@ -45,7 +45,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
               <span>
                 <Image title="Truck Order" src={svgIconTruck} alt="truck" />
               </span>
-              <span className="font-semibold text-xs">Truck Order</span>
+              <span className="font-semibold text-xs">Track Order</span>
             </button>
             <div className="flex items-center h-full">
               <span title="My Profile">

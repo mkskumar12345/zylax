@@ -136,7 +136,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Business-it-support
+                Business IT support
               </Link>
               <Link
                 href={allPagesRoutes.CLOUD_STORAGE_AND_BACKUP}
@@ -150,14 +150,14 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Email-support-and-services
+                Email Ssupport And Services
               </Link>
               <Link
                 href={allPagesRoutes.computer_repairs}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Computer-repairs
+                Computer Repairs
               </Link>
               <Link
                 href={allPagesRoutes.Laptop_Repairs_Sydney}
@@ -171,21 +171,21 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Mobile-Repairs
+                Mobile Repairs
               </Link>
               <Link
                 href={allPagesRoutes.tablet_repairs}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Tablet-Repairs
+                Tablet Repairs
               </Link>
               <Link
                 href={allPagesRoutes.Macbook_repairs}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Macbook-Repairs
+                Macbook Repairs
               </Link>
             </div>
           )}
