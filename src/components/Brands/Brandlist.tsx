@@ -108,13 +108,13 @@ const Brandlist = () => {
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div
-                key={index}
-                className="animate-pulse cursor-pointer h-[150px] w-[300px] bg-gray-200 rounded flex-col flex justify-center items-center"
-              >
-                <div className="bg-gray-300 w-[100px] h-[100px] rounded-full mb-2"></div>
-                <div className="bg-gray-300 w-3/4 h-4 rounded mb-1"></div>
-                <div className="bg-gray-300 w-1/2 h-4 rounded"></div>
-              </div>
+              key={index}
+              className="animate-pulse cursor-pointer h-[150px] w-[300px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
+            >
+              <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded-full mb-2"></div>
+              <div className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-3/4 h-4 rounded mb-1"></div>
+              <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-1/2 h-4 rounded"></div>
+            </div>
             ))
           ) : filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
