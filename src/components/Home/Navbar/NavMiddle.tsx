@@ -173,8 +173,8 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between gap-2 md:container px-3 pb-2 lg:h-[49px]">
-        <div className="grid md:grid-cols-6 w-full">
+      <div className="flex justify-between gap-2 md:container px-3  lg:h-[50px]">
+        <div className="grid md:grid-cols-6 w-full items-center">
           <div className="col-span-1">
             <Link href={allPagesRoutes.HOME}>
               <Image

@@ -9,7 +9,7 @@ const Navbar = async () => {
   return (
     <div>
       <NavTop authToken={token?.authToken} />
-      <NavMiddle authToken={token?.authToken} />
+      <NavMiddle authToken={token?.authToken}  />
       <NavBottom authToken={token?.authToken} />
     </div>
   );
