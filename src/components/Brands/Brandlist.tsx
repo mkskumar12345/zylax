@@ -19,6 +19,7 @@ const Brandlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
   const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
+
   const {
     data: brandsList,
     error,
@@ -82,9 +83,9 @@ const Brandlist = () => {
             onClick={() => setSelectedLetter("")}
             className={`border ${
               selectedLetter === "All" ? "border-[#006bb4]" : "border-gray-300"
-            } text-[#006bb4] w-[90px] h-[40px] flex justify-center font-semibold items-center rounded cursor-pointer`}
+            } text-[#006bb4] w-[70px] h-[40px] flex justify-center font-semibold items-center rounded cursor-pointer`}
           >
-            All Brands
+            All
           </div>
           {Array.from({ length: 26 }, (_, i) =>
             String.fromCharCode(65 + i)
@@ -104,17 +105,17 @@ const Brandlist = () => {
         </div>
 
         {/* Filtered Brands Display */}
-        <div className="mt-10 grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-10">
+        <div className="mt-10 grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-10">
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div
-              key={index}
-              className="animate-pulse cursor-pointer h-[150px] w-[300px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
-            >
-              <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded-full mb-2"></div>
-              <div className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-3/4 h-4 rounded mb-1"></div>
-              <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-1/2 h-4 rounded"></div>
-            </div>
+                key={index}
+                className="animate-pulse cursor-pointer h-[150px] w-[320px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
+              >
+                <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded-full mb-2"></div>
+                <div className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-3/4 h-4 rounded mb-1"></div>
+                <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-1/2 h-4 rounded"></div>
+              </div>
             ))
           ) : filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
@@ -122,9 +123,9 @@ const Brandlist = () => {
                 onClick={() => router.push(`/products?brand=${brand.id}`)}
                 key={brand.id}
                 style={{
-                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 6px",
                 }}
-                className="cursor-pointer h-[150px] w-[300px] bg-white rounded flex-col flex justify-center items-center"
+                className="group cursor-pointer h-[170px] w-[320px] bg-white rounded flex-col flex justify-center items-center"
               >
                 <Image
                   src={pngGBMicroAtx}
@@ -133,7 +134,7 @@ const Brandlist = () => {
                   height={100}
                 />
                 <span className="font-semibold">{brand.name}</span>
-                <span className="hover:text-[#D30200]">
+                <span className="group-hover:text-[#D30200]">
                   {brand.totalP} product(s)
                 </span>
               </div>
