@@ -150,7 +150,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-black hover:text-[#D30200] hover:bg-slate-100"
               >
-                Email Ssupport And Services
+                Email Support And Services
               </Link>
               <Link
                 href={allPagesRoutes.computer_repairs}
