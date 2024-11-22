@@ -105,7 +105,7 @@ const Brandlist = () => {
         </div>
 
         {/* Filtered Brands Display */}
-        <div className="mt-10 grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-10">
+        <div className="mt-10 grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-10 ">
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div
@@ -125,7 +125,7 @@ const Brandlist = () => {
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 6px",
                 }}
-                className="group cursor-pointer h-[170px] w-[320px] bg-white rounded flex-col flex justify-center items-center"
+                className="group cursor-pointer h-[170px] w-[310px] max-w-[350px] bg-white rounded flex-col flex justify-center items-center"
               >
                 <Image
                   src={pngGBMicroAtx}
@@ -145,7 +145,7 @@ const Brandlist = () => {
         </div>
       </div>
     </>
-  );
+  ); 
 };
 
 export default Brandlist;
