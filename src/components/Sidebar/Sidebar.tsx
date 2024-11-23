@@ -32,7 +32,7 @@ const Sidebar = () => {
             className={cn(
               "flex h-10 gap-2 px-6 items-center",
               pathname === "my-profile"
-                ? "bg-[#EB4227] text-white"
+                ? "bg-[#D30200] text-white"
                 : "bg-white text-[#666666]"
             )}
           >
@@ -52,7 +52,7 @@ const Sidebar = () => {
             className={cn(
               "flex h-10 gap-2 px-6 items-center",
               pathname === "my-orders"
-                ? "bg-[#EB4227] text-white"
+                ? "bg-[#D30200] text-white"
                 : "bg-white text-[#666666]"
             )}
           >
@@ -72,7 +72,7 @@ const Sidebar = () => {
             className={cn(
               "flex h-10 gap-2 px-6 items-center",
               pathname === "my-wishlist"
-                ? "bg-[#EB4227] text-white"
+                ? "bg-[#D30200] text-white"
                 : "bg-white text-[#666666]"
             )}
           >
@@ -91,7 +91,7 @@ const Sidebar = () => {
             className={cn(
               "flex h-10 px-6 gap-2 items-center",
               pathname === "change-password"
-                ? "bg-[#EB4227] text-white"
+                ? "bg-[#D30200] text-white"
                 : "bg-white text-[#666666]"
             )}
           >
