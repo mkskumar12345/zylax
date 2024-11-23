@@ -62,7 +62,7 @@ const Brandlist = () => {
         path={[{ title: "Brands", href: "/brands" }]}
       />
 
-      <div className="p-10">
+      <div className="container mt-10">
         <span className="text-2xl font-semibold">Brandlist</span>
 
         <div className="flex items-center mt-5 border border-gray-300 rounded px-3 py-2 w-full max-w-md">
@@ -110,7 +110,7 @@ const Brandlist = () => {
             Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
-                className="animate-pulse cursor-pointer h-[150px] w-[320px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
+                className="animate-pulse cursor-pointer h-[170px] w-[310px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
               >
                 <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded-full mb-2"></div>
                 <div className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-3/4 h-4 rounded mb-1"></div>
