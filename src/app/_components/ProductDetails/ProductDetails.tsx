@@ -43,6 +43,7 @@ import {
   removeItemFromCart,
   selectCartItems,
 } from "@/store/slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 function checkQuantity(cartItems: any[], productDetails: any) {
   if (cartItems?.find((item: any) => item?.id === productDetails?.id)) {
@@ -55,8 +56,8 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   const cartItems = useSelector(selectCartItems);
   const [favoriteProduct] = useFavoriteProductMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  console.log(cartItems);
   const [selectedImage, setSelectedImage] = useState({
     img: pngProductDetails1,
     id: 2,
@@ -264,6 +265,10 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 <Button
                   variant="outline"
                   className="w-full h-14 border-2 font-bold border-[#EB4227] text-[#EB4227] uppercase"
+                  onClick={() => {
+                    dispatch(addItemToCart({ ...productDetails, quantity: 1 }));
+                    router.push("/cart");
+                  }}
                 >
                   Buy Now
                 </Button>

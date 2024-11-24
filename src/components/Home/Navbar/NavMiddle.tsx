@@ -198,7 +198,7 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                 <div className="relative font-semibold">
                   <Image src={svgIconBag} alt="support" />
                   <div className="absolute text-[8px] flex justify-center items-center w-3 h-3 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
-                    <span>{cartItems?.length}</span>
+                    <span>{cartItems?.[0]?.quantity || 0}</span>
                   </div>
                 </div>
               </div>

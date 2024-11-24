@@ -264,11 +264,12 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
           <div className="grid grid-col-1 md:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2  mt-8 w-full gap-8 mb-12 ">
             {products?.data?.map(
               (item: {
-                id: number;
+                id: string;
                 name: string;
                 product_img: string;
                 price: number;
                 ex_gst_price: number;
+                isFavorite: boolean;
               }) => (
                 <Link
                   href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.id}`}
@@ -309,11 +310,15 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
                       </div>
                       <div>
                         <Heart
-                          favorite={true}
-                          onClick={(event: any) => {
+                          favorite={item?.isFavorite}
+                          onClick={async (event: any) => {
                             event.stopPropagation(); // Prevents the click from propagating to the Link
                             event.preventDefault(); // Prevents default navigation behavior
-                            addToFavorite(item?.id);
+                            if (item?.isFavorite) {
+                              await onRemoveFromFavorite(item?.id);
+                            } else {
+                              await addToFavorite(item?.id);
+                            }
                           }}
                         />
                       </div>
@@ -340,7 +345,7 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
                 onClick={() => setPage(page)}
                 key={`page-${page}`}
                 className={cn(
-                  "w-9 h-9 flex justify-center items-center rounded-full",
+                  "w-9 h-9 flex justify-center items-center rounded-full cursor-pointer",
                   page == products?.currentPage && "bg-[#EB4227] text-white"
                 )}
               >
