@@ -23,6 +23,7 @@ export const cartSlice = createSlice({
   reducers: {
     // Add item to cart or increase quantity
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
+      console.log(JSON.parse(JSON.stringify(action.payload)));
       const existingItem = state.items.find(
         (item) => item.id === action.payload.id
       );

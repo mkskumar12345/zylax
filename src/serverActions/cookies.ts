@@ -23,8 +23,8 @@ export const setToken = async (token: string) => {
     cookies().set("token", token, {
       path: "/",
       httpOnly: true,
-      secure: process.env.NEXT_PUBLIC_WEB_APP_URL === "production",
-      sameSite: "lax",
+      // secure: process.env.NEXT_PUBLIC_WEB_APP_URL === "production",
+      // sameSite: "lax",
     });
     return { success: true, message: "Token set successfully" };
   } catch (error) {

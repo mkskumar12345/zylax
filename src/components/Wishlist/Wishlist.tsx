@@ -20,12 +20,7 @@ import {
 import { Button } from "../ui/button";
 import { revalidateTagInCache } from "@/serverActions/cookies";
 import toast from "react-hot-toast";
-
-function checkQuantity(cartItems: any[], wishlist: any) {
-  if (cartItems?.find((item: any) => item?.id === wishlist?.id)) {
-    return cartItems?.find((item) => item?.id === wishlist?.id)?.quantity;
-  } else return 0;
-}
+import checkQuantity from "@/lib/checkQuantity";
 
 const isInCart = (cartItems: any[], id: string | number) => {
   return cartItems?.find((item: any) => item?.id === id);

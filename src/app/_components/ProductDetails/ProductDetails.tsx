@@ -44,12 +44,7 @@ import {
   selectCartItems,
 } from "@/store/slices/cartSlice";
 import { useRouter } from "next/navigation";
-
-function checkQuantity(cartItems: any[], productDetails: any) {
-  if (cartItems?.find((item: any) => item?.id === productDetails?.id)) {
-    return cartItems?.find((item) => item?.id === productDetails?.id)?.quantity;
-  } else return 0;
-}
+import checkQuantity from "@/lib/checkQuantity";
 
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
