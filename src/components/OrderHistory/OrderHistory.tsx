@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
+import orders from "./orders.json";
 
 const OrderHistory = () => {
   return (
@@ -28,45 +29,21 @@ const OrderHistory = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="h-[44px]">
-              <td className="text-center font-semibold">#96459761</td>
-              <td className="text-center text-[#FA8232] font-semibold">
-                IN PROGRESS
-              </td>
-              <td className="text-[#5F6C72] text-center">Dec 30, 2019 07:52</td>
-              <td className="text-[#475156] text-center">$80 (5 Products)</td>
-              <td className="">
-                <div className="text-[#EB4227] font-semibold flex items-center gap-2">
-                  View Details <ArrowRight size={15} />
-                </div>
-              </td>
-            </tr>
-            <tr className="h-[44px]">
-              <td className="text-center font-semibold">#96459761</td>
-              <td className="text-center text-[#2DB224] font-semibold">
-                COMPLETED
-              </td>
-              <td className="text-[#5F6C72] text-center">Dec 30, 2019 07:52</td>
-              <td className="text-[#475156] text-center">$80 (5 Products)</td>
-              <td className="">
-                <div className="text-[#EB4227] font-semibold flex items-center gap-2">
-                  View Details <ArrowRight size={15} />
-                </div>
-              </td>
-            </tr>
-            <tr className="h-[44px]">
-              <td className="text-center font-semibold">#96459761</td>
-              <td className="text-center text-[#EE5858] font-semibold">
-                CANCELED
-              </td>
-              <td className="text-[#5F6C72] text-center">Dec 30, 2019 07:52</td>
-              <td className="text-[#475156] text-center">$80 (5 Products)</td>
-              <td className="">
-                <div className="text-[#EB4227] font-semibold flex items-center gap-2">
-                  View Details <ArrowRight size={15} />
-                </div>
-              </td>
-            </tr>
+            {orders.map((order, index) => (
+              <tr key={index} className="h-[44px]">
+                <td className="text-center font-semibold">{order.orderId}</td>
+                <td className={`text-center font-semibold ${order.status === "IN PROGRESS" ? "text-[#FA8232]" : order.status === "COMPLETED" ? "text-[#2DB224]" : "text-[#EE5858]"}`}>
+                  {order.status}
+                </td>
+                <td className="text-[#5F6C72] text-center">{order.date}</td>
+                <td className="text-[#475156] text-center">{order.total}</td>
+                <td className="">
+                  <div className="text-[#EB4227] font-semibold flex items-center gap-2">
+                    View Details <ArrowRight size={15} />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
