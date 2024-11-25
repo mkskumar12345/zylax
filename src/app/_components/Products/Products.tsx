@@ -282,13 +282,14 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
               (item: {
                 id: string;
                 name: string;
+                slug: string;
                 product_img: string;
                 price: number;
                 ex_gst_price: number;
                 isFavorite: boolean;
               }) => (
                 <Link
-                  href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.id}`}
+                  href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
                   key={`product-${item?.id}`}
                 >
                   <div className="bg-white  card w-full border border-[#99999999] rounded-xl">

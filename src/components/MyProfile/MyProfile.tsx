@@ -30,13 +30,13 @@ const profileSchema = z.object({
   pinCode: z.string().min(1, { message: "Please enter your pincode" }),
 });
 const MyProfile = ({ profileData }: { profileData: any }) => {
-  console.log(profileData);
   const form = useForm({
     resolver: zodResolver(profileSchema),
     defaultValues: {
       "profile-photo": "",
       firstName: profileData?.name?.split(" ")[0] || "",
-      lastName: profileData?.name?.split(" ")[1] || "",
+      lastName:
+        profileData?.name?.replace(profileData?.name?.split(" ")[0], "") || "",
       email: profileData?.email || "",
       phone: profileData?.phone || "",
       country: profileData?.country || "",
@@ -209,7 +209,7 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
                     <Input
                       {...field}
                       className="border-[#CCCCCC] border  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                      placeholder="Country/Region"
+                      placeholder="Address"
                     />
                   </FormControl>
                   <FormMessage />

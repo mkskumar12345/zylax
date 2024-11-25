@@ -7,6 +7,8 @@ interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  discount_price?: number;
+  ex_gst_price?: number;
 }
 
 interface CartState {

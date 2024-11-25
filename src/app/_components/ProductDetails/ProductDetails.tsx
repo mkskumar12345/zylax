@@ -34,9 +34,13 @@ import {
 } from "@/components/ui/select";
 import { SelectContent } from "@radix-ui/react-select";
 import { Button } from "@/components/ui/button";
-import { Copy, Heart, Minus, Plus, RefreshCw } from "lucide-react";
+import { Copy, Minus, Plus, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useFavoriteProductMutation } from "@/store/apiServices/productsApi";
+import {
+  useAddToFavoriteMutation,
+  useFavoriteProductMutation,
+  useRemoveFromFavoriteMutation,
+} from "@/store/apiServices/productsApi";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
@@ -45,11 +49,18 @@ import {
 } from "@/store/slices/cartSlice";
 import { useRouter } from "next/navigation";
 import checkQuantity from "@/lib/checkQuantity";
+import { revalidateTagInCache } from "@/serverActions/cookies";
+import toast from "react-hot-toast";
+import Heart from "@/assets/images/tsx-svg/heart";
 
 const ProductDetails = ({ productDetails }: { productDetails: any }) => {
   const [selectedColor, setSelectedColor] = useState("#B1B5B8");
   const cartItems = useSelector(selectCartItems);
   const [favoriteProduct] = useFavoriteProductMutation();
+  const [addToFavoriteMutation, { isSuccess: isSuccessFavorite }] =
+    useAddToFavoriteMutation();
+  const [removeFromFavorite, { isSuccess: isSuccessRemove }] =
+    useRemoveFromFavoriteMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -67,6 +78,25 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
     { img: pngProductDetails3, id: 6 },
   ];
 
+  const addToFavorite = async (id: string | number) => {
+    const response = await addToFavoriteMutation({ id }).unwrap();
+    console.log(response);
+    if (isSuccessFavorite) {
+      toast.success(response.message);
+      revalidateTagInCache("favorite-product");
+    } else {
+      toast.error(response.message);
+    }
+  };
+
+  const onRemoveFromFavorite = async (id: string) => {
+    const response = await removeFromFavorite({ id }).unwrap();
+    if (isSuccessRemove) {
+      revalidateTagInCache("favorite-product");
+    } else {
+      toast.error(response.message);
+    }
+  };
   return (
     <div>
       <CommonBanner
@@ -125,7 +155,9 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 <span className="text-[#5F6C72] font-regular">
                   Availablity:
                 </span>
-                <span className="text-[#191C1F] font-medium ">Apple</span>
+                <span className="text-[#191C1F] font-medium ">
+                  {productDetails?.manufacture?.name}
+                </span>
               </div>
               <div className=" text-sm">
                 <span className="text-[#5F6C72] font-regular">Category:</span>
@@ -271,10 +303,18 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
             </div>
             <div className="flex justify-between xl:flex-nowrap flex-wrap gap-4">
               <div className="flex gap-4  ">
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 cursor-pointer items-center">
                   <Heart
-                    className="text-[#475156]"
-                    onClick={() => favoriteProduct(productDetails.id).unwrap()}
+                    favorite={productDetails?.isFavorite}
+                    onClick={async (event: any) => {
+                      event.stopPropagation(); // Prevents the click from propagating to the Link
+                      event.preventDefault(); // Prevents default navigation behavior
+                      if (productDetails?.isFavorite) {
+                        await onRemoveFromFavorite(productDetails?.id);
+                      } else {
+                        await addToFavorite(productDetails?.id);
+                      }
+                    }}
                   />
                   <span className=" font-refular text-sm text-[#475156]">
                     Add to Wishlist

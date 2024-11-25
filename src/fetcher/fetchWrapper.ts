@@ -5,7 +5,6 @@ import api from "./fetcher";
 interface ApiResponse<T = any> {
   data: T | null;
   error: string | null;
-  
 }
 
 const fetchDataWrapper = async (endpoint: string): Promise<ApiResponse> => {
@@ -42,11 +41,10 @@ const postDataWrapper = async (
 
 const deleteDataWrapper = async (
   endpoint: string,
-  payload: any,
-  headers: Record<string, string>
+  headers: any
 ): Promise<ApiResponse> => {
   try {
-    const response = await api.delete(endpoint, { headers });
+    const response = await api.delete(endpoint, headers);
     if (response.status === 200) {
       return { data: response.data, error: null };
     } else {
@@ -61,10 +59,10 @@ const deleteDataWrapper = async (
 const updateDataWrapper = async (
   endpoint: string,
   payload: any,
-  headers: Record<string, string>
+  headers: any
 ): Promise<ApiResponse> => {
   try {
-    const response = await api.put(endpoint, payload, { headers });
+    const response = await api.put(endpoint, payload, headers);
     if (response.status === 200) {
       return { data: response.data, error: null };
     } else {
