@@ -28,7 +28,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Minus,
+  Plus,
+  ShoppingCart,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -41,8 +47,18 @@ import allPagesRoutes from "@/constants/allPagesRoutes";
 import { revalidateTagInCache } from "@/serverActions/cookies";
 import toast from "react-hot-toast";
 import Heart from "@/assets/images/tsx-svg/heart";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  selectCartItems,
+} from "@/store/slices/cartSlice";
+import checkQuantity from "@/lib/checkQuantity";
 
 const Products = ({ brand }: { brand?: string | number | undefined }) => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+
   const [values, setValues] = useState([20, 80]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState("");
@@ -60,9 +76,10 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
 
   const addToFavorite = async (id: string | number) => {
     const response = await addToFavoriteMutation({ id }).unwrap();
+    console.log(response);
     if (isSuccessFavorite) {
-      revalidateTagInCache("favorite-product");
       toast.success(response.message);
+      revalidateTagInCache("favorite-product");
     } else {
       toast.error(response.message);
     }
@@ -76,7 +93,6 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
       toast.error(response.message);
     }
   };
-  console.log(isSuccessFavorite);
 
   return (
     <>
@@ -308,7 +324,60 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
                         <span className="text-black">1,897</span>
                         <span className="text-[#666666]">Purchases</span>
                       </div>
-                      <div>
+                      <div className="flex gap-2 items-center">
+                        <div
+                          onClick={(event) => {
+                            event.stopPropagation(); // Prevents the click from propagating to the Link
+                            event.preventDefault(); // Prevents default navigation behavior
+                          }}
+                        >
+                          {checkQuantity(cartItems, item) > 0 && (
+                            <div className="flex  items-center border border-[#E4E7E9] ">
+                              <Button
+                                onClick={() =>
+                                  dispatch(removeItemFromCart(item?.id))
+                                }
+                                variant="ghost"
+                                className="hover:bg-transparent p-2"
+                              >
+                                <Minus />
+                              </Button>
+                              {checkQuantity(cartItems, item)}
+                              <Button
+                                variant="ghost"
+                                className="hover:bg-transparent p-2"
+                                onClick={() =>
+                                  dispatch(
+                                    addItemToCart({
+                                      ...item,
+                                      image: item?.product_img,
+                                      quantity: 1,
+                                    })
+                                  )
+                                }
+                              >
+                                <Plus />
+                              </Button>
+                            </div>
+                          )}
+
+                          {checkQuantity(cartItems, item) === 0 && (
+                            <Button
+                              onClick={() =>
+                                dispatch(
+                                  addItemToCart({
+                                    ...item,
+                                    image: item?.product_img,
+                                    quantity: 1,
+                                  })
+                                )
+                              }
+                              className=" w-10 h-8"
+                            >
+                              <ShoppingCart />
+                            </Button>
+                          )}
+                        </div>
                         <Heart
                           favorite={item?.isFavorite}
                           onClick={async (event: any) => {
@@ -372,8 +441,3 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
 };
 
 export default Products;
-
-
-
-
-

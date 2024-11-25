@@ -22,9 +22,7 @@ const baseQuery = fetchBaseQuery({
       headers.set(key, value);
     });
 
-    if (token?.authToken) {
-      headers.set("x-access-token", token.authToken || "");
-    }
+    headers.set("x-access-token", token.authToken || "");
 
     return headers;
   },
