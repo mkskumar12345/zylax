@@ -19,7 +19,40 @@ const ShoppingCart = () => {
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
   const router = useRouter();
+  console.log(cartItems);
 
+  const subTotal = () => {
+    let subtotal = 0;
+    cartItems?.forEach((item) => {
+      subtotal += (item.ex_gst_price || 0) * item.quantity;
+    });
+    return subtotal;
+  };
+
+  const total = () => {
+    let total = 0;
+    cartItems?.forEach((item) => {
+      total += item.price * item.quantity - (item.discount_price || 0);
+    });
+    return total;
+  };
+
+  const taxTotal = () => {
+    let taxTotal = 0;
+    cartItems?.forEach((item) => {
+      taxTotal +=
+        item.price * item.quantity - (item.ex_gst_price || 0) * item.quantity;
+    });
+    return taxTotal;
+  };
+
+  const totalDiscount = () => {
+    let totalDiscount = 0;
+    cartItems?.forEach((item) => {
+      totalDiscount += item.discount_price || 0;
+    });
+    return totalDiscount;
+  };
   return (
     <>
       <CommonBanner
@@ -100,7 +133,10 @@ const ShoppingCart = () => {
               </tbody>
             </table>
             <div className="w-[800px] border-[#E4E7E9] border-l border-r border-b  flex justify-between p-4  ">
-              <button className="text-[#EB4227] border border-[#EB4227] font-bold w-[200px] h-[48px] flex justify-center items-center gap-2 " onClick={() => router.push('/products')}>
+              <button
+                className="text-[#EB4227] border border-[#EB4227] font-bold w-[200px] h-[48px] flex justify-center items-center gap-2 "
+                onClick={() => router.push(allPagesRoutes?.PRODUCTS)}
+              >
                 {" "}
                 <ArrowLeft />
                 Continue Shopping
@@ -117,7 +153,7 @@ const ShoppingCart = () => {
 
             <div className="flex justify-between">
               <span className="text-[#5F6C72]">Sub-total</span>
-              <span className="text-black font-semibold">$320</span>
+              <span className="text-black font-semibold">${subTotal()}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#5F6C72]">Shipping</span>
@@ -125,20 +161,25 @@ const ShoppingCart = () => {
             </div>
             <div className="flex justify-between">
               <span className="text-[#5F6C72]">Discount</span>
-              <span className="text-black font-semibold">$32</span>
+              <span className="text-black font-semibold">
+                ${totalDiscount()}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#5F6C72]">Tax</span>
-              <span className="text-black font-semibold">$32.00</span>
+              <span className="text-black font-semibold">${taxTotal()}</span>
             </div>
             <hr />
 
             <div className="flex justify-between">
               <span className="text-[#5F6C72]">Total</span>
-              <span className="font-semibold text-[20px]">$3223 USD</span>
+              <span className="font-semibold text-[20px]">${total()} USD</span>
             </div>
 
-            <button className="bg-[#EB4227] text-white font-bold  h-[56px] flex justify-center items-center gap-2 rounded uppercase" onClick={() => router.push('/billing-card')}>
+            <button
+              className="bg-[#EB4227] text-white font-bold  h-[56px] flex justify-center items-center gap-2 rounded uppercase"
+              onClick={() => router.push(allPagesRoutes?.BILLING_CARD)}
+            >
               Proceed to Checkout <ArrowRight />
             </button>
           </div>

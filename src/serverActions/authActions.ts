@@ -2,11 +2,12 @@ import allApiRoutes from "@/constants/allApiRoutes";
 import { postDataWrapper, updateDataWrapper } from "@/fetcher/fetchWrapper";
 import { getToken, setToken } from "./cookies";
 import toast from "react-hot-toast";
+import { getApiTokenHeader } from "@/lib/utils";
 
 // Login
 export const loginAction = async (payload: any) => {
   const response = await postDataWrapper(allApiRoutes.login.LOGIN, payload);
-  console.log(response.data);
+  console.log(response.data?.data?.token);
   setToken(response.data?.data?.token);
   if (response?.data?.success) {
     toast.success(response.data.message);
@@ -33,7 +34,7 @@ export const updateProfileAction = async (payload: any) => {
   const response = await updateDataWrapper(
     allApiRoutes.profile.PROFILE,
     payload,
-    { "x-access-token": token?.authToken || "" }
+    { headers: getApiTokenHeader(token?.authToken) }
   );
   if (response?.data?.success) {
     toast.success(response.data.message);
