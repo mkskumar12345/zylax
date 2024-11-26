@@ -1,6 +1,9 @@
 import React from "react";
 
-const BussinessAndItSupport = ({ pageData }: { pageData: any }) => {
+const ServicePage = ({ pageData }: { pageData: any }) => {
+  if (!pageData?.description) {
+    return;
+  }
   return (
     <div className="">
       <h1 className="font-bold text-3xl">{pageData?.name}</h1>
@@ -12,4 +15,4 @@ const BussinessAndItSupport = ({ pageData }: { pageData: any }) => {
   );
 };
 
-export default BussinessAndItSupport;
+export default ServicePage;
