@@ -25,8 +25,11 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
+import { selectCartItems } from "@/store/slices/cartSlice";
+import { useSelector } from "react-redux";
 
 const BillingCard = () => {
+  const cartItems = useSelector(selectCartItems);
   const form = useForm({
     // resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -60,6 +63,40 @@ const BillingCard = () => {
     };
     console.log(payload);
   };
+
+  const subTotal = () => {
+    let subtotal = 0;
+    cartItems?.forEach((item) => {
+      subtotal += (item.ex_gst_price || 0) * item.quantity;
+    });
+    return subtotal;
+  };
+
+  const total = () => {
+    let total = 0;
+    cartItems?.forEach((item) => {
+      total += item.price * item.quantity - (item.discount_price || 0);
+    });
+    return total;
+  };
+
+  const taxTotal = () => {
+    let taxTotal = 0;
+    cartItems?.forEach((item) => {
+      taxTotal +=
+        item.price * item.quantity - (item.ex_gst_price || 0) * item.quantity;
+    });
+    return taxTotal;
+  };
+
+  const totalDiscount = () => {
+    let totalDiscount = 0;
+    cartItems?.forEach((item) => {
+      totalDiscount += item.discount_price || 0;
+    });
+    return totalDiscount;
+  };
+
   return (
     <>
       <CommonBanner
@@ -405,32 +442,25 @@ const BillingCard = () => {
           <div className="left w-[400px] h-[500px]  ">
             <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2 rounded">
               <span className="text-xl font-semibold">Order Summery</span>
-              <div className="flex items-center gap-2">
-                <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
-                <div>
-                  <div>Canon EOS 1500D DSLR Camera Body+ ...</div>
-
+              {cartItems?.map((item) => (
+                <div className="flex items-center gap-2">
+                  <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
                   <div>
-                    1 x{" "}
-                    <span className="text-[#EB4227] font-semibold">$70</span>
+                    <div className="line-clamp-1">{item?.name}</div>
+
+                    <div>
+                      {item?.quantity} x
+                      <span className="text-[#EB4227] font-semibold">
+                        ${item?.price}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
-                <div>
-                  <div>Canon EOS 1500D DSLR Camera Body+ ...</div>
-
-                  <div>
-                    3 x{" "}
-                    <span className="text-[#EB4227] font-semibold">$270</span>
-                  </div>
-                </div>
-              </div>
+              ))}
 
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Sub-total</span>
-                <span className="text-black font-semibold">$320</span>
+                <span className="text-black font-semibold">${subTotal()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Shipping</span>
@@ -438,17 +468,21 @@ const BillingCard = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Discount</span>
-                <span className="text-black font-semibold">$32</span>
+                <span className="text-black font-semibold">
+                  ${totalDiscount()}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Tax</span>
-                <span className="text-black font-semibold">$32.00</span>
+                <span className="text-black font-semibold">${taxTotal()}</span>
               </div>
               <hr />
 
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Total</span>
-                <span className="font-semibold text-[20px]">$3223 USD</span>
+                <span className="font-semibold text-[20px]">
+                  ${total()} USD
+                </span>
               </div>
 
               <button className="bg-[#EB4227] text-white font-bold  h-[56px] flex justify-center items-center gap-2 rounded uppercase">
