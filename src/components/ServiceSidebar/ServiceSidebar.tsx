@@ -6,7 +6,6 @@ import React from "react";
 
 const ServiceSidebar = () => {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <div>
       <div className="border border-[#E4E7E9] max-w-[300px] w-full ">
