@@ -1,16 +1,29 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import allPagesRoutes from "@/constants/allPagesRoutes";
+import categoriesList from "@/assets/json/navigation.json";
 
 const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState<any>(null);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const fetchNavigation = async () => {
+    const data = categoriesList; // TODO : Fetch navigation menu from api
+    const newNav = [];
+    for (let category of data) {
+      if (category.parent_id == 0) {
+        newNav.push({ ...category, child: categoriesList.filter((item: any) => item.parent_id === category.id) })
+      }
+    }
+    setCategories(newNav);
   };
 
   // Close dropdown when clicking outside
@@ -24,9 +37,12 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
       }
     };
 
+    fetchNavigation();
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", closeServices);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", closeServices);
     };
   }, []);
 
@@ -50,12 +66,6 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
     setIsServicesOpen(false);
   };
 
-  useEffect(() => {
-    document.addEventListener("click", closeServices);
-    return () => {
-      document.removeEventListener("click", closeServices);
-    };
-  }, []);
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
@@ -72,52 +82,19 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           </div>
 
           {isOpen && (
-            <div className="absolute p-5 w-[1000px] h-[500px] flex flex-col bg-white text-primary shadow-lg mt-2 rounded-md">
-              <div className="flex gap-5">
-                {/* Sidebar Categories */}
-                <div className="w-[200px] h-[400px]">
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Computer Accessories</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Adapters</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Batteries</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Cables</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Laptop</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Cameras</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Lighting</span>
-                    <ChevronRight size={16} />
-                  </div>
-                </div>
-
-                {/* Dropdown Content */}
-                <div className="w-[800px] h-[400px] flex flex-wrap gap-5">
-                  {Array.from({ length: 9 }).map((_, index) => (
-                    <div key={index} className="flex flex-col">
-                      <span>Computer Accessories</span>
-                      <span className="text-black">Cables</span>
-                      <span className="text-black">Consumables</span>
-                      <span className="text-black">Gaming Products</span>
-                      <span className="text-black">Point of Sale (Pos)</span>
+            <div className="absolute p-5 w-[1200px] flex flex-col bg-white text-primary shadow-lg mt-2 rounded-md">
+              <div className="grid grid-cols-4 gap-2">
+                {categories && categories.map((item: any, indax: any) => {
+                  return (
+                    <div className="flex">
+                      <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                      <div className="flex flex-col">
+                        <span className="text-2xl font-semibold">{item.name}</span>
+                        <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -203,7 +180,6 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
         <Link href={allPagesRoutes.ABOUT_US} title="about us">
           About Us
         </Link>
-
         <Link href={allPagesRoutes?.CONTACT_US} title="Contact us">
           Contact Us
         </Link>
