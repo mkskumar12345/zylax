@@ -3,12 +3,12 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import allPagesRoutes from "@/constants/allPagesRoutes";
-import categoriesList from "@/assets/json/navigation.json";
 
 const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState<any>(null);
+  const [parentCategories, setParentCategories] = useState<any>(null);
   const [childMenuOpen, setChildMenuOpen] = useState(false);
   const [childMenuItems, setChildMenuItems] = useState<any>(null);
   const [childMenuHover, setChildMenuHover] = useState<any>(null);
@@ -19,15 +19,32 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   };
 
   const fetchNavigation = async () => {
-    const data = categoriesList; // TODO : Fetch navigation menu from api
-    const newNav = [];
-    for (let category of data) {
-      if (category.parent_id == 0) {
-        newNav.push({ ...category, child: categoriesList.filter((item: any) => item.parent_id === category.id) })
-      }
-    }
-    setCategories(newNav);
+    const requestOptions: any = { method: "GET", redirect: "follow" };
+    const response = await fetch("https://zylax-api.eskydecode.com/api/common/navigation-menu", requestOptions);
+    const json = await response.json();
+    setCategories((prev: any) => json?.data);
   };
+
+  const getChild = (id: number): any => {
+    const newMenus = categories.filter((item: any) => item.parent_id === id)
+    const child = [];
+    for (let menu of newMenus) {
+      child.push({ ...menu, child: getChild(menu.id) })
+    }
+    return child;
+  }
+
+  useEffect(() => {
+    if (categories) {
+      const newNav = [];
+      for (let category of categories) {
+        if (category.parent_id == 0) {
+          newNav.push({ ...category, child: getChild(category.id) })
+        }
+      }
+      setParentCategories(newNav);
+    }
+  }, [categories])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -106,23 +123,35 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                     </div>
                     <div className="p-2 min-h-[200px]">
                       <ul>
-                        <li className="hover:bg-white hover:text-black px-2 py-1 cursor-pointer" onMouseOver={() => setChildMenuHover(childMenuItems)} onMouseLeave={() => setChildMenuHover(null)}><b>All {childMenuItems.name}</b></li>
+                        <li className="hover:bg-white hover:text-black px-2 py-1" onMouseOver={() => setChildMenuHover(null)}>
+                          <b><Link href={`/category/${childMenuItems.slug}`} onClick={handleLinkClick}>All {childMenuItems.name}</Link></b>
+                        </li>
                         {childMenuItems && childMenuItems.child.map((item: any, indax: any) => {
-                          return (<li className="hover:bg-white hover:text-black px-2 py-1 cursor-pointer" onMouseOver={() => setChildMenuHover(item)} onMouseLeave={() => setChildMenuHover(null)}>
-                            <span className="">{item.name}</span>
+                          const child = item?.child?.length > 0 ? item : null;
+                          return (<li className="hover:bg-white hover:text-black px-2 py-1" onMouseOver={() => setChildMenuHover(child)}>
+                            <Link href={`/category/${item.slug}`} onClick={handleLinkClick}>{item.name}</Link>
                           </li>);
                         })}
                       </ul>
                     </div>
                     {childMenuHover &&
                       <div className="col-span-2 p-2 min-h-[200px] bg-white">
-                        <span className="text-2xl font-semibold line-clamp-1">{childMenuHover.name}</span>
+                        <ul>
+                          <li className="hover:bg-white hover:text-black px-2 py-1">
+                            <b><Link href={`/category/${childMenuHover.slug}`} onClick={handleLinkClick}>All {childMenuHover.name}</Link></b>
+                          </li>
+                          {childMenuHover && childMenuHover.child.map((item: any, indax: any) => {
+                            return (<li className="hover:bg-white hover:text-black px-2 py-1">
+                              <Link href={`/category/${item.slug}`} onClick={handleLinkClick}>{item.name}</Link>
+                            </li>);
+                          })}
+                        </ul>
                       </div>
                     }
                   </div>
                 ) : (
                   <div className="grid grid-cols-4 gap-2 p-2">
-                    {categories && categories.map((item: any, indax: any) => {
+                    {parentCategories && parentCategories.map((item: any, indax: any) => {
                       return (<div className="flex cursor-pointer hover:shadow hover:border p-2" onClick={() => handleChildMenu(item)} >
                         <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
                         <div className="flex flex-col">
