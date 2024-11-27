@@ -24,7 +24,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.CLOUD_STORAGE_AND_BACKUP
-                 ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
@@ -35,7 +35,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.EMAIL_SUPPORT_AND_BACKUP
-                 ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
@@ -46,7 +46,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.computer_repairs
-                  ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
@@ -68,7 +68,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.Mobile_Repairs
-                 ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
@@ -79,7 +79,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.tablet_repairs
-             ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >
@@ -90,7 +90,7 @@ const ServiceSidebar = () => {
           <div
             className={`flex h-10 gap-2 px-6 items-center font-semibold cursor-pointer border-b border-white ${
               pathname === allPagesRoutes.Macbook_repairs
-              ? "bg-white text-[#D30200]"
+                ? "bg-white text-[#D30200]"
                 : "bg-[#D30200] text-white hover:bg-white hover:text-black"
             }`}
           >

@@ -7,7 +7,7 @@ import venmo from "../../assets/images/svg/venmo.svg";
 import paypal from "../../assets/images/svg/paypal.svg";
 import amazonpay from "../../assets/images/svg/amazonpay.svg";
 import card from "../../assets/images/svg/CreditCard.svg";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import ordersumm from "../../assets/images/svg/ordersummary.svg";
 import { svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
@@ -17,8 +17,19 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 import { useForm } from "react-hook-form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
+import { selectCartItems } from "@/store/slices/cartSlice";
+import { useSelector } from "react-redux";
 
 const BillingCard = () => {
+  const cartItems = useSelector(selectCartItems);
   const form = useForm({
     // resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -30,6 +41,11 @@ const BillingCard = () => {
       message: "",
       newsletter: false,
       companyName: "",
+      country: "",
+      state: "",
+      zipcode: "",
+      city: "",
+      Phone: "",
     },
   });
 
@@ -42,9 +58,45 @@ const BillingCard = () => {
       country: data.country,
       address: data.address,
       postcode: data.pinCode,
+      state: data.state,
+      city: data.city,
     };
     console.log(payload);
   };
+
+  const subTotal = () => {
+    let subtotal = 0;
+    cartItems?.forEach((item) => {
+      subtotal += (item.ex_gst_price || 0) * item.quantity;
+    });
+    return subtotal;
+  };
+
+  const total = () => {
+    let total = 0;
+    cartItems?.forEach((item) => {
+      total += item.price * item.quantity - (item.discount_price || 0);
+    });
+    return total;
+  };
+
+  const taxTotal = () => {
+    let taxTotal = 0;
+    cartItems?.forEach((item) => {
+      taxTotal +=
+        item.price * item.quantity - (item.ex_gst_price || 0) * item.quantity;
+    });
+    return taxTotal;
+  };
+
+  const totalDiscount = () => {
+    let totalDiscount = 0;
+    cartItems?.forEach((item) => {
+      totalDiscount += item.discount_price || 0;
+    });
+    return totalDiscount;
+  };
+
   return (
     <>
       <CommonBanner
@@ -114,65 +166,139 @@ const BillingCard = () => {
                   </div>
 
                   <div>
-                    <label className="font-semibold">Address</label>
-                    <br />
-                    <input className="border-[#CCCCCC] border rounded lg:w-full w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                    <FormField
+                      control={form.control}
+                      name="firstName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <Label className="font-semibold">Address</Label>
+                          <Input className="border-[#CCCCCC] border rounded lg:w-full w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                        </FormItem>
+                      )}
+                    />
                   </div>
                   <div className="flex lg:flex-row flex-col gap-5">
                     <div className="flex lg:flex-row flex-col gap-5">
                       <div>
-                        <label className="font-semibold">Country</label>
-                        <br />
-                        <select className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]">
-                          <option>india</option>
-                          <option>usa</option>
-                          <option>china</option>
-                        </select>
+                        <FormField
+                          control={form.control}
+                          name="country"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">Country</Label>
+                              <Select>
+                                <SelectTrigger>
+                                  <SelectValue className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="india">india</SelectItem>
+                                  <SelectItem value="usa">USA</SelectItem>
+                                  <SelectItem value="china">China</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormItem>
+                          )}
+                        />
                       </div>
                       <div>
-                        <label className="font-semibold">Region/State</label>
-                        <br />
-                        <select className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]">
-                          <option>india</option>
-                          <option>usa</option>
-                          <option>china</option>
-                        </select>
+                        <FormField
+                          control={form.control}
+                          name="state"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">
+                                Region/State
+                              </Label>
+                              <Select>
+                                <SelectTrigger>
+                                  <SelectValue
+                                    placeholder="Select"
+                                    className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]"
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="india">india</SelectItem>
+                                  <SelectItem value="usa">usa</SelectItem>
+                                  <SelectItem value="china">china</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormItem>
+                          )}
+                        />
                       </div>
                     </div>
 
                     <div className="flex lg:flex-row flex-col gap-5">
                       <div>
-                        <label className="font-semibold">City</label>
-                        <br />
-                        <select className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px]  h-[44px] outline-none focus:border-[#CCCCCC]">
-                          <option>india</option>
-                          <option>usa</option>
-                          <option>china</option>
-                        </select>
+                        <FormField
+                          control={form.control}
+                          name="city"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">City</Label>
+                              <Select>
+                                <SelectTrigger>
+                                  <SelectValue
+                                    placeholder="Select"
+                                    className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]"
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="india">india</SelectItem>
+                                  <SelectItem value="usa">usa</SelectItem>
+                                  <SelectItem value="china">china</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormItem>
+                          )}
+                        />
                       </div>
                       <div>
-                        <label className="font-semibold">Zipcode</label>
-                        <br />
-                        <input className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                        <FormField
+                          control={form.control}
+                          name="zipcode"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">Zipcode</Label>
+                              <Input className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                            </FormItem>
+                          )}
+                        />
                       </div>
                     </div>
                   </div>
 
                   <div className="flex lg:justify-between lg:flex-row flex-col">
                     <div>
-                      <label className="font-semibold">Email</label>
-                      <br />
-                      <input
-                        placeholder="Email"
-                        className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label className="font-semibold">Email</Label>
+                            <Input
+                              placeholder="Email"
+                              className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                            />
+                          </FormItem>
+                        )}
                       />
                     </div>
                     <div>
-                      <label className="font-semibold">Phone Number</label>
-                      <br />
-                      <input
-                        placeholder="Phone Number"
-                        className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label className="font-semibold">
+                              Phone Number
+                            </Label>
+                            <Input
+                              placeholder="Phone Number"
+                              className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                            />
+                          </FormItem>
+                        )}
                       />
                     </div>
                   </div>
@@ -182,12 +308,12 @@ const BillingCard = () => {
                   </div>
                 </div>
 
-                <div className="mt-2 border-[#CCCCCC] lg:border">
+                <div className="mt-2 ">
                   <div className="font-semibold lg:w-full w-[350px] text-xl lg:border-b border-[#cccccc] h-[50px] flex justify-start items-center">
                     Payment Option
                   </div>
                   <div className="flex flex-col gap-2 pb-4">
-                    <div className="flex lg:flex-row  flex-wrap w-[350px] lg:w-full lg:p-5 lg:border-b border-[#cccccc]">
+                    <div className="flex lg:flex-row lg:border  flex-wrap w-[350px] lg:w-full lg:p-5 lg:border-b border-[#cccccc]">
                       <div className="w-[170px] h-[96px] flex flex-col gap-2 items-center lg:border-r lg:border-[#CCCCCC] ">
                         <Image src={cod} alt="cod" />
                         <span>Bank Deposit</span>
@@ -226,30 +352,63 @@ const BillingCard = () => {
                     </div>
 
                     <div>
-                      <label className="font-semibold">Name on Card</label>
-                      <br />
-                      <input className="border-[#CCCCCC] border lg:border-t lg:border-b rounded lg:w-full w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                      <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label className="font-semibold">
+                              Name on Card
+                            </Label>
+
+                            <Input className="border-[#CCCCCC] border lg:border-t lg:border-b rounded lg:w-full w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                          </FormItem>
+                        )}
+                      />
                     </div>
                     <div>
-                      <label className="font-semibold">Card Number</label>
-                      <br />
-                      <input className="border-[#CCCCCC] border rounded lg:w-full w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                      <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label className="font-semibold">Card Number</Label>
+                            <Input className="border-[#CCCCCC] border rounded lg:w-full w-[350px]  h-[44px] pl-2 outline-none focus:border-[#CCCCCC]" />
+                          </FormItem>
+                        )}
+                      />
                     </div>
                     <div className="flex lg:justify-between flex-col">
                       <div>
-                        <label className="font-semibold">Expire Date</label>
-                        <br />
-                        <input
-                          placeholder="DD/YY"
-                          className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                        <FormField
+                          control={form.control}
+                          name="firstName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">
+                                Expire Date
+                              </Label>
+                              <Input
+                                placeholder="DD/YY"
+                                className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                              />
+                            </FormItem>
+                          )}
                         />
                       </div>
                       <div>
-                        <label className="font-semibold">CVC</label>
-                        <br />
-                        <input
-                          placeholder="CVC"
-                          className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                        <FormField
+                          control={form.control}
+                          name="firstName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Label className="font-semibold">CVC</Label>
+                              <Input
+                                placeholder="CVC"
+                                className="border-[#CCCCCC] border rounded lg:w-[440px] w-[350px] h-[44px] pl-2 outline-none focus:border-[#CCCCCC]"
+                              />
+                            </FormItem>
+                          )}
                         />
                       </div>
                     </div>
@@ -260,14 +419,21 @@ const BillingCard = () => {
                   Additional Information
                 </div>
                 <div className="mt-5">
-                  <label className="font-semibold">
-                    Order Notes
-                    <span className="text-[#929FA5]">(Optional)</span>
-                  </label>
-                  <br />
-                  <textarea
-                    className="border-[#CCCCCC] border rounded lg:w-full w-[350px] h-[124px] pl-2 outline-none focus:border-[#CCCCCC]"
-                    placeholder="Notes about your order, e.g. special notes for delivery"
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <Label className="font-semibold">
+                          Order Notes
+                          <span className="text-[#929FA5]">(Optional)</span>
+                        </Label>
+                        <Textarea
+                          className="border-[#CCCCCC] border rounded lg:w-full w-[350px] h-[124px] pl-2 outline-none focus:border-[#CCCCCC]"
+                          placeholder="Notes about your order, e.g. special notes for delivery"
+                        />
+                      </FormItem>
+                    )}
                   />
                 </div>
               </div>
@@ -276,32 +442,25 @@ const BillingCard = () => {
           <div className="left w-[400px] h-[500px]  ">
             <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2 rounded">
               <span className="text-xl font-semibold">Order Summery</span>
-              <div className="flex items-center gap-2">
-                <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
-                <div>
-                  <div>Canon EOS 1500D DSLR Camera Body+ ...</div>
-
+              {cartItems?.map((item) => (
+                <div className="flex items-center gap-2">
+                  <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
                   <div>
-                    1 x{" "}
-                    <span className="text-[#EB4227] font-semibold">$70</span>
+                    <div className="line-clamp-1">{item?.name}</div>
+
+                    <div>
+                      {item?.quantity} x
+                      <span className="text-[#EB4227] font-semibold">
+                        ${item?.price}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Image src={ordersumm} alt="" className="w-[64px] h-[64px]" />
-                <div>
-                  <div>Canon EOS 1500D DSLR Camera Body+ ...</div>
-
-                  <div>
-                    3 x{" "}
-                    <span className="text-[#EB4227] font-semibold">$270</span>
-                  </div>
-                </div>
-              </div>
+              ))}
 
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Sub-total</span>
-                <span className="text-black font-semibold">$320</span>
+                <span className="text-black font-semibold">${subTotal()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Shipping</span>
@@ -309,17 +468,21 @@ const BillingCard = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Discount</span>
-                <span className="text-black font-semibold">$32</span>
+                <span className="text-black font-semibold">
+                  ${totalDiscount()}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Tax</span>
-                <span className="text-black font-semibold">$32.00</span>
+                <span className="text-black font-semibold">${taxTotal()}</span>
               </div>
               <hr />
 
               <div className="flex justify-between">
                 <span className="text-[#5F6C72]">Total</span>
-                <span className="font-semibold text-[20px]">$3223 USD</span>
+                <span className="font-semibold text-[20px]">
+                  ${total()} USD
+                </span>
               </div>
 
               <button className="bg-[#EB4227] text-white font-bold  h-[56px] flex justify-center items-center gap-2 rounded uppercase">
