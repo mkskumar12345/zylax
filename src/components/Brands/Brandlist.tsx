@@ -62,7 +62,7 @@ const Brandlist = () => {
         path={[{ title: "Brands", href: "/brands" }]}
       />
 
-      <div className="container mt-10">
+      <div className="container mt-4">
         <span className="text-2xl font-semibold">Brandlist</span>
 
         <div className="flex items-center mt-5 border border-gray-300 rounded px-3 py-2 w-full max-w-md">
