@@ -25,7 +25,7 @@ const allPagesRoutes = {
   BRANDS: "/brands",
   BILLING_CARD: "/billing-card",
   BLOGS: "/blogs",
-  BLOG_DETAILS: "blogs/details",
+  BLOG_DETAILS: "blogs",
 };
 
 export default allPagesRoutes;

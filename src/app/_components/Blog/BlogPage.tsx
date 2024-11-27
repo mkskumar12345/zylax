@@ -4,21 +4,17 @@ import BlogComponent from "@/components/Blogs/Blog.Component";
 import CommonBanner from "@/components/Common/CommonBanner";
 import usePagination from "@/lib/hooks/usePagination";
 import { cn } from "@/lib/utils";
+import { useGetBlogListQuery } from "@/store/apiServices/blogApi";
 import { useGetProductsQuery } from "@/store/apiServices/productsApi";
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 
 const BlogPage = () => {
-  const { data: products, isLoading } = useGetProductsQuery({
-    page: 1,
-    items_per_page: 10,
-    search: "",
-    brand: "",
-  });
-  const pages = usePagination(products?.totalPages, products?.currentPage);
+  // const [page, setPage] = useState<number>(1);
+  const { data: blogList, isLoading } = useGetBlogListQuery(undefined);
+  // const pages = usePagination(blogList?.totalPages, blogList?.currentPage);
 
-  const [page, setPage] = useState<number>(1);
-
+  console.log(blogList);
   return (
     <div>
       <CommonBanner
@@ -27,11 +23,11 @@ const BlogPage = () => {
       />
       <div className="container my-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6 sm:gap-4 lg:gap-8">
-          {Array.from({ length: 10 }, (_, i) => (
-            <BlogComponent />
+          {blogList?.data?.map((blog: any) => (
+            <BlogComponent blog={blog} />
           ))}
         </div>
-        <div className="flex w-full justify-center items-center gap-2">
+        {/* <div className="flex w-full justify-center items-center gap-2">
           {pages?.map((page: number) => (
             <span
               onClick={() => setPage(page)}
@@ -56,7 +52,7 @@ const BlogPage = () => {
           >
             <ChevronRight />
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
