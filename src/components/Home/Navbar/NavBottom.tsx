@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 import categoriesList from "@/assets/json/navigation.json";
 
@@ -9,6 +9,8 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState<any>(null);
+  const [childMenuOpen, setChildMenuOpen] = useState(false);
+  const [childMenuItems, setChildMenuItems] = useState<any>(null);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
@@ -66,6 +68,11 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
     setIsServicesOpen(false);
   };
 
+  const handleChildMenu = (item: any) => {
+    setChildMenuOpen(true);
+    setChildMenuItems(item);
+  }
+
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
@@ -74,28 +81,56 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
         </Link>
 
         <div className="relative z-50" ref={dropdownRef}>
-          <div
-            className="cursor-pointer flex items-center"
-            onClick={toggleDropdown}
-          >
+          <div className="cursor-pointer flex items-center" onClick={toggleDropdown}>
             Shop by Categories <ChevronDown className="ml-1" size={18} />
           </div>
 
           {isOpen && (
-            <div className="absolute p-5 w-[1200px] flex flex-col bg-white text-primary shadow-lg mt-2 rounded-md">
-              <div className="grid grid-cols-4 gap-2">
-                {categories && categories.map((item: any, indax: any) => {
-                  return (
-                    <div className="flex">
-                      <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
-                      <div className="flex flex-col">
-                        <span className="text-2xl font-semibold">{item.name}</span>
-                        <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
+            <div className="absolute w-[1400px] max-h-[500px] overflow-y-auto bg-white text-primary shadow-lg mt-2 rounded-md">
+              {childMenuOpen ?
+                (
+                  <div className="grid grid-cols-4 gap-2 bg-gray-100">
+                    <div className="bg-white p-3 min-h-[200px]">
+                      <div className="flex cursor-pointer items-center" onClick={() => setChildMenuOpen(false)} >
+                        <ChevronLeft size={14} />
+                        <span className="text-lg font-semibold">Back</span>
+                      </div>
+                      <div className="flex" >
+                        <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                        <div className="flex flex-col">
+                          <span className="text-2xl font-semibold line-clamp-1">{childMenuItems.name}</span>
+                          <span className="text-sm text-gray-400" contentEditable='true' dangerouslySetInnerHTML={{ __html: childMenuItems.description }}></span>
+                        </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                    <div className="p-2 min-h-[200px]">
+                      <ul>
+                        <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer"><b>All {childMenuItems.name}</b></li>
+                        {childMenuItems && childMenuItems.child.map((item: any, indax: any) => {
+                          return (
+                            <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer" >
+                              <span className="">{item.name}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>                    
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-4 gap-2 p-5">
+                    {categories && categories.map((item: any, indax: any) => {
+                      return (
+                        <div className="flex cursor-pointer" onClick={() => handleChildMenu(item)} >
+                          <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                          <div className="flex flex-col">
+                            <span className="text-2xl font-semibold line-clamp-1">{item.name}</span>
+                            <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
             </div>
           )}
         </div>
