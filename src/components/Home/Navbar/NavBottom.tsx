@@ -11,6 +11,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const [categories, setCategories] = useState<any>(null);
   const [childMenuOpen, setChildMenuOpen] = useState(false);
   const [childMenuItems, setChildMenuItems] = useState<any>(null);
+  const [childMenuHover, setChildMenuHover] = useState<any>(null);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
@@ -86,7 +87,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           </div>
 
           {isOpen && (
-            <div className="absolute w-[1400px] max-h-[500px] overflow-y-auto bg-white text-primary shadow-lg mt-2 rounded-md">
+            <div className="absolute w-[1200px] max-h-[500px] overflow-y-auto bg-white text-primary shadow-lg mt-2 rounded-md">
               {childMenuOpen ?
                 (
                   <div className="grid grid-cols-4 gap-2 bg-gray-100">
@@ -105,29 +106,30 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
                     </div>
                     <div className="p-2 min-h-[200px]">
                       <ul>
-                        <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer"><b>All {childMenuItems.name}</b></li>
+                        <li className="hover:bg-white hover:text-black px-2 py-1 cursor-pointer" onMouseOver={() => setChildMenuHover(childMenuItems)} onMouseLeave={() => setChildMenuHover(null)}><b>All {childMenuItems.name}</b></li>
                         {childMenuItems && childMenuItems.child.map((item: any, indax: any) => {
-                          return (
-                            <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer" >
-                              <span className="">{item.name}</span>
-                            </li>
-                          );
+                          return (<li className="hover:bg-white hover:text-black px-2 py-1 cursor-pointer" onMouseOver={() => setChildMenuHover(item)} onMouseLeave={() => setChildMenuHover(null)}>
+                            <span className="">{item.name}</span>
+                          </li>);
                         })}
                       </ul>
-                    </div>                    
+                    </div>
+                    {childMenuHover &&
+                      <div className="col-span-2 p-2 min-h-[200px] bg-white">
+                        <span className="text-2xl font-semibold line-clamp-1">{childMenuHover.name}</span>
+                      </div>
+                    }
                   </div>
                 ) : (
-                  <div className="grid grid-cols-4 gap-2 p-5">
+                  <div className="grid grid-cols-4 gap-2 p-2">
                     {categories && categories.map((item: any, indax: any) => {
-                      return (
-                        <div className="flex cursor-pointer" onClick={() => handleChildMenu(item)} >
-                          <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
-                          <div className="flex flex-col">
-                            <span className="text-2xl font-semibold line-clamp-1">{item.name}</span>
-                            <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
-                          </div>
+                      return (<div className="flex cursor-pointer hover:shadow hover:border p-2" onClick={() => handleChildMenu(item)} >
+                        <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                        <div className="flex flex-col">
+                          <span className="text-2xl font-semibold line-clamp-1">{item.name}</span>
+                          <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
                         </div>
-                      );
+                      </div>);
                     })}
                   </div>
                 )}
