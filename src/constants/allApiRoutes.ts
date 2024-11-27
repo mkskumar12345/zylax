@@ -56,6 +56,10 @@ const allApiRoutes = {
     ADD_TO_CART: "/carts/add-to-cart",
     DELETE_CART_ITEM: "/carts",
   },
+  blogs: {
+    BLOG_LIST: "/blogs",
+    BLOG_DETAILS: "/blogs",
+  },
 };
 
 export default allApiRoutes;
