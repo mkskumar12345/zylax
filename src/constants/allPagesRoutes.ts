@@ -24,6 +24,8 @@ const allPagesRoutes = {
   CART: "/cart",
   BRANDS: "/brands",
   BILLING_CARD: "/billing-card",
+  BLOGS: "/blogs",
+  BLOG_DETAILS: "blogs/details",
 };
 
 export default allPagesRoutes;

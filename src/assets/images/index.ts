@@ -50,6 +50,9 @@ import svgIconSidebarLogout from "./svg/sidebar-logout.svg";
 import svgIconSidebarMyWishlist from "./svg/sidebar-my-wishlist.svg";
 import svgIconSidebarOrderHistory from "./svg/sidebar-order-history.svg";
 import svgIconSidebarProfile from "./svg/sidebar-profile.svg";
+import svgIconReadMore from "./svg/read-more.svg";
+import svgIconPerson2 from "./svg/person2.svg";
+import svgIconCalendar from "./svg/calendar.svg";
 // ////////////////////////////
 // PNG
 // ////////////////////////////
@@ -124,6 +127,7 @@ export {
   svgIconYellowStar,
   svgIconFanKit,
   svgIconDoller,
+  svgIconPerson2,
   svgIconAddToBag,
   svgIconCardHeart,
   svgIcon5StarWhite,
@@ -139,6 +143,8 @@ export {
   svgIconSidebarMyWishlist,
   svgIconSidebarOrderHistory,
   svgIconSidebarProfile,
+  svgIconReadMore,
+  svgIconCalendar,
 
   // ////////////////////////////
   // PNG

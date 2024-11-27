@@ -208,8 +208,8 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
         <Link href={allPagesRoutes.BRANDS} title="shop by brands">
           Shop by Brands
         </Link>
-        <Link href={"/#best-seller"} title="best seller">
-          Best Seller
+        <Link href={allPagesRoutes.BLOGS} title="blogs">
+          Blogs
         </Link>
         {/* <Link href={"#"}>Blog</Link> */}
         <Link href={allPagesRoutes.ABOUT_US} title="about us">

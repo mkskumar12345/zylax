@@ -12,9 +12,9 @@ const CommonBanner = ({
   path: { title: string; href: string }[];
 }) => {
   return (
-    <div className="relative mt-2 h-fit w-full">
-      <div className="bg-black relative h-[127px]">
-        <div className="absolute text-white h-full gap-2 font-regular px-3 md:container flex items-center top-0 w-full ">
+    <div className="relative  h-fit w-full">
+      <div className="bg-[#E1E8FF] relative h-12">
+        <div className=" text-black h-full gap-2 font-regular container flex items-center top-0 w-full ">
           <Link href={"/"}>
             <Image
               className=""
@@ -34,11 +34,11 @@ const CommonBanner = ({
             </div>
           ))}
         </div>
-        <Image
+        {/* <Image
           src={pngCommonBanner}
           alt="banner"
           className="lg:object-fill object-cover  float-right h-full"
-        />
+        /> */}
       </div>
     </div>
   );
