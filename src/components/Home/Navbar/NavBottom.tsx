@@ -1,16 +1,31 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import allPagesRoutes from "@/constants/allPagesRoutes";
+import categoriesList from "@/assets/json/navigation.json";
 
 const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState<any>(null);
+  const [childMenuOpen, setChildMenuOpen] = useState(false);
+  const [childMenuItems, setChildMenuItems] = useState<any>(null);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const fetchNavigation = async () => {
+    const data = categoriesList; // TODO : Fetch navigation menu from api
+    const newNav = [];
+    for (let category of data) {
+      if (category.parent_id == 0) {
+        newNav.push({ ...category, child: categoriesList.filter((item: any) => item.parent_id === category.id) })
+      }
+    }
+    setCategories(newNav);
   };
 
   // Close dropdown when clicking outside
@@ -24,9 +39,12 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
       }
     };
 
+    fetchNavigation();
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", closeServices);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", closeServices);
     };
   }, []);
 
@@ -50,12 +68,11 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
     setIsServicesOpen(false);
   };
 
-  useEffect(() => {
-    document.addEventListener("click", closeServices);
-    return () => {
-      document.removeEventListener("click", closeServices);
-    };
-  }, []);
+  const handleChildMenu = (item: any) => {
+    setChildMenuOpen(true);
+    setChildMenuItems(item);
+  }
+
   return (
     <div className="bg-primary">
       <div className="container  hidden lg:flex justify-evenly text-secondary py-2 font-semibold">
@@ -64,61 +81,56 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
         </Link>
 
         <div className="relative z-50" ref={dropdownRef}>
-          <div
-            className="cursor-pointer flex items-center"
-            onClick={toggleDropdown}
-          >
+          <div className="cursor-pointer flex items-center" onClick={toggleDropdown}>
             Shop by Categories <ChevronDown className="ml-1" size={18} />
           </div>
 
           {isOpen && (
-            <div className="absolute p-5 w-[1000px] h-[500px] flex flex-col bg-white text-primary shadow-lg mt-2 rounded-md">
-              <div className="flex gap-5">
-                {/* Sidebar Categories */}
-                <div className="w-[200px] h-[400px]">
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Computer Accessories</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Adapters</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Batteries</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Cables</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Laptop</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Cameras</span>
-                    <ChevronRight size={16} />
-                  </div>
-                  <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-between items-center px-4">
-                    <span>Lighting</span>
-                    <ChevronRight size={16} />
-                  </div>
-                </div>
-
-                {/* Dropdown Content */}
-                <div className="w-[800px] h-[400px] flex flex-wrap gap-5">
-                  {Array.from({ length: 9 }).map((_, index) => (
-                    <div key={index} className="flex flex-col">
-                      <span>Computer Accessories</span>
-                      <span className="text-black">Cables</span>
-                      <span className="text-black">Consumables</span>
-                      <span className="text-black">Gaming Products</span>
-                      <span className="text-black">Point of Sale (Pos)</span>
+            <div className="absolute w-[1400px] max-h-[500px] overflow-y-auto bg-white text-primary shadow-lg mt-2 rounded-md">
+              {childMenuOpen ?
+                (
+                  <div className="grid grid-cols-4 gap-2 bg-gray-100">
+                    <div className="bg-white p-3 min-h-[200px]">
+                      <div className="flex cursor-pointer items-center" onClick={() => setChildMenuOpen(false)} >
+                        <ChevronLeft size={14} />
+                        <span className="text-lg font-semibold">Back</span>
+                      </div>
+                      <div className="flex" >
+                        <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                        <div className="flex flex-col">
+                          <span className="text-2xl font-semibold line-clamp-1">{childMenuItems.name}</span>
+                          <span className="text-sm text-gray-400" contentEditable='true' dangerouslySetInnerHTML={{ __html: childMenuItems.description }}></span>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="p-2 min-h-[200px]">
+                      <ul>
+                        <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer"><b>All {childMenuItems.name}</b></li>
+                        {childMenuItems && childMenuItems.child.map((item: any, indax: any) => {
+                          return (
+                            <li className="hover:bg-white hover:text-black px-2 py-1 rounded-full cursor-pointer" >
+                              <span className="">{item.name}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>                    
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-4 gap-2 p-5">
+                    {categories && categories.map((item: any, indax: any) => {
+                      return (
+                        <div className="flex cursor-pointer" onClick={() => handleChildMenu(item)} >
+                          <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                          <div className="flex flex-col">
+                            <span className="text-2xl font-semibold line-clamp-1">{item.name}</span>
+                            <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
             </div>
           )}
         </div>
@@ -203,7 +215,6 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
         <Link href={allPagesRoutes.ABOUT_US} title="about us">
           About Us
         </Link>
-
         <Link href={allPagesRoutes?.CONTACT_US} title="Contact us">
           Contact Us
         </Link>
