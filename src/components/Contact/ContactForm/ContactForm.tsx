@@ -62,13 +62,11 @@ const ContactForm = () => {
 
   return (
     <div className="relative">
-      <div className="inset-0 bg-cover absolute h-[432px] bg-center bg-[url('/deal-of-day-bg.png')] bg-[#D30200]/90 bg-blend-darken"></div>
-
       <div className="sm:container p-3 relative z-10  pt-10 mt-2">
-        <h1 className=" uppercase font-bold text-white text-3xl leading-6">
+        <h1 className=" uppercase font-bold text-black text-3xl leading-6">
           Ready to work with us
         </h1>
-        <p className="font-semibold text-[15px] leading-[27.2px] text-white">
+        <p className="font-semibold text-[15px] leading-[27.2px] text-black">
           Contact us for all your questions and opinions
         </p>
         <div className="bg-white rounded-xl  border-[#DFDFDF] border my-2 gap-6 p-3 sm:p-6 grid grid-cols-12">
