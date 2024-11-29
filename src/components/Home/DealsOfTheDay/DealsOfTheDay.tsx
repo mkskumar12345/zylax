@@ -132,7 +132,7 @@ const DealsOfTheDay = () => {
                 </p>
               </div>
             </div>
-            <div className="  flex-wrap sm:flex-nowrap p-8 flex gap-2 flex-col ">
+            {/* <div className="  flex-wrap sm:flex-nowrap p-8 flex gap-2 flex-col ">
               <div className=" flex-wrap sm:flex-nowrap flex gap-8">
                 <div className="sm:basis-1/2 flex relative justify-center items-center">
                   <Image src={pngMouse} alt="gamingMonitor" />
@@ -187,7 +187,7 @@ const DealsOfTheDay = () => {
                   Remains until the end of the offer
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="bg-white  border-primary border-4 w-full flex-col rounded-xl hidden lg:flex gap-2 ">
             <div className="  p-8 flex gap-2 flex-col ">
@@ -355,7 +355,7 @@ const DealsOfTheDay = () => {
                 </p>
               </div>
             </div>
-            <div className="  p-8 flex gap-2 flex-col ">
+            {/* <div className="  p-8 flex gap-2 flex-col ">
               <div className=" flex gap-8">
                 <div className=" basis-1/2 flex relative justify-center items-center">
                   <Image src={pngMouse} alt="gamingMonitor" />
@@ -410,7 +410,7 @@ const DealsOfTheDay = () => {
                   Remains until the end of the offer
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
