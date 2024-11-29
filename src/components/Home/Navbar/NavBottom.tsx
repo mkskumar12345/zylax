@@ -20,7 +20,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
 
   const fetchNavigation = async () => {
     const requestOptions: any = { method: "GET", redirect: "follow" };
-    const response = await fetch("https://zylax-api.eskydecode.com/api/common/navigation-menu", requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/common/navigation-menu`, requestOptions);
     const json = await response.json();
     setCategories((prev: any) => json?.data);
   };
