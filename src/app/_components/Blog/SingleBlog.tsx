@@ -24,8 +24,8 @@ const SingleBlog = ({ blogData }: { blogData: any }) => {
         path={[
           { title: "Blogs", href: "/blogs" },
           {
-            title: "Blog Details",
-            href: "/blogs/details",
+            title: blogData?.name,
+            href: `/blogs/${blogData?.slug}`,
           },
         ]}
       />
