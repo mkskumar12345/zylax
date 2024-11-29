@@ -52,15 +52,13 @@ const FooterMiddle = () => {
             <Link href="#">Tablets</Link>
             <Link href="#">Gaming & VR</Link>
             <Link href="#">Networks</Link>
-            <Link href="#">Cameras</Link>
-            <Link href="#">Sounds</Link>
-            <Link href="#">Office</Link>
+            <Link href="#">Cameras</Link> 
           </div>
         </div>
         <div className="xl:basis-2/12 clear-start w-full lg:basis-1/3 basis-1/2 my-10 text-white">
           <h2 className="font-bold text-lg">COMPANY</h2>
           <div className="flex flex-col gap-2 mt-8  font-regular text-sm">
-            <Link href="#">About Swoo</Link>
+            <Link href="#">About Us</Link>
             <Link href="#">Contact</Link>
             <Link href="#">Career</Link>
             <Link href="#">Blog</Link>
