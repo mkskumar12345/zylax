@@ -90,7 +90,9 @@ import pngProductDetails1 from "./png/product-details-1.png";
 import pngProductDetails2 from "./png/product-details-2.png";
 import pngProductDetails3 from "./png/product-details-3.png";
 import pngGurentyCheckout from "./png/gurentyCheckoutImg.png";
-
+import jpgBlogImg1 from "./png/blog-img-1.jpg";
+import jpgBlogImg2 from "./png/blog-img-2.jpg";
+import jpgBlogImg3 from "./png/blog-img-3.jpg";
 export {
   // ////////////////////////////
   // SVG
@@ -183,4 +185,7 @@ export {
   pngProductDetails1,
   pngProductDetails2,
   pngProductDetails3,
+  jpgBlogImg1,
+  jpgBlogImg2,
+  jpgBlogImg3,
 };
