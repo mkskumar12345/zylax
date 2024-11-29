@@ -1,10 +1,18 @@
 "use client";
-import { ArrowLeft, ArrowRight, CircleX, Minus, Plus } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  CircleX,
+  Minus,
+  Plus,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cpu from "../../assets/images/png/cpu.png";
 import CommonBanner from "../Common/CommonBanner";
-import { svgIconBannerHome } from "@/assets/images";
+import { webpEmptyCart, svgIconBannerHome } from "@/assets/images";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
@@ -15,6 +23,8 @@ import {
 } from "@/store/slices/cartSlice";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
+import Link from "next/link";
 const ShoppingCart = () => {
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
@@ -66,46 +76,61 @@ const ShoppingCart = () => {
             <div className="text-[30px] w-[800px] font-bold border-[#E4E7E9] border-l border-r border-t pl-3 h-[64px] flex justify-start items-center">
               Shopping Cart
             </div>
-            <table className="border-[#E4E7E9] border w-[800px] ">
-              <thead>
-                <tr className="bg-[#F2F4F5] h-[38px]">
-                  <th className="text-[#475156] font-medium text-left pl-3">
-                    Products
-                  </th>
-                  <th className="text-[#475156] font-medium">Price</th>
-                  <th className="text-[#475156] font-medium">Quantity</th>
-                  <th className="text-[#475156] font-medium">Sub-Total</th>
-                  <th className="text-[#475156] font-medium"></th>
-                </tr>
-              </thead>
-              <tbody className="h-[70px]">
-                {cartItems?.map((item) => (
-                  <tr key={`cart-item-${item?.id}`}>
-                    <td>
-                      <div className="flex items-center gap-2 h-[70px] pl-2">
-                        <Image src={cpu} alt="product" className="w-[50px] " />
-                        <div className="max-w-96 line-clamp-2">
-                          {item?.name}
-                        </div>
+            <div className="border-[#E4E7E9] border w-[800px] ">
+              {/* Table heading for cart */}
+              <div className="grid grid-cols-12 bg-[#F2F4F5] items-center h-[38px]">
+                <div className="col-span-5 text-[#475156] font-medium pl-3">
+                  <h3>Products</h3>
+                </div>
+                <div className="text-[#475156] font-medium text-center col-span-2">
+                  <h3 className="w-full">Model</h3>
+                </div>
+                <div className="text-[#475156] font-medium col-span-1">
+                  <h3 className="w-full">Price</h3>
+                </div>
+                <div className="text-[#475156] font-medium  col-span-2">
+                  <h3 className="w-full text-center">Quantity</h3>
+                </div>
+                <div className="text-[#475156] font-medium col-span-1">
+                  <h3 className="w-full">Sub-Total</h3>
+                </div>
+                <div className="text-[#475156] w-full font-medium col-span-1"></div>
+              </div>
+              {/* Table data for cart */}
+              {cartItems?.map((item) => (
+                <div
+                  className="grid grid-cols-12 bg-white p-2"
+                  key={`cart-item-${item?.id}`}
+                >
+                  <div className=" flex col-span-5 items-center gap-2  pl-2">
+                    <Image src={cpu} alt="product" className="w-[50px] " />
+                    <Link
+                      href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
+                      key={`product-${item?.id}`}
+                      title="Go to Product Details"
+                    >
+                      <div className="pr-3 line-clamp-2 font-medium">
+                        {item?.name}
                       </div>
-                    </td>
-                    <td className="text-center">
-                      {/* <span className="text-[#929FA5] line-through">
-                        &nbsp;<span className="">$199</span>
-                      </span> */}
-                      ${item?.price}
-                    </td>
-                    <td className="flex justify-center items-center  h-[70px]">
-                      <div className="border border-[#E4E7E9] rounded w-[148px] h-[48px] flex justify-center items-center gap-4">
-                        <span
-                          className="cursor-pointer"
-                          onClick={() => dispatch(removeItemFromCart(item?.id))}
-                        >
-                          <Minus />
+                    </Link>
+                  </div>
+                  <div className="flex items-center justify-center col-span-2 font-medium">
+                    ${item?.model}
+                  </div>
+                  <div className="flex items-center col-span-1 font-medium">
+                    ${item?.price}
+                  </div>
+                  <div className="col-span-2 flex justify-center items-center  ">
+                    {/* <div className="flex justify-center items-center">
+                      <div className="border border-[#E4E7E9] rounded  h-[48px] flex justify-center items-center ">
+                        <span className="text-[18px] w-10 font-medium text-center">
+                          {item?.quantity}
                         </span>
-                        <span className="text-[18px]">{item?.quantity}</span>
-                        <span
-                          className="cursor-pointer"
+                      </div>
+                      <div className="flex flex-col">
+                        <Button
+                          variant={"ghost"}
+                          className="cursor-pointer p-1 h-full"
                           onClick={() =>
                             dispatch(
                               addItemToCart({
@@ -115,23 +140,64 @@ const ShoppingCart = () => {
                             )
                           }
                         >
-                          <Plus />
-                        </span>
+                          <ChevronUp />
+                        </Button>
+                        <Button
+                          variant={"ghost"}
+                          className="cursor-pointer p-1 h-full"
+                          onClick={() => dispatch(removeItemFromCart(item?.id))}
+                        >
+                          <ChevronDown />
+                        </Button>
                       </div>
-                    </td>
-                    <td className="text-center">
-                      ${item?.price * item?.quantity}
-                    </td>
-                    <td>
-                      <CircleX
-                        className="cursor-pointer text-primary hover:text-[#929FA5]"
-                        onClick={() => dispatch(removeItemCompletely(item?.id))}
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div> */}
+                    <div className="flex  items-center border  border-[#E4E7E9] ">
+                      <Button
+                        onClick={() => dispatch(removeItemFromCart(item?.id))}
+                        variant="ghost"
+                        className="cursor-pointer p-2 h-full"
+                      >
+                        <Minus />
+                      </Button>
+                      {item.quantity}
+                      <Button
+                        variant="ghost"
+                        className="cursor-pointer p-2 h-full"
+                        onClick={() =>
+                          dispatch(
+                            addItemToCart({
+                              ...item,
+                              quantity: 1,
+                            })
+                          )
+                        }
+                      >
+                        <Plus />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center font-medium col-span-1">
+                    ${item?.price * item?.quantity}
+                  </div>
+                  <div className="col-span-1 flex items-center justify-center">
+                    <CircleX
+                      className="cursor-pointer text-primary hover:text-[#929FA5]"
+                      onClick={() => dispatch(removeItemCompletely(item?.id))}
+                    />
+                  </div>
+                </div>
+              ))}
+              {cartItems?.length === 0 && (
+                <div className="flex justify-center flex-col items-center">
+                  <div className="w-[120px] h-[120px] flex justify-center items-center">
+                    <Image src={webpEmptyCart} alt="empty-cart" />
+                  </div>
+                  <div className="text-center mb-5 text-[#929FA5] font-semibold">
+                    Your cart is empty.
+                  </div>
+                </div>
+              )}
+            </div>
             <div className="w-[800px] border-[#E4E7E9] border-l border-r border-b  flex justify-between p-4  ">
               <button
                 className="text-[#EB4227] border border-[#EB4227] font-bold w-[200px] h-[48px] flex justify-center items-center gap-2 "
@@ -141,9 +207,9 @@ const ShoppingCart = () => {
                 <ArrowLeft />
                 Continue Shopping
               </button>
-              <button className="text-[#EB4227] border border-[#EB4227] font-bold w-[149px] h-[48px]  ">
+              {/* <button className="text-[#EB4227] border border-[#EB4227] font-bold w-[149px] h-[48px]  ">
                 Update cart
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

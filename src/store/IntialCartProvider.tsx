@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCart } from "./slices/cartSlice";
+import { useGetCartQuery } from "./apiServices/cartApi";
+import { getToken } from "@/serverActions/cookies";
 
 const IntialCartProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();

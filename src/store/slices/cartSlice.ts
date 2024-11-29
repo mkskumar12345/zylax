@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-interface CartItem {
+export interface CartItem {
   id: string;
   name: string;
   price: number;
@@ -9,6 +9,8 @@ interface CartItem {
   image: string;
   discount_price?: number;
   ex_gst_price?: number;
+  model?: string;
+  slug?: string;
 }
 
 interface CartState {
@@ -25,7 +27,6 @@ export const cartSlice = createSlice({
   reducers: {
     // Add item to cart or increase quantity
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
-      console.log(JSON.parse(JSON.stringify(action.payload)));
       const existingItem = state.items.find(
         (item) => item.id === action.payload.id
       );

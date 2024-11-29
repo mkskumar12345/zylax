@@ -152,9 +152,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 <span className="text-[#2DB224] font-medium">In Stock</span>
               </div>
               <div className=" text-sm">
-                <span className="text-[#5F6C72] font-regular">
-                  Availablity:
-                </span>
+                <span className="text-[#5F6C72] font-regular">Brand:</span>
                 <span className="text-[#191C1F] font-medium ">
                   {productDetails?.manufacture?.name}
                 </span>

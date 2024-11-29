@@ -194,10 +194,14 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
           <div className="flex items-center gap-6">
             <Link href={allPagesRoutes.CART} title="Cart">
               <div className="flex gap-2">
-                <span className="text-xs">$0</span>
+                {/* <span className="text-xs">$0</span> */}
                 <div className="relative font-semibold">
-                  <Image src={svgIconBag} alt="support" />
-                  <div className="absolute text-[8px] flex justify-center items-center w-3 h-3 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
+                  <Image
+                    src={svgIconBag}
+                    alt="support"
+                    className="w-[24px] h-[24px]"
+                  />
+                  <div className="absolute text-[10px] flex justify-center items-center w-4 h-4 bg-primary text-secondary text-center rounded-full -top-1 -right-1">
                     <span>{cartItems?.length || 0}</span>
                   </div>
                 </div>
