@@ -52,7 +52,7 @@ const allApiRoutes = {
     CONTACT: "/common/contact-us",
   },
   cart: {
-    GET_ALL_CART_ITEMS: "/carts",
+    GET_ALL_CART_ITEMS: "/cart",
     ADD_TO_CART: "/carts/add-to-cart",
     DELETE_CART_ITEM: "/carts",
   },
