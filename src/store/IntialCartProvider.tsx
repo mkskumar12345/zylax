@@ -8,7 +8,7 @@ const IntialCartProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Load cart data from localStorage when the app mounts
+    // Load cart data  from localStorage when the app mounts
     const cartData = JSON.parse(localStorage.getItem("cart") || "[]");
     dispatch(setCart(cartData));
   }, [dispatch]);
