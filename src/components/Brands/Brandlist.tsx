@@ -79,7 +79,7 @@ const Brandlist = () => {
 
         <div
           className="flex items-center flex-wrap gap-2 mt-5 p-5"
-          style={{ boxShadow: "0 3px 10px 0 #eaeaea" }}
+          style={{ boxShadow: "0 2px 6px 0 #eaeaea" }}
         >
           <div
             onClick={() => setSelectedLetter("")}
