@@ -65,7 +65,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const [search, setSearch] = useState("");
   const [addToFavoriteMutation, { isSuccess: isSuccessFavorite }] = useAddToFavoriteMutation();
   const [removeFromFavorite, { isSuccess: isSuccessRemove }] = useRemoveFromFavoriteMutation();
-  const [filters, setFilters] = useState();
+  const [filters, setFilters] = useState<any>(null);
 
   const { data: products, isLoading } = useGetProductsQuery({
     page: page,
@@ -96,11 +96,14 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   };
 
   const fetchFilters = async () => {
-    
+    const requestOptions: any = { method: "GET", redirect: "follow" };
+    const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/category/${pathname.split('/').pop()}/filters`, requestOptions);
+    const json = await response.json();
+    setFilters((prev: any) => json?.data);
   }
 
   useEffect(() => {
-
+    fetchFilters();
   }, [])
 
 
@@ -123,7 +126,30 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
               alt="filter"
             />
           </Button>
-          <div className="grid grid-flow-row sm:grid-flow-dense md:grid-flow-row sm:grid-cols-2 md:grid-cols-1  gap-6 ">
+          {filters ? (
+            <div className="grid grid-flow-row sm:grid-flow-dense md:grid-flow-row sm:grid-cols-2 md:grid-cols-1  gap-6 ">
+              {Object.entries(filters).map(([key, items]: any) => (
+                key != 'categories' &&
+                <Accordion collapsible type="single" className="w-full max-h-[250px] overflow-auto" key={key}>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="font-semibold text-xl">{key}</AccordionTrigger>
+                    {items?.map((item: any, row: number) => (
+                      <AccordionContent className="flex flex-col gap-3" key={row}>
+                        <div className="flex items-center gap-2">
+                          <Checkbox className="rounded-full [&>svg]:hidden" value={item?.id} />
+                          <span>{item?.value}</span>
+                          <span>({item?.count})</span>
+                        </div>
+                      </AccordionContent>
+                    ))}
+                  </AccordionItem>
+                </Accordion>
+              ))}
+            </div>
+          ) : (
+            <>Please wait</>
+          )}
+          {/* <div className="grid grid-flow-row sm:grid-flow-dense md:grid-flow-row sm:grid-cols-2 md:grid-cols-1  gap-6 ">
             <Accordion collapsible type="single" className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="font-semibold text-xl">
@@ -249,7 +275,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </div>
+          </div> */}
         </div>
         <div className="lg:col-span-3 col-span-1">
           <div className="flex lg:justify-between flex-wrap  xl:flex-nowrap gap-3 w-full items-center">

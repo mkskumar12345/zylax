@@ -83,6 +83,8 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   };
 
   const handleLinkClick = () => {
+    setIsOpen(false);
+    setChildMenuOpen(false);
     setIsServicesOpen(false);
   };
 
