@@ -48,6 +48,7 @@ const allApiRoutes = {
   profile: {
     PROFILE: "/users/profile",
   },
+  HOME_PAGE: "/common/home-page-api",
   contact: {
     CONTACT: "/common/contact-us",
   },
