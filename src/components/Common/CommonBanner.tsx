@@ -24,11 +24,11 @@ const CommonBanner = ({
             />
           </Link>
           {path?.map((item, index) => (
-            <div className="flex gap-3" key={item.title}>
+            <div className="flex gap-3 font-medium " key={item.title}>
               <span>
                 <ChevronRight />
               </span>
-              <Link href={item.href}>
+              <Link href={item.href} className="hover:underline">
                 <span className="leading-6">{item.title}</span>
               </Link>
             </div>

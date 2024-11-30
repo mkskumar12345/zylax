@@ -21,7 +21,15 @@ export const cartApi = rootApiSlice.injectEndpoints({
       }),
       invalidatesTags: ["cart"],
     }),
+    onCheckout: builder.mutation<any, any>({
+      query: (body) => ({
+        url: allApiRoutes.cart.CHECKOUT,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
-export const { useGetCartQuery } = cartApi;
+export const { useGetCartQuery, useOnCheckoutMutation } = cartApi;

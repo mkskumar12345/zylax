@@ -11,6 +11,7 @@ export interface CartItem {
   ex_gst_price?: number;
   model?: string;
   slug?: string;
+  tax?: string;
 }
 
 interface CartState {
