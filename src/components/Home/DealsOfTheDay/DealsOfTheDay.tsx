@@ -48,7 +48,7 @@ const DealsOfTheDay = ({ dealOfTheDayData }: { dealOfTheDayData: any }) => {
 
   const onRemoveFromFavorite = async (id: string) => {
     const response = await removeFromFavorite({ id }).unwrap();
-    if (isSuccessRemove) {
+    if (isSuccessRemove || response?.status) {
       revalidateTagInCache("favorite-product");
     } else {
       toast.error(response.message);

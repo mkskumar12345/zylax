@@ -13,30 +13,6 @@ interface Blog {
 }
 
 const BlogComponent = ({ blog }: { blog: Blog }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="w-full animate-pulse">
-        <div className="flex items-center overflow-hidden rounded-xl bg-gray-200 h-48"></div>
-        <div className="py-3 space-y-2">
-          <div className="bg-gray-200 w-1/4 h-4 rounded"></div>
-          <div className="bg-gray-300 w-3/4 h-6 rounded"></div>
-          <div className="bg-gray-200 w-full h-4 rounded"></div>
-          <div className="bg-gray-200 w-2/3 h-4 rounded"></div>
-          <div className="bg-gray-200 w-1/4 h-6 mt-2 rounded"></div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="w-full">
       <div className="flex items-center overflow-hidden rounded-xl">
