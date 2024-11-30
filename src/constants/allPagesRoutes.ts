@@ -26,6 +26,7 @@ const allPagesRoutes = {
   BILLING_CARD: "/billing-card",
   BLOGS: "/blogs",
   BLOG_DETAILS: "blogs",
+  SUCCESSFULLY_PURCHASED: "/successfully-purchased",
 };
 
 export default allPagesRoutes;

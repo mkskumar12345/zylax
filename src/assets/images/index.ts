@@ -53,6 +53,9 @@ import svgIconSidebarProfile from "./svg/sidebar-profile.svg";
 import svgIconReadMore from "./svg/read-more.svg";
 import svgIconPerson2 from "./svg/person2.svg";
 import svgIconCalendar from "./svg/calendar.svg";
+import svgSuccessRignt from "./svg/success-right.svg";
+import svgHome2 from "./svg/home-2.svg";
+
 // ////////////////////////////
 // PNG
 // ////////////////////////////
@@ -118,12 +121,14 @@ export {
   svgIconFreWarrenty,
   svgIconFreShipping,
   svgIconHeadphoneProdDetails,
+  svgSuccessRignt,
   svgIconMoneyBackGurenty,
   svgIconSecurePayMethod,
   svgIcon5Star,
   svgIconLeftArrow,
   svgIconRightArrow,
   svgIconRam,
+  svgHome2,
   svgIconBestArivalHeart,
   svgIconProcessor,
   svgIconPowerSupply,

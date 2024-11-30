@@ -61,7 +61,7 @@ const Wishlist = ({ wishlist }: { wishlist: any }) => {
                       Price
                     </th>
 
-                    <th className="text-[#475156] font-medium w-[200px] text-left">
+                    <th className="text-[#475156] text-center font-medium w-[200px]">
                       Actions
                     </th>
                     <th className="w-[70px]"></th>

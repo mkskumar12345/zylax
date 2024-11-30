@@ -19,6 +19,13 @@ import {
 } from "../ui/form";
 import { updateProfileAction } from "@/serverActions/authActions";
 import toast from "react-hot-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const profileSchema = z.object({
   firstName: z.string().min(1, { message: "Please enter your first name" }),
@@ -28,8 +35,16 @@ const profileSchema = z.object({
   country: z.string().min(1, { message: "Please enter your country name." }),
   address: z.string().min(1, { message: "Please enter your address." }),
   pinCode: z.string().min(1, { message: "Please enter your pincode" }),
+  state: z.string().min(1, { message: "Please select your state." }),
+  city: z.string().min(1, { message: "Please enter your city." }),
 });
-const MyProfile = ({ profileData }: { profileData: any }) => {
+const MyProfile = ({
+  profileData,
+  stateList,
+}: {
+  profileData: any;
+  stateList: any;
+}) => {
   const form = useForm({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -42,6 +57,8 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
       country: profileData?.country || "",
       address: profileData?.address || "",
       pinCode: profileData?.postcode || "",
+      state: profileData?.state || "",
+      city: profileData?.city || "",
     },
   });
 
@@ -52,7 +69,9 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
       phone: data.phone,
       country: data.country,
       address: data.address,
+      state: data.state,
       postcode: data.pinCode,
+      city: data.city,
     };
     const response: any = await updateProfileAction(payload);
   };
@@ -188,17 +207,72 @@ const MyProfile = ({ profileData }: { profileData: any }) => {
                 <FormItem className="w-full">
                   <Label className="font-semibold">Country/Region</Label>
                   <FormControl>
-                    <Input
-                      {...field}
-                      className="border-[#CCCCCC] border   h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
-                      placeholder="Country/Region"
-                    />
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder="Select Country"
+                          className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]"
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Australia">Australia</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="state"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">State</Label>
+                  <FormControl>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder="Select"
+                          className="border-[#CCCCCC] border rounded lg:w-[210px] w-[350px] h-[44px] outline-none focus:border-[#CCCCCC]"
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {stateList?.data?.map(
+                          (item: { state_id: string; state_title: string }) => (
+                            <SelectItem
+                              key={item.state_id}
+                              value={item.state_title}
+                            >
+                              {item.state_title}
+                            </SelectItem>
+                          )
+                        )}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <Label className="font-semibold">City</Label>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="border-[#CCCCCC] border  h-[43px] rounded outline-none focus:border-[#CCCCCC] pl-2 "
+                      placeholder="City"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="address"

@@ -242,12 +242,13 @@ const ShoppingCart = () => {
               <span className="font-semibold text-[20px]">${total()} USD</span>
             </div>
 
-            <button
+            <Button
+              disabled={cartItems?.length === 0}
               className="bg-[#EB4227] text-white font-bold  h-[56px] flex justify-center items-center gap-2 rounded uppercase"
               onClick={() => router.push(allPagesRoutes?.BILLING_CARD)}
             >
               Proceed to Checkout <ArrowRight />
-            </button>
+            </Button>
           </div>
           <div className="border-[#E4E7E9] border mt-5 flex flex-col gap-5 p-5">
             <div className="text-[30px] font-bold border-b ">Coupon Code</div>
