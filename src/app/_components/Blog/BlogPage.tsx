@@ -2,12 +2,8 @@
 import { svgIconBannerHome } from "@/assets/images";
 import BlogComponent from "@/components/Blogs/Blog.Component";
 import CommonBanner from "@/components/Common/CommonBanner";
-import usePagination from "@/lib/hooks/usePagination";
-import { cn } from "@/lib/utils";
 import { useGetBlogListQuery } from "@/store/apiServices/blogApi";
-import { useGetProductsQuery } from "@/store/apiServices/productsApi";
-import { ChevronRight } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 const BlogPage = () => {
   // const [page, setPage] = useState<number>(1);

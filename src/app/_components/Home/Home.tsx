@@ -10,14 +10,14 @@ import PopularBrands from "@/components/Home/PopularBrands/PopularBrands";
 import BestArrival from "@/components/Home/BestArrival/BestArrival";
 import Testimonials from "@/components/Home/Testimonials/Testimonials";
 
-const HomeComponent = () => {
+const HomeComponent = ({ homePageDate }: { homePageDate: any }) => {
   return (
     <div>
-      <Banner />
+      <Banner sliderData={homePageDate?.slider} />
       <Categories />
-      <DealsOfTheDay />
-      <BestSeller />
-      <PopularBrands />
+      <DealsOfTheDay dealOfTheDayData={homePageDate?.bestDeals} />
+      <BestSeller bestSellerData={homePageDate?.bestSeller} />
+      <PopularBrands popularBrandData={homePageDate?.popularBrands} />
       {/* <BestArrival /> */}
       <Testimonials />
       {/* <LatestNewsAndBlog /> */}

@@ -6,12 +6,14 @@ import { pngGBMicroAtx, svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
 import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
 import { useRouter } from "next/navigation";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 
 interface Brand {
   id: string;
   name: string;
   manufacture_img: string;
   totalP: number;
+  slug: string;
 }
 
 const Brandlist = () => {
@@ -120,7 +122,9 @@ const Brandlist = () => {
           ) : filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
               <div
-                onClick={() => router.push(`/products?brand=${brand.id}`)}
+                onClick={() =>
+                  router.push(`${allPagesRoutes?.PRODUCTS}?brand=${brand.slug}`)
+                }
                 key={brand.id}
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 6px",
