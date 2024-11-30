@@ -3,7 +3,7 @@ import { rootApiSlice } from "../rootApi";
 
 const blogsApi = rootApiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getBlogList: builder.query({
+    getBlogList: builder.query<any, any>({
       query: () => {
         return {
           url: allApiRoutes.blogs.BLOG_LIST,

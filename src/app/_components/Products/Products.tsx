@@ -68,7 +68,7 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
     useRemoveFromFavoriteMutation();
   const { data: products, isLoading } = useGetProductsQuery({
     page: page,
-    items_per_page: 10,
+    items_per_page: 9,
     search: search,
     brand: brand,
   });
@@ -87,7 +87,7 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
 
   const onRemoveFromFavorite = async (id: string) => {
     const response = await removeFromFavorite({ id }).unwrap();
-    if (isSuccessRemove) {
+    if (isSuccessRemove || response?.status) {
       revalidateTagInCache("favorite-product");
     } else {
       toast.error(response.message);
