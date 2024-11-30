@@ -174,9 +174,9 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                 21% OFF
               </span>
             </div>
-            <Separator orientation="horizontal" className="my-4" />
+            {/* <Separator orientation="horizontal" className="my-4" /> */}
             <div className="grid xl:grid-cols-2 lg:grid-cols-1  gap-4">
-              <div className="flex flex-col gap-2">
+              {/* <div className="flex flex-col gap-2">
                 <div className="font-semibold text-sm">Color</div>
                 <div className="flex gap-2">
                   {allColors.map((color, index) => (
@@ -195,8 +195,8 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="flex flex-col gap-2">
+              </div> */}
+              {/* <div className="flex flex-col gap-2">
                 <div className="font-semibold text-sm">Size</div>
                 <Select defaultValue="1">
                   <SelectTrigger>
@@ -211,8 +211,8 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              <div className="flex flex-col gap-2">
+              </div> */}
+              {/* <div className="flex flex-col gap-2">
                 <div className="font-semibold text-sm">Memory</div>
                 <Select defaultValue="1">
                   <SelectTrigger>
@@ -225,8 +225,8 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                     <SelectItem value="1">16GB unified memory</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              <div className="flex flex-col gap-2">
+              </div> */}
+              {/* <div className="flex flex-col gap-2">
                 <div className="font-semibold text-sm">Storage</div>
                 <Select defaultValue="1">
                   <SelectTrigger>
@@ -239,7 +239,7 @@ const ProductDetails = ({ productDetails }: { productDetails: any }) => {
                     <SelectItem value="1">1TB SSD Storage</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
             </div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-4 my-8 gap-4">
               {checkQuantity(cartItems, productDetails) > 0 && (
