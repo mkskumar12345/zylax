@@ -8,7 +8,7 @@ const NavSearch = () => {
     <div className="flex items-center border w-full rounded h-[38px] bg-secondary">
       <div className="flex items-center flex-grow px-2">
         <Input
-          className="border-none p-2 h-full rounded-full bg-transparent flex-grow"
+          className="border-none p-2 font-medium h-full rounded-full bg-transparent flex-grow"
           placeholder="Search For Products, Categories..."
         />
         <div className="flex-shrink-0 ml-2">
