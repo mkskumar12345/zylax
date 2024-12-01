@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import cod from "../../assets/images/svg/cod.svg";
 import paypal from "../../assets/images/svg/paypal.svg";
 import card from "../../assets/images/svg/CreditCard.svg";
@@ -39,6 +39,12 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { RootState } from "@/store/store";
+import { popupTypes } from "../Popup/popupTypes";
+import { TOGGLE } from "@/store/slices/popupSlice";
+import NABPopup from "../Popup/NABPopup/NABPopup";
+import Link from "next/link";
+import PaypalPopup from "../Popup/PaypalPopup/PaypalPopup";
 
 const checkoutSchema = z
   .object({
@@ -117,10 +123,11 @@ const BillingCard = ({
   const router = useRouter();
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
+  const [nabData, setNabData] = useState<any>({});
   const [onCheckout, { isSuccess: isSuccessCheckout }] =
     useOnCheckoutMutation();
 
-  console.log(profileData);
   const form = useForm({
     mode: "onChange",
     resolver: zodResolver(checkoutSchema),
@@ -156,8 +163,7 @@ const BillingCard = ({
     },
   });
 
-  const onSubmit = async (data: any) => {
-    console.log(data);
+  const onSubmit = async (values: any) => {
     const payload = {
       cart: cartItems?.map((item) => ({
         productId: item.id,
@@ -167,20 +173,26 @@ const BillingCard = ({
         ex_gst_price: item.ex_gst_price,
       })),
       billingAddress: {
-        ...data?.billingAddress,
+        ...values?.billingAddress,
       },
       shippingAddress: form.watch("isShippingAddressDifferent")
         ? {
-            ...data?.shippingAddress,
+            ...values?.shippingAddress,
           }
         : {
-            ...data?.billingAddress,
+            ...values?.billingAddress,
           },
-      payBy: data?.payBy,
+      payBy: values?.payBy,
     };
-
     const response = await onCheckout(payload).unwrap();
-    if (isSuccessCheckout || response?.success) {
+    if (values?.payBy == "NAB") {
+      setNabData(response);
+      dispatch(TOGGLE(popupTypes?.NAB));
+    }
+    if (values?.payBy == "PAYPAL") {
+      dispatch(TOGGLE(popupTypes?.PAYPAL));
+    }
+    if ((isSuccessCheckout || response?.success) && values?.payBy == "BANK") {
       toast.success(response.message);
       dispatch(clearCart());
       router.push(allPagesRoutes.SUCCESSFULLY_PURCHASED);
@@ -228,7 +240,6 @@ const BillingCard = ({
         icon={svgIconBannerHome}
         path={[{ title: "Billing", href: allPagesRoutes.BILLING_CARD }]}
       />
-
       <div className="mt-5 mb-20 container">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Form {...form}>
@@ -722,15 +733,20 @@ const BillingCard = ({
                 <div className="border-[#E4E7E9] border p-5 flex flex-col gap-2 rounded">
                   <span className="text-xl font-semibold">Order Summery</span>
                   {cartItems?.map((item) => (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2" key={item.id}>
                       <Image
                         src={ordersumm}
                         alt=""
                         className="w-[64px] h-[64px]"
                       />
                       <div>
-                        <div className="line-clamp-1">{item?.name}</div>
-
+                        <Link
+                          href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
+                          key={`product-${item?.id}`}
+                          title="Go to Product Details"
+                        >
+                          <div className="line-clamp-1">{item?.name}</div>
+                        </Link>
                         <div>
                           {item?.quantity} x
                           <span className="text-[#EB4227] font-semibold">
@@ -847,6 +863,8 @@ const BillingCard = ({
           </Form>
         </form>
       </div>
+      <NABPopup nabData={nabData} />
+      <PaypalPopup />
     </>
   );
 };
