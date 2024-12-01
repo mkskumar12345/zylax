@@ -95,12 +95,12 @@ const Categories = () => {
           </div>
         </div>
       </div>
-      <div className="w-full px-5">
+      <div className="w-full ">
         <Carousel
           opts={{
             align: "start",
           }}
-          className="rounded-xl my-3 md:mx-6 relative bg-secondary top-0 w-full md:top-12"
+          className="rounded-xl my-3  relative bg-secondary top-0 w-full md:top-12"
         >
           <CarouselContent className="flex   items-center  justify-evenly h-[181px] ">
             {carouselItem.map((item, index) => (

@@ -2,19 +2,12 @@
 import { svgIconBannerHome } from "@/assets/images";
 import BlogComponent from "@/components/Blogs/Blog.Component";
 import CommonBanner from "@/components/Common/CommonBanner";
-import usePagination from "@/lib/hooks/usePagination";
-import { cn } from "@/lib/utils";
 import { useGetBlogListQuery } from "@/store/apiServices/blogApi";
-import { useGetProductsQuery } from "@/store/apiServices/productsApi";
-import { ChevronRight } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 const BlogPage = () => {
-  // const [page, setPage] = useState<number>(1);
   const { data: blogList, isLoading } = useGetBlogListQuery(undefined);
-  // const pages = usePagination(blogList?.totalPages, blogList?.currentPage);
 
-  console.log(blogList);
   return (
     <div>
       <CommonBanner
@@ -23,9 +16,20 @@ const BlogPage = () => {
       />
       <div className="container my-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6 sm:gap-4 lg:gap-8">
-          {blogList?.data?.map((blog: any) => (
-            <BlogComponent blog={blog} />
-          ))}
+          {isLoading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <div className="w-full animate-pulse" key={index}>
+                  <div className="flex items-center overflow-hidden rounded-xl bg-gray-200 h-48"></div>
+                  <div className="py-3 space-y-2">
+                    <div className="bg-gray-200 w-1/4 h-4 rounded"></div>
+                    <div className="bg-gray-300 w-3/4 h-6 rounded"></div>
+                    <div className="bg-gray-200 w-full h-4 rounded"></div>
+                    <div className="bg-gray-200 w-2/3 h-4 rounded"></div>
+                    <div className="bg-gray-200 w-1/4 h-6 mt-2 rounded"></div>
+                  </div>
+                </div>
+              ))
+            : blogList?.data?.map((blog: any) => <BlogComponent blog={blog} />)}
         </div>
         {/* <div className="flex w-full justify-center items-center gap-2">
           {pages?.map((page: number) => (

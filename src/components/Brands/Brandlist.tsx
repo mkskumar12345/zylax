@@ -6,12 +6,14 @@ import { pngGBMicroAtx, svgIconBannerHome } from "@/assets/images";
 import CommonBanner from "../Common/CommonBanner";
 import { useGetBrandsListQuery } from "@/store/apiServices/brandApi";
 import { useRouter } from "next/navigation";
+import allPagesRoutes from "@/constants/allPagesRoutes";
 
 interface Brand {
   id: string;
   name: string;
   manufacture_img: string;
   totalP: number;
+  slug: string;
 }
 
 const Brandlist = () => {
@@ -62,7 +64,7 @@ const Brandlist = () => {
         path={[{ title: "Brands", href: "/brands" }]}
       />
 
-      <div className="container mt-4">
+      <div className="container mt-4 mb-4">
         <span className="text-2xl font-semibold">Brandlist</span>
 
         <div className="flex items-center mt-5 border border-gray-300 rounded px-3 py-2 w-full max-w-md">
@@ -77,7 +79,7 @@ const Brandlist = () => {
 
         <div
           className="flex items-center flex-wrap gap-2 mt-5 p-5"
-          style={{ boxShadow: "0 3px 10px 0 #eaeaea" }}
+          style={{ boxShadow: "0 2px 6px 0 #eaeaea" }}
         >
           <div
             onClick={() => setSelectedLetter("")}
@@ -112,15 +114,17 @@ const Brandlist = () => {
                 key={index}
                 className="animate-pulse cursor-pointer h-[170px] w-[310px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient rounded flex-col flex justify-center items-center"
               >
-                <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded-full mb-2"></div>
+                <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-[100px] h-[100px] rounded mb-2"></div>
                 <div className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-3/4 h-4 rounded mb-1"></div>
-                <div className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-gradient w-1/2 h-4 rounded"></div>
+                <div className="bg-gradient-to-r  from-gray-100 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-gradient w-1/2 h-4 rounded"></div>
               </div>
             ))
           ) : filteredBrands?.length > 0 ? (
             filteredBrands?.map((brand: Brand) => (
               <div
-                onClick={() => router.push(`/products?brand=${brand.id}`)}
+                onClick={() =>
+                  router.push(`${allPagesRoutes?.PRODUCTS}?brand=${brand.slug}`)
+                }
                 key={brand.id}
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 6px",

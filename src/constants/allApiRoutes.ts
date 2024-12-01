@@ -48,13 +48,18 @@ const allApiRoutes = {
   profile: {
     PROFILE: "/users/profile",
   },
+  HOME_PAGE: "/common/home-page-api",
   contact: {
     CONTACT: "/common/contact-us",
   },
+  stateList: {
+    STATE_LIST: "/common/states",
+  },
   cart: {
-    GET_ALL_CART_ITEMS: "/carts",
+    GET_ALL_CART_ITEMS: "/cart",
     ADD_TO_CART: "/carts/add-to-cart",
     DELETE_CART_ITEM: "/carts",
+    CHECKOUT: "/cart/checkout",
   },
   blogs: {
     BLOG_LIST: "/blogs",

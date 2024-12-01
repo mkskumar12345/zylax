@@ -15,7 +15,7 @@ import Link from "next/link";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-const Banner = () => {
+const Banner = ({ sliderData }: { sliderData: any }) => {
   return (
     <div className="bg-secondary py-8">
       <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-4 container ">
@@ -30,7 +30,7 @@ const Banner = () => {
               className="w-full "
             >
               <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
+                {sliderData?.map((item: any, index: number) => (
                   <CarouselItem key={index}>
                     <Image src={pngHomeBannerCrousel1} alt="crousel1" />
                   </CarouselItem>

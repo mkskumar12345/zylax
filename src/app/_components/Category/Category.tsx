@@ -88,7 +88,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
 
   const onRemoveFromFavorite = async (id: string) => {
     const response = await removeFromFavorite({ id }).unwrap();
-    if (isSuccessRemove) {
+    if (isSuccessRemove || response?.status) {
       revalidateTagInCache("favorite-product");
     } else {
       toast.error(response.message);
@@ -106,14 +106,16 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
     fetchFilters();
   }, [])
 
-
   return (
     <>
       <CommonBanner
         icon={svgIconBannerHome}
         path={[
           { title: "Category", href: "/category" },
-          { title: pathname.split('/').pop(), href: pathname.split('/').pop() },
+          {
+            title: pathname.split("/").pop() || "",
+            href: pathname.split("/").pop() || "",
+          },
         ]}
       />
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6  px-4 md:container my-9">
@@ -433,10 +435,10 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
                       </div>
                     </div>
                   </div>
-                </Link >
+                </Link>
               )
             )}
-          </div >
+          </div>
           <div className="flex gap-2 justify-center items-center">
             <span
               className="w-9 h-9 rounded-full border bg-[#F2F2F2] flex justify-center cursor-pointer items-center border-[#E6E6E6]"
@@ -474,8 +476,8 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
               <ChevronRight />
             </span>
           </div>
-        </div >
-      </div >
+        </div>
+      </div>
     </>
   );
 };

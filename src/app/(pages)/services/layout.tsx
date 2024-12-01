@@ -11,10 +11,6 @@ const layout = ({
 }>) => {
   return (
     <>
-      {/* <CommonBanner
-        icon={svgIconBannerHome}
-        path={[{ title: "wishlist", href: "/user/my-wishlist" }]}
-      /> */}
       <div className=" container">
         <div className=" min-h-[560px] rounded-[6px] mt-10 grid grid-cols-12 gap-8 ">
           <div className=" lg:col-span-3 col-span-12 ">
