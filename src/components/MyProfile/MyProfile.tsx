@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { avifSmilingMan } from "@/assets/images";
 
 const profileSchema = z.object({
   firstName: z.string().min(1, { message: "Please enter your first name" }),
@@ -94,17 +95,17 @@ const MyProfile = ({
                       className="cursor-pointer rounded-full"
                     >
                       <Image
-                        src={profile}
+                        src={avifSmilingMan}
                         alt="profile photo"
                         className="rounded-full w-[81px] h-[81px]"
                       />
-                      <Button
+                      {/* <Button
                         variant="ghost"
                         className=" absolute bottom-0 bg-[#EB4227]  right-0 w-[25px] h-[25px]  p-1 rounded-full shadow-lg"
                         aria-label="Edit profile photo"
                       >
                         <Pencil className="w-4 h-4 " color="white" />
-                      </Button>
+                      </Button> */}
                     </Label>
                     <FormControl>
                       <Input
@@ -120,10 +121,6 @@ const MyProfile = ({
                 )}
               />
             </div>
-            <button className="bg-[#EB4227] w-[172px] h-[54px] rounded text-white flex justify-center items-center gap-2 font-bold text-[16px]">
-              <Pencil />
-              Edit Profile
-            </button>
           </div>
           <div className="mt-5 gap-4 flex flex-wrap md:flex-nowrap  justify-between items-center ">
             <FormField
