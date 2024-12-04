@@ -66,13 +66,15 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const [addToFavoriteMutation, { isSuccess: isSuccessFavorite }] = useAddToFavoriteMutation();
   const [removeFromFavorite, { isSuccess: isSuccessRemove }] = useRemoveFromFavoriteMutation();
   const [filters, setFilters] = useState<any>(null);
+  const [products, setProducts] = useState<any>([]);
+  const [attr, setAttr] = useState<any>(null);
 
-  const { data: products, isLoading } = useGetProductsQuery({
-    page: page,
-    items_per_page: 10,
-    search: search,
-    brand: brand,
-  });
+  // const { data: products, isLoading } = useGetProductsQuery({
+  //   page: page,
+  //   items_per_page: 10,
+  //   search: search,
+  //   brand: brand,
+  // });
   const pages = usePagination(products?.totalPages, products?.currentPage);
 
   const addToFavorite = async (id: string | number) => {
@@ -95,16 +97,37 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
     }
   };
 
-  const fetchFilters = async () => {
+  const fetchData = async () => {
     const requestOptions: any = { method: "GET", redirect: "follow" };
-    const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/category/${pathname.split('/').pop()}/filters`, requestOptions);
+    const params = new URLSearchParams();
+    params.append("page", page.toString());
+    if (attr) params.append("attr", JSON.stringify(attr));
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/category/${pathname.split('/').pop()}?${params.toString()}`, requestOptions);
     const json = await response.json();
-    setFilters((prev: any) => json?.data);
+    setFilters((prev: any) => json?.data?.filters);
+    setProducts((prev: any) => json?.data?.products);
+  }
+
+  const handleAttr = (slug: string, value: string) => {
+    let newAttr = { ...attr };
+    if (!newAttr[slug]) newAttr[slug] = [];
+    if (newAttr[slug].includes(value)) {
+      newAttr[slug] = newAttr[slug].filter((item: string) => item != value)
+    } else {
+      newAttr[slug].push(value)
+    }
+    if (!newAttr[slug].length) delete newAttr[slug]; // remove key if value is null
+    setAttr((prev: any) => newAttr);
   }
 
   useEffect(() => {
-    fetchFilters();
+    fetchData();
   }, [])
+
+  useEffect(() => {
+    fetchData();
+  }, [page, attr])
 
   return (
     <>
@@ -122,11 +145,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
         <div className="lg:col-span-1 md:col-span-1">
           <Button className="flex gap-2 bg-[#EB4227] w-[130px] h-[47px] rounded-full ">
             <span>Filter</span>{" "}
-            <Image
-              className="w-[20px] h-[17px]"
-              src={svgIconCategoriesFilterBtn}
-              alt="filter"
-            />
+            <Image className="w-[20px] h-[17px]" src={svgIconCategoriesFilterBtn} alt="filter" />
           </Button>
           {filters ? (
             <div className="grid grid-flow-row sm:grid-flow-dense md:grid-flow-row sm:grid-cols-2 md:grid-cols-1  gap-6 ">
@@ -138,9 +157,8 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
                     {items?.map((item: any, row: number) => (
                       <AccordionContent className="flex flex-col gap-3" key={row}>
                         <div className="flex items-center gap-2">
-                          <Checkbox className="rounded-full [&>svg]:hidden" value={item?.id} />
+                          <Checkbox className="rounded-full [&>svg]:hidden" checked={attr && attr[item?.slug]?.includes(item?.value)} value={item?.id} onClick={() => handleAttr(item?.slug, item?.value)} />
                           <span>{item?.value}</span>
-                          <span>({item?.count})</span>
                         </div>
                       </AccordionContent>
                     ))}
