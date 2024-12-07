@@ -97,6 +97,7 @@ import jpgBlogImg1 from "./png/blog-img-1.jpg";
 import jpgBlogImg2 from "./png/blog-img-2.jpg";
 import jpgBlogImg3 from "./png/blog-img-3.jpg";
 import webpEmptyCart from "./png/empty-cart.webp";
+import avifSmilingMan from "./png/smiling-man.avif";
 
 export {
   // ////////////////////////////
@@ -167,6 +168,7 @@ export {
   pngHomeBannerBottom1,
   pngTestimonialBanner,
   pngCommonBanner,
+  avifSmilingMan,
   pngHomeBannerBottom2,
   pngGamingMonitor,
   pngWifyAms,

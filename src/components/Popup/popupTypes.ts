@@ -2,6 +2,8 @@ export const popupTypes = {
   LOGIN: "LOGIN",
   REGISTER: "REGISTER",
   FORGOT_PASSWORD: "FORGOT_PASSWORD",
+  NAB: "NAB",
   SUCCESS: "SUCCESS",
   CLOSE: "CLOSE",
+  PAYPAL: "PAYPAL",
 };
