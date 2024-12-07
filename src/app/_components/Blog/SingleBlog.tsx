@@ -16,7 +16,7 @@ import Image from "next/image";
 import React from "react";
 
 const SingleBlog = ({ blogData }: { blogData: any }) => {
-  console.log(blogData);
+  // console.log(blogData);
   return (
     <div>
       <CommonBanner
