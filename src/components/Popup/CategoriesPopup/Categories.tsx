@@ -46,7 +46,7 @@ const Categories = () => {
     >
       <DialogTrigger>
         <div className="cursor-pointer flex items-center">
-          List Categories <ChevronDown />
+          Shop <ChevronDown />
         </div>
       </DialogTrigger>
       <DialogContent className="border-none max-h-[500px] h-full overflow-hidden max-w-full w-full">

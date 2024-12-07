@@ -94,12 +94,12 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           Home
         </Link>
 
-        <div className="relative z-50" ref={dropdownRef}>
+        <div className="relative z-50">
           <div
             className="cursor-pointer flex items-center"
-            onClick={toggleDropdown}
+            // onClick={toggleDropdown}
           >
-            Shop <ChevronDown className="ml-1" size={18} />
+            {/* Shop <ChevronDown className="ml-1" size={18} /> */}
             <Categories />
           </div>
 
