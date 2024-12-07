@@ -54,8 +54,10 @@ import {
   selectCartItems,
 } from "@/store/slices/cartSlice";
 import checkQuantity from "@/lib/checkQuantity";
+import ProductsShimmer from "@/ShimmerUi/ProductsShimmer/ProductsShimmer";
 
 const Products = ({ brand }: { brand?: string | number | undefined }) => {
+  const shimmerArray = Array(9).fill(0);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
@@ -278,125 +280,133 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
             </div>
           </div>
           <div className="grid grid-col-1 md:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2  mt-8 w-full gap-8 mb-12 ">
-            {products?.data?.map(
-              (item: {
-                id: string;
-                name: string;
-                slug: string;
-                product_img: string;
-                price: number;
-                ex_gst_price: number;
-                isFavorite: boolean;
-              }) => (
-                <Link
-                  href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
-                  key={`product-${item?.id}`}
-                >
-                  <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
-                    <div className=" leading-4 text-center  font-semibold text-lg  flex items-center p-4 ">
-                      {item.name}
-                    </div>
-                    <div className="flex gap-2 justify-center">
-                      <Image src={svgIcon5Star} className="h-3" alt="5star" />
-                      <span className="font-regular text-xs">(3)</span>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <Image
-                        width={36}
-                        height={36}
-                        src={pngGBMicroAtx}
-                        alt="product image"
-                        className="w-36 h-36 "
-                      />
-                    </div>
-                    <div className="flex items-center justify-between p-4 ">
-                      <h2 className="text-[#EB4227] font-semibold text-lg">
-                        ${item?.ex_gst_price}
-                      </h2>
-                      <h2 className="line-through font-semibold text-[13px] text-[#666666]">
-                        ${item?.price}
-                      </h2>
-                      <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
-                        45% OFF
-                      </div>
-                    </div>
-                    <div className="flex justify-between p-4 items-center">
-                      <div className="font-medium text-xs gap-2 flex items-center">
-                        <span className="text-black">1,897</span>
-                        <span className="text-[#666666]">Purchases</span>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <div
-                          onClick={(event) => {
-                            event.stopPropagation(); // Prevents the click from propagating to the Link
-                            event.preventDefault(); // Prevents default navigation behavior
-                          }}
-                        >
-                          {checkQuantity(cartItems, item) > 0 && (
-                            <div className="flex  items-center border border-[#E4E7E9] ">
-                              <Button
-                                onClick={() =>
-                                  dispatch(removeItemFromCart(item?.id))
-                                }
-                                variant="ghost"
-                                className="hover:bg-transparent p-2"
-                              >
-                                <Minus />
-                              </Button>
-                              {checkQuantity(cartItems, item)}
-                              <Button
-                                variant="ghost"
-                                className="hover:bg-transparent p-2"
-                                onClick={() =>
-                                  dispatch(
-                                    addItemToCart({
-                                      ...item,
-                                      image: item?.product_img,
-                                      quantity: 1,
-                                    })
-                                  )
-                                }
-                              >
-                                <Plus />
-                              </Button>
-                            </div>
-                          )}
-
-                          {checkQuantity(cartItems, item) === 0 && (
-                            <Button
-                              onClick={() =>
-                                dispatch(
-                                  addItemToCart({
-                                    ...item,
-                                    image: item?.product_img,
-                                    quantity: 1,
-                                  })
-                                )
-                              }
-                              className=" w-10 h-8"
-                            >
-                              <ShoppingCart />
-                            </Button>
-                          )}
+            {isLoading
+              ? shimmerArray.map((_, index) => (
+                  <ProductsShimmer key={`shimmer-${index}`} />
+                ))
+              : products?.data?.map(
+                  (item: {
+                    id: string;
+                    name: string;
+                    slug: string;
+                    product_img: string;
+                    price: number;
+                    ex_gst_price: number;
+                    isFavorite: boolean;
+                  }) => (
+                    <Link
+                      href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
+                      key={`product-${item?.id}`}
+                    >
+                      <div className="bg-white card w-full border border-[#99999999] rounded-xl">
+                        <div className="leading-4 text-center font-semibold text-lg flex items-center p-4">
+                          {item.name}
                         </div>
-                        <Heart
-                          favorite={item?.isFavorite}
-                          onClick={async (event: any) => {
-                            event.stopPropagation(); // Prevents the click from propagating to the Link
-                            event.preventDefault(); // Prevents default navigation behavior
-                            if (item?.isFavorite) {
-                              await onRemoveFromFavorite(item?.id);
-                            } else {
-                              await addToFavorite(item?.id);
-                            }
-                          }}
-                        />
+                        <div className="flex gap-2 justify-center">
+                          <Image
+                            src={svgIcon5Star}
+                            className="h-3"
+                            alt="5star"
+                          />
+                          <span className="font-regular text-xs">(3)</span>
+                        </div>
+                        <div className="flex justify-center items-center">
+                          <Image
+                            width={36}
+                            height={36}
+                            src={pngGBMicroAtx}
+                            alt="product image"
+                            className="w-36 h-36"
+                          />
+                        </div>
+                        <div className="flex items-center justify-between p-4">
+                          <h2 className="text-[#EB4227] font-semibold text-lg">
+                            ${item?.ex_gst_price}
+                          </h2>
+                          <h2 className="line-through font-semibold text-[13px] text-[#666666]">
+                            ${item?.price}
+                          </h2>
+                          <div className="py-1 px-2 rounded-[10px] bg-[#EB4227] text-white text-xs">
+                            45% OFF
+                          </div>
+                        </div>
+                        <div className="flex justify-between p-4 items-center">
+                          <div className="font-medium text-xs gap-2 flex items-center">
+                            <span className="text-black">1,897</span>
+                            <span className="text-[#666666]">Purchases</span>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <div
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                event.preventDefault();
+                              }}
+                            >
+                              {checkQuantity(cartItems, item) > 0 && (
+                                <div className="flex items-center border border-[#E4E7E9]">
+                                  <Button
+                                    onClick={() =>
+                                      dispatch(removeItemFromCart(item?.id))
+                                    }
+                                    variant="ghost"
+                                    className="hover:bg-transparent p-2"
+                                  >
+                                    <Minus />
+                                  </Button>
+                                  {checkQuantity(cartItems, item)}
+                                  <Button
+                                    variant="ghost"
+                                    className="hover:bg-transparent p-2"
+                                    onClick={() =>
+                                      dispatch(
+                                        addItemToCart({
+                                          ...item,
+                                          image: item?.product_img,
+                                          quantity: 1,
+                                        })
+                                      )
+                                    }
+                                  >
+                                    <Plus />
+                                  </Button>
+                                </div>
+                              )}
+
+                              {checkQuantity(cartItems, item) === 0 && (
+                                <Button
+                                  onClick={() =>
+                                    dispatch(
+                                      addItemToCart({
+                                        ...item,
+                                        image: item?.product_img,
+                                        quantity: 1,
+                                      })
+                                    )
+                                  }
+                                  className="w-10 h-8"
+                                >
+                                  <ShoppingCart />
+                                </Button>
+                              )}
+                            </div>
+                            <Heart
+                              favorite={item?.isFavorite}
+                              onClick={async (event: any) => {
+                                event.stopPropagation();
+                                event.preventDefault();
+                                if (item?.isFavorite) {
+                                  await onRemoveFromFavorite(item?.id);
+                                } else {
+                                  await addToFavorite(item?.id);
+                                }
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </Link>
-              )
-            )}
+                    </Link>
+                  )
+                )}
           </div>
           <div className="flex gap-2 justify-center items-center">
             <span

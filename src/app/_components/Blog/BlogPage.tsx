@@ -31,32 +31,6 @@ const BlogPage = () => {
               ))
             : blogList?.data?.map((blog: any) => <BlogComponent blog={blog} />)}
         </div>
-        {/* <div className="flex w-full justify-center items-center gap-2">
-          {pages?.map((page: number) => (
-            <span
-              onClick={() => setPage(page)}
-              key={`page-${page}`}
-              className={cn(
-                "w-9 h-9 flex justify-center items-center rounded-full cursor-pointer",
-                page == products?.currentPage && "bg-[#EB4227] text-white"
-              )}
-            >
-              {page}
-            </span>
-          ))}
-          <span
-            className="w-9 h-9 rounded-full cursor-pointer border flex justify-center items-center border-[#E6E6E6]"
-            onClick={() => {
-              if (!products?.totalPages) return;
-              setPage((prev: number) => {
-                if (prev == products?.totalPages) return prev;
-                else return prev + 1;
-              });
-            }}
-          >
-            <ChevronRight />
-          </span>
-        </div> */}
       </div>
     </div>
   );
