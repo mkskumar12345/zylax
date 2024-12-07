@@ -68,7 +68,6 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const [filters, setFilters] = useState<any>(null);
   const [products, setProducts] = useState<any>([]);
   const [attr, setAttr] = useState<any>(null);
-
   // const { data: products, isLoading } = useGetProductsQuery({
   //   page: page,
   //   items_per_page: 10,
@@ -121,12 +120,19 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
     setAttr((prev: any) => newAttr);
   }
 
+  const updateUrl = () => {
+    const params = new URLSearchParams();
+    if (attr) params.append("attr", JSON.stringify(attr));
+    window.history.pushState(null, '', pathname + '?' + params.toString())
+  };
+
   useEffect(() => {
     fetchData();
   }, [])
 
   useEffect(() => {
     fetchData();
+    updateUrl();
   }, [page, attr])
 
   return (
@@ -519,7 +525,7 @@ export default Category;
 const ChildCategory = ({ item }: any) => {
   return (
     <ul style={{ paddingLeft: "15px" }}>
-      <li><Link href={`/category/${item.slug}`}>{item?.name}</Link></li>
+      <li><Link href={`/${item.slug}`}>{item?.name}</Link></li>
       {item?.child?.length > 0 && item?.child?.map((child: any, row: number) => (
         <ChildCategory item={child} key={row} />
       ))}
