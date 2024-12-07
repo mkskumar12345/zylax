@@ -49,6 +49,8 @@ const allApiRoutes = {
     PROFILE: "/users/profile",
   },
   HOME_PAGE: "/common/home-page-api",
+  PAYPAL_CHECKOUT_API: "/cart/checkout-paypal",
+  PAYPAL_CHECKOUT_CAPTURE_API: "/cart/checkout-paypal-capture",
   contact: {
     CONTACT: "/common/contact-us",
   },
@@ -64,6 +66,10 @@ const allApiRoutes = {
   blogs: {
     BLOG_LIST: "/blogs",
     BLOG_DETAILS: "/blogs",
+  },
+  categories: {
+    CATEGORIES: "/common/navigation-menu",
+    CATEGORY_DETAILS: "/categories",
   },
 };
 

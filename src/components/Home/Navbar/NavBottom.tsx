@@ -3,8 +3,12 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import allPagesRoutes from "@/constants/allPagesRoutes";
+import Image from "next/image";
+import { useDispatch } from "react-redux";
+import Categories from "@/components/Popup/CategoriesPopup/Categories";
 
 const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
+  const dispatch = useDispatch();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState<any>(null);
@@ -19,19 +23,22 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
 
   const fetchNavigation = async () => {
     const requestOptions: any = { method: "GET", redirect: "follow" };
-    const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/common/navigation-menu`, requestOptions);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_WEB_APP_URL}/common/navigation-menu`,
+      requestOptions
+    );
     const json = await response.json();
     setCategories((prev: any) => json?.data);
   };
 
   const getChild = (id: number): any => {
-    const newMenus = categories.filter((item: any) => item.parent_id === id)
+    const newMenus = categories.filter((item: any) => item.parent_id === id);
     const child = [];
     for (let menu of newMenus) {
-      child.push({ ...menu, child: getChild(menu.id) })
+      child.push({ ...menu, child: getChild(menu.id) });
     }
     return child;
-  }
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -78,7 +85,7 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
   const handleChildMenu = (item: any) => {
     setChildMenuOpen(true);
     setChildMenuItems(item);
-  }
+  };
 
   return (
     <div className="bg-primary">
@@ -87,9 +94,13 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
           Home
         </Link>
 
-        <div className="relative z-50" ref={dropdownRef}>
-          <div className="cursor-pointer flex items-center" onClick={toggleDropdown}>
-            Shop <ChevronDown className="ml-1" size={18} />
+        <div className="relative z-50">
+          <div
+            className="cursor-pointer flex items-center"
+            // onClick={toggleDropdown}
+          >
+            {/* Shop <ChevronDown className="ml-1" size={18} /> */}
+            <Categories />
           </div>
 
           {isOpen && (
@@ -97,58 +108,129 @@ const NavBottom = ({ authToken }: { authToken: string | undefined }) => {
               {childMenuOpen ? (
                 <div className="grid grid-cols-4 gap-2 bg-gray-100">
                   <div className="bg-white p-3 min-h-[200px]">
-                    <div className="flex cursor-pointer items-center" onClick={() => setChildMenuOpen(false)} >
+                    <div
+                      className="flex cursor-pointer items-center"
+                      onClick={() => setChildMenuOpen(false)}
+                    >
                       <ChevronLeft size={14} />
                       <span className="text-lg font-semibold">Back</span>
                     </div>
-                    <div className="flex" >
-                      <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
+                    <div className="flex">
+                      <img
+                        src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png"
+                        alt="image"
+                        className="w-[50px] h-[50px] pr-2"
+                      />
                       <div className="flex flex-col">
-                        <span className="text-2xl font-semibold line-clamp-1">{childMenuItems.title}</span>
-                        <span className="text-sm text-gray-400" contentEditable='true' dangerouslySetInnerHTML={{ __html: childMenuItems?.description }}></span>
+                        <span className="text-2xl font-semibold line-clamp-1">
+                          {childMenuItems.title}
+                        </span>
+                        <span
+                          className="text-sm text-gray-400"
+                          contentEditable="true"
+                          dangerouslySetInnerHTML={{
+                            __html: childMenuItems?.description,
+                          }}
+                        ></span>
                       </div>
                     </div>
                   </div>
                   <div className="p-2 min-h-[200px]">
                     <ul>
-                      <li className="hover:bg-white hover:text-black px-2 py-1" onMouseOver={() => setChildMenuHover(null)}>
-                        <b><Link href={`${childMenuItems?.link}`} onClick={handleLinkClick}>All {childMenuItems?.title}</Link></b>
+                      <li
+                        className="hover:bg-white hover:text-black px-2 py-1"
+                        onMouseOver={() => setChildMenuHover(null)}
+                      >
+                        <b>
+                          <Link
+                            href={`${childMenuItems?.link}`}
+                            onClick={handleLinkClick}
+                          >
+                            All {childMenuItems?.title}
+                          </Link>
+                        </b>
                       </li>
-                      {childMenuItems && childMenuItems.child.map((item: any, indax: any) => {
-                        const child = item?.child?.length > 0 ? item : null;
-                        return (<li className="flex justify-between items-center hover:bg-white hover:text-black px-2 py-1" onMouseOver={() => setChildMenuHover(child)}>
-                          <Link href={`${item?.link}`} onClick={handleLinkClick}>{item?.title}</Link>
-                          {child && <ChevronRight size={18} />}
-                        </li>);
-                      })}
+                      {childMenuItems &&
+                        childMenuItems.child.map((item: any, indax: any) => {
+                          const child = item?.child?.length > 0 ? item : null;
+                          return (
+                            <li
+                              className="flex justify-between items-center hover:bg-white hover:text-black px-2 py-1"
+                              onMouseOver={() => setChildMenuHover(child)}
+                            >
+                              <Link
+                                href={`${item?.link}`}
+                                onClick={handleLinkClick}
+                              >
+                                {item?.title}
+                              </Link>
+                              {child && <ChevronRight size={18} />}
+                            </li>
+                          );
+                        })}
                     </ul>
                   </div>
-                  {childMenuHover &&
+                  {childMenuHover && (
                     <div className="col-span-2 p-2 min-h-[200px] bg-white">
                       <ul>
                         <li className="hover:bg-white hover:text-black px-2 py-1">
-                          <b><Link href={`${childMenuHover.link}`} onClick={handleLinkClick}>All {childMenuHover.title}</Link></b>
+                          <b>
+                            <Link
+                              href={`${childMenuHover.link}`}
+                              onClick={handleLinkClick}
+                            >
+                              All {childMenuHover.title}
+                            </Link>
+                          </b>
                         </li>
-                        {childMenuHover && childMenuHover.child.map((item: any, indax: any) => {
-                          return (<li className="hover:bg-white hover:text-black px-2 py-1">
-                            <Link href={`${item.link}`} onClick={handleLinkClick}>{item.title}</Link>
-                          </li>);
-                        })}
+                        {childMenuHover &&
+                          childMenuHover.child.map((item: any, indax: any) => {
+                            return (
+                              <li className="hover:bg-white hover:text-black px-2 py-1">
+                                <Link
+                                  href={`${item.link}`}
+                                  onClick={handleLinkClick}
+                                >
+                                  {item.title}
+                                </Link>
+                              </li>
+                            );
+                          })}
                       </ul>
                     </div>
-                  }
+                  )}
                 </div>
               ) : (
-                <div className="grid grid-cols-4 gap-2 p-2">
-                  {categories && categories.map((item: any, indax: any) => {
-                    return (<div className="flex cursor-pointer hover:shadow hover:border p-2" onClick={() => handleChildMenu(item)} >
-                      <img src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png" alt="image" className="w-[50px] h-[50px] pr-2" />
-                      <div className="flex flex-col">
-                        <span className="text-2xl font-semibold line-clamp-1">{item.title}</span>
-                        <span className="text-sm text-gray-400 line-clamp-2" contentEditable='true' dangerouslySetInnerHTML={{ __html: item?.description }}></span>
-                      </div>
-                    </div>);
-                  })}
+                <div className="grid  grid-flow-row gap-2 p-2">
+                  {categories &&
+                    categories.map((item: any, indax: any) => {
+                      return (
+                        <div
+                          className="flex cursor-pointer hover:shadow hover:border p-2"
+                          onClick={() => handleChildMenu(item)}
+                        >
+                          <Image
+                            src="https://imagecdn.jw.com.au/media/snowdog/menu/node/l/a/laptops-tablets-menu.png"
+                            alt="image"
+                            width={50}
+                            height={50}
+                            className="w-[50px] h-[50px] pr-2"
+                          />
+                          <div className="flex flex-col">
+                            <span className="text-2xl font-semibold line-clamp-1">
+                              {item.title}
+                            </span>
+                            <span
+                              className="text-sm text-gray-400 line-clamp-2"
+                              contentEditable="true"
+                              dangerouslySetInnerHTML={{
+                                __html: item?.description,
+                              }}
+                            ></span>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               )}
             </div>

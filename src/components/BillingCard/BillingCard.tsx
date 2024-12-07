@@ -803,48 +803,48 @@ const BillingCard = ({
                             defaultValue="BANK"
                             className="grid sm:grid-cols-3 grid-cols-1  py-3"
                           >
-                            <div className="flex items-center gap-3  sm:flex-col space-x-2">
+                            <Label
+                              className="flex items-center gap-3  sm:flex-col space-x-2"
+                              htmlFor="BANK"
+                            >
                               <div className="w-5">
                                 <RadioGroupItem value="BANK" id="BANK" />
                               </div>
-                              <Label
-                                htmlFor="BANK"
-                                className="flex flex-col items-center cursor-pointer gap-2 w-full"
-                              >
+                              <div className="flex flex-col items-center cursor-pointer gap-2 w-full">
                                 <Image src={cod} alt="cod" />
                                 <span className="text-center w-full">
                                   Bank Deposit
                                 </span>
-                              </Label>
-                            </div>
-                            <div className="flex items-center gap-3 sm:flex-col space-x-2 sm:border-x sm:border-[#CCCCCC] ">
+                              </div>
+                            </Label>
+                            <Label
+                              htmlFor="PAYPAL"
+                              className="flex items-center gap-3 sm:flex-col space-x-2 sm:border-x sm:border-[#CCCCCC] "
+                            >
                               <div className="w-5">
                                 <RadioGroupItem value="PAYPAL" id="PAYPAL" />
                               </div>
-                              <Label
-                                htmlFor="PAYPAL"
-                                className="flex flex-col items-center cursor-pointer w-full gap-2"
-                              >
+                              <div className="flex flex-col items-center cursor-pointer w-full gap-2">
                                 <Image src={paypal} alt="paypal" />
                                 <span className="text-center w-full">
                                   Paypal
                                 </span>
-                              </Label>
-                            </div>
-                            <div className="flex items-center gap-3 sm:flex-col space-x-2">
+                              </div>
+                            </Label>
+                            <Label
+                              htmlFor="NAB"
+                              className="flex items-center gap-3 sm:flex-col space-x-2"
+                            >
                               <div className="w-5">
                                 <RadioGroupItem value="NAB" id="NAB" />
                               </div>
-                              <Label
-                                htmlFor="NAB"
-                                className="flex flex-col items-center w-full cursor-pointer gap-2"
-                              >
+                              <div className="flex flex-col items-center w-full cursor-pointer gap-2">
                                 <Image src={card} alt="card" />
                                 <span className="text-center w-full">
                                   Credit/Debit Card(NAB Pay)
                                 </span>
-                              </Label>
-                            </div>
+                              </div>
+                            </Label>
                           </RadioGroup>
                         </FormItem>
                       )}

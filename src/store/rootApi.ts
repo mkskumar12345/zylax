@@ -49,5 +49,6 @@ export const rootApiSlice = createApi({
     "favorite-product",
     "cart",
     "blogs-list",
+    "categories-list",
   ],
 });
