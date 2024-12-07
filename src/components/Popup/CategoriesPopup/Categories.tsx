@@ -4,114 +4,113 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { RootState } from "@/store/store";
+import { ChevronDown, ChevronRight, Laptop, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { popupTypes } from "../popupTypes";
+import { TOGGLE } from "@/store/slices/popupSlice";
+import { useGetCategoriesListQuery } from "@/store/apiServices/commonApi";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import allPagesRoutes from "@/constants/allPagesRoutes";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Categories = () => {
+  const router = useRouter();
+  const [categoriesChilds, setCategoriesChilds] = useState<any[]>([]);
+  const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
+  const dispatch = useDispatch();
+  const { data: categories, isLoading } = useGetCategoriesListQuery(undefined);
+  console.log(categories);
+
+  const onCategoryClick = (item: any) => {
+    if (item?.child?.length) {
+      setCategoriesChilds(item?.child);
+    } else {
+      router.push(allPagesRoutes?.PRODUCTS);
+      dispatch(TOGGLE(popupTypes.CLOSE));
+    }
+  };
   return (
-    <Dialog>
+    <Dialog
+      open={isPopupOpen === popupTypes.CATEGORIES}
+      onOpenChange={(value) =>
+        dispatch(
+          TOGGLE(
+            isPopupOpen === popupTypes.CLOSE
+              ? popupTypes.CATEGORIES
+              : popupTypes.CLOSE
+          )
+        )
+      }
+    >
       <DialogTrigger>
         <div className="cursor-pointer flex items-center">
           List Categories <ChevronDown />
         </div>
       </DialogTrigger>
-      <DialogContent className="border-none h-full  max-w-full w-full">
-        <div className="relative p-5 w-full h-full flex flex-col bg-white text-primary shadow-lg  mt-2 rounded-[4px]">
+      <DialogContent className="border-none max-h-[500px] h-full overflow-hidden max-w-full w-full">
+        <div className="relative p-5 w-full h-full  flex flex-col bg-white  shadow-lg  mt-2 rounded-[4px]">
           <DialogClose
-            className="absolute top-2 right-2 text-black hover:text-[#8d8e8f] cursor-pointer"
+            className="absolute bg-white rounded-full top-1  right-1 text-black hover:text-[#8d8e8f] cursor-pointer"
             asChild
           >
-            <button>✕</button>
+            <X size={28} strokeWidth={2} />
           </DialogClose>
-          <div className="flex gap-5">
-            <div className="w-[200px]">
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Computer Accessories <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Adapters <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Batteries <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Cables <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Laptop <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Cameras <ChevronRight />
-              </div>
-              <div className="border border-[#E5E6E8] w-[200px] h-[64px] flex justify-center items-center">
-                Lighting <ChevronRight />
-              </div>
-            </div>
-            <div className=" w-[800px] h-[400px] flex flex-wrap gap-5">
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-
-              <div className="flex flex-col ">
-                <span>Computer Accessories</span>
-                <span className="text-black">Cables</span>
-                <span className="text-black">Consumables</span>
-                <span className="text-black">Gaming Products</span>
-                <span className="text-black">Point of Sale (Pos)</span>
-              </div>
-            </div>
+          <div className="grid h-full lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
+            <ScrollArea className="h-[400px]  w-full  rounded-md border">
+              {categories?.data?.map(
+                (item: {
+                  title: string;
+                  description: string;
+                  icon: any;
+                  child: any[];
+                }) => (
+                  <div
+                    onClick={() => onCategoryClick(item)}
+                    className="border group flex justify-between   border-[#E5E6E8] px-4 py-2 cursor-pointer "
+                  >
+                    <span
+                      className="!visible"
+                      dangerouslySetInnerHTML={{ __html: item?.icon }}
+                    />
+                    <Laptop className="mr-2" />
+                    <div className="w-full font-semibold">
+                      <h4 className="text-primary">{item.title}</h4>
+                      <div className="text-[#989797]  leading-4  hidden group-hover:block  font-medium text-sm ">
+                        {item?.description}
+                      </div>
+                    </div>
+                    {item?.child?.length > 0 && <ChevronRight />}
+                  </div>
+                )
+              )}
+            </ScrollArea>
+            {categoriesChilds?.length > 0 && (
+              <ScrollArea className=" md:col-span-2 sm:col-span-1 lg:col-span-3  h-[400px]">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2  gap-2 lg:grid-cols-3 lg:col-span-3 ">
+                  {categoriesChilds?.map(
+                    (item: {
+                      title: string;
+                      description: string;
+                      icon: any;
+                      child: any[];
+                    }) => (
+                      <div
+                        onClick={() => onCategoryClick(item)}
+                        className="border group flex justify-between items-center h-14  border-[#E5E6E8] px-4 py-2 cursor-pointer "
+                      >
+                        <div className="flex gap-2">
+                          <Laptop className="mr-2" />
+                          {item.title}
+                        </div>
+                        {item?.child?.length > 0 && <ChevronRight />}
+                      </div>
+                    )
+                  )}
+                </div>
+              </ScrollArea>
+            )}
           </div>
         </div>
       </DialogContent>

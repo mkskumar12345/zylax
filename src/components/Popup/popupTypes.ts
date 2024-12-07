@@ -6,4 +6,5 @@ export const popupTypes = {
   SUCCESS: "SUCCESS",
   CLOSE: "CLOSE",
   PAYPAL: "PAYPAL",
+  CATEGORIES: "CATEGORIES",
 };
