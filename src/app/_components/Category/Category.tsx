@@ -68,7 +68,6 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const [filters, setFilters] = useState<any>(null);
   const [products, setProducts] = useState<any>([]);
   const [attr, setAttr] = useState<any>(null);
-
   // const { data: products, isLoading } = useGetProductsQuery({
   //   page: page,
   //   items_per_page: 10,
@@ -121,12 +120,21 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
     setAttr((prev: any) => newAttr);
   }
 
+  const updateUrl = () => {
+    const params = new URLSearchParams();
+    if (attr) {
+      params.append("attr", JSON.stringify(attr))
+      window.history.pushState(null, '', pathname + '?' + params.toString())
+    };
+  };
+
   useEffect(() => {
     fetchData();
   }, [])
 
   useEffect(() => {
     fetchData();
+    updateUrl();
   }, [page, attr])
 
   return (
@@ -149,6 +157,20 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
           </Button>
           {filters ? (
             <div className="grid grid-flow-row sm:grid-flow-dense md:grid-flow-row sm:grid-cols-2 md:grid-cols-1  gap-6 ">
+              {filters?.categories &&
+                <Accordion collapsible type="single" className="w-full max-h-[250px] overflow-auto">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="font-semibold text-xl">All Categories</AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-3">
+                      {filters?.categories?.map((item: any, row: number) => (
+                        <div key={row}>
+                          <ChildCategory item={item} />
+                        </div>
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              }
               {Object.entries(filters).map(([key, items]: any) => (
                 key != 'categories' &&
                 <Accordion collapsible type="single" className="w-full max-h-[250px] overflow-auto" key={key}>
@@ -348,7 +370,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
                 isFavorite: boolean;
               }) => (
                 <Link
-                  href={`${allPagesRoutes.PRODUCT_DETAILS} / ${item?.slug}`}
+                  href={`${allPagesRoutes.PRODUCT_DETAILS}/${item?.slug}`}
                   key={`product-${item?.id}`}
                 >
                   <div className="bg-white  card w-full border border-[#99999999] rounded-xl">
@@ -501,3 +523,14 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
 };
 
 export default Category;
+
+const ChildCategory = ({ item }: any) => {
+  return (
+    <ul style={{ paddingLeft: "15px" }}>
+      <li><Link href={`/${item.slug}`}>{item?.name}</Link></li>
+      {item?.child?.length > 0 && item?.child?.map((child: any, row: number) => (
+        <ChildCategory item={child} key={row} />
+      ))}
+    </ul>
+  )
+}
