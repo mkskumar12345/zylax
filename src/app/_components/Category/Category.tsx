@@ -122,8 +122,10 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
 
   const updateUrl = () => {
     const params = new URLSearchParams();
-    if (attr) params.append("attr", JSON.stringify(attr));
-    window.history.pushState(null, '', pathname + '?' + params.toString())
+    if (attr) {
+      params.append("attr", JSON.stringify(attr))
+      window.history.pushState(null, '', pathname + '?' + params.toString())
+    };
   };
 
   useEffect(() => {
