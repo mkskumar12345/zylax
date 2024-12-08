@@ -82,25 +82,15 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                   <SheetHeader className="">
                     <SheetTitle>Menu</SheetTitle>
                   </SheetHeader>
-                  <div className="flex flex-col p-4">
+                  <div className="flex flex-col p-2 px-0">
                     {/* Search */}
-                    <div className="flex flex-col items-start gap-4 ">
+                    {/* <div className="flex flex-col items-start gap-4 ">
                       <div className="w-full">
                         <Input
                           className="border bg-secondary px-4 py-2 h-full rounded "
                           placeholder="Search For products,categories..."
                         />
                       </div>
-                      {/* <Select>
-                      <SelectTrigger className="border bg-secondary px-4 py-2 h-full rounded-full ">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">Items 1</SelectItem>
-                        <SelectItem value="2">items 2</SelectItem>
-                        <SelectItem value="3">items 3</SelectItem>
-                      </SelectContent>
-                    </Select> */}
                       <Button
                         title="Search"
                         className="bg-black w-full text-white font-semibold rounded px-4 py-2"
@@ -112,59 +102,73 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                         />
                         Search
                       </Button>
-                    </div>
+                    </div> */}
 
                     {/* Menu */}
-                    <div className="flex flex-col mt-4 items-start text-black py-2 font-semibold">
-                      <Link title="Home" href={allPagesRoutes.HOME}>
-                        <SheetClose>
-                          <h3>Home</h3>
-                        </SheetClose>
-                      </Link>
-                      <h3
-                        className="flex gap-2"
-                        onClick={() =>
-                          dispatch(
-                            TOGGLE(
-                              isPopupOpen === popupTypes.CLOSE
-                                ? popupTypes.CATEGORIES
-                                : popupTypes.CLOSE
+                    <div className="flex flex-col  items-start text-black py-2 font-semibold">
+                      <div className="flex flex-col gap-1 w-full ">
+                        <Link
+                          title="Home"
+                          href={allPagesRoutes.HOME}
+                          className="p-1 bg-[#f6f6f6]"
+                        >
+                          <SheetClose>
+                            <h3>Home</h3>
+                          </SheetClose>
+                        </Link>
+                        <h3
+                          className="flex gap-2 hover:bg-[#e6e6e6] hover:text-primary p-1 px-2 bg-[#f6f6f6]"
+                          onClick={() =>
+                            dispatch(
+                              TOGGLE(
+                                isPopupOpen === popupTypes.CLOSE
+                                  ? popupTypes.CATEGORIES
+                                  : popupTypes.CLOSE
+                              )
                             )
-                          )
-                        }
-                      >
-                        Shop <MoveRight />
-                      </h3>
-                      <Link
-                        title="Shop By Categories"
-                        href={allPagesRoutes.PRODUCTS}
-                      >
-                        <SheetClose>
-                          <h3>Shop By Categories</h3>
-                        </SheetClose>
-                      </Link>
-                      <Link title="Shop by Brands" href={allPagesRoutes.BRANDS}>
-                        <SheetClose>
-                          <h3>Shop by Brands</h3>{" "}
-                        </SheetClose>
-                      </Link>
-                      {/* <Link href={"/#best-seller"}>
-                        <SheetClose>
-                          <h3>Best Seller</h3>
-                        </SheetClose>
-                      </Link> */}
-                      <Link title="About us" href={allPagesRoutes.ABOUT_US}>
-                        <SheetClose>
-                          <h3>About Us</h3>
-                        </SheetClose>
-                      </Link>
+                          }
+                        >
+                          Shop <MoveRight />
+                        </h3>
+                        <Link
+                          className="p-1 px-2 hover:bg-[#e6e6e6] hover:text-primary bg-[#f6f6f6]"
+                          title="Shop By Categories"
+                          href={allPagesRoutes.PRODUCTS}
+                        >
+                          <SheetClose>
+                            <h3>Products</h3>
+                          </SheetClose>
+                        </Link>
+                        <Link
+                          className="p-1 px-2 hover:bg-[#e6e6e6] hover:text-primary bg-[#f6f6f6]"
+                          title="Shop by Brands"
+                          href={allPagesRoutes.BRANDS}
+                        >
+                          <SheetClose>
+                            <h3>Shop by Brands</h3>{" "}
+                          </SheetClose>
+                        </Link>
 
-                      {/* <h3>Blog</h3> */}
-                      <Link title="Contact us" href={allPagesRoutes.CONTACT_US}>
-                        <SheetClose>
-                          <h3>Contact</h3>{" "}
-                        </SheetClose>
-                      </Link>
+                        <Link
+                          className="p-1 px-2 hover:bg-[#e6e6e6] hover:text-primary bg-[#f6f6f6]"
+                          title="About us"
+                          href={allPagesRoutes.ABOUT_US}
+                        >
+                          <SheetClose>
+                            <h3>About Us</h3>
+                          </SheetClose>
+                        </Link>
+
+                        <Link
+                          className="p-1 px-2 hover:bg-[#e6e6e6] hover:text-primary bg-[#f6f6f6]"
+                          title="Contact us"
+                          href={allPagesRoutes.CONTACT_US}
+                        >
+                          <SheetClose>
+                            <h3>Contact</h3>{" "}
+                          </SheetClose>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -14,6 +14,15 @@ import {
   MoveLeft,
   X,
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import { useDispatch, useSelector } from "react-redux";
 import { popupTypes } from "../popupTypes";
 import { TOGGLE } from "@/store/slices/popupSlice";
@@ -319,10 +328,20 @@ const CategoriesBeforeLG = ({ categories, router, dispatch }: any) => {
 const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
   const [categoriesChilds, setCategoriesChilds] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
+  const [categories2Childs, setCategories2Childs] = useState<any[]>([]);
 
   const onCategoryClick = (item: any) => {
     if (item?.child?.length) {
       setCategoriesChilds(item?.child);
+    } else {
+      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      dispatch(TOGGLE(popupTypes.CLOSE));
+    }
+  };
+
+  const onChildCategoryClick = (item: any) => {
+    if (item?.child?.length) {
+      setCategories2Childs(item?.child);
     } else {
       router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
@@ -401,18 +420,38 @@ const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
                   icon: any;
                   child: any[];
                 }) => (
-                  <div
-                    onClick={() => {
-                      onCategoryClick(item);
-                    }}
-                    className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
-                  >
-                    <div className="flex gap-2 font-semibold">
-                      {/* <Laptop className="mr-2" /> */}
-                      {item.title}
-                    </div>
-                    {item?.child?.length > 0 && <ChevronRight />}
-                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div
+                        // onClick={() => {
+                        //   onCategoryClick(item);
+                        // }}
+                        className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
+                      >
+                        <div className="flex gap-2 font-semibold">
+                          {/* <Laptop className="mr-2" /> */}
+                          {item.title}
+                        </div>
+                        {item?.child?.length > 0 && <ChevronRight />}
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="border-[#c3c3c4] rounded-[8px]">
+                      {item?.child?.map((child: any) => (
+                        <DropdownMenuItem
+                          onClick={() => {
+                            if (child?.child?.length == 0) {
+                              router.push(
+                                `${allPagesRoutes?.PRODUCTS}?category=${item?.title}`
+                              );
+                              dispatch(TOGGLE(popupTypes.CLOSE));
+                            }
+                          }}
+                        >
+                          {child.title}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 )
               )}
             </div>
