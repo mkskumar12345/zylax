@@ -70,7 +70,7 @@ const Categories = () => {
             dispatch={dispatch}
           />
         </div>
-        <div className="block sm:hidden">
+        <div className="block  sm:hidden">
           <CategoriesBeforeSM
             categories={categories}
             router={router}
