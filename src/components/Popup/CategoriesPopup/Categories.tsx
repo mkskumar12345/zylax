@@ -107,7 +107,7 @@ const Categories = () => {
               )}
             </ScrollArea>
             {categoriesChilds?.length > 0 && (
-              <ScrollArea className=" md:col-span-2 sm:col-span-1 lg:col-span-3  max-h-[400px]">
+              <ScrollArea className="md:col-span-2 sm:col-span-1 lg:col-span-3  max-h-[400px]">
                 <div className="w-full grid grid-cols-1 md:grid-cols-2  gap-2 lg:grid-cols-3 lg:col-span-3 ">
                   {categoriesChilds?.map(
                     (item: {
