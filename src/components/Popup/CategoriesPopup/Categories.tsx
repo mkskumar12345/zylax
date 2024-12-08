@@ -18,8 +18,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -328,20 +326,10 @@ const CategoriesBeforeLG = ({ categories, router, dispatch }: any) => {
 const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
   const [categoriesChilds, setCategoriesChilds] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
-  const [categories2Childs, setCategories2Childs] = useState<any[]>([]);
 
   const onCategoryClick = (item: any) => {
     if (item?.child?.length) {
       setCategoriesChilds(item?.child);
-    } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
-      dispatch(TOGGLE(popupTypes.CLOSE));
-    }
-  };
-
-  const onChildCategoryClick = (item: any) => {
-    if (item?.child?.length) {
-      setCategories2Childs(item?.child);
     } else {
       router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
