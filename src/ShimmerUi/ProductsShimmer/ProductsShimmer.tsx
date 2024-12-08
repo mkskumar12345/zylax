@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductsShimmer = () => {
   return (
-    <div className="bg-white card w-full border border-[#99999999] rounded-xl animate-pulse">
+    <div className="bg-white card w-full border border-[#e5e5e599] rounded-xl animate-pulse">
       <div className="leading-4 text-center font-semibold text-lg flex items-center p-4 bg-gray-200 h-6 w-full mx-auto rounded-t-xl"></div>
       <div className="flex gap-2 justify-center mt-2">
         <div className="h-3 w-10 bg-gray-200 rounded"></div>
