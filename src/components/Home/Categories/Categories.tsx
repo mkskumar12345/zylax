@@ -56,7 +56,7 @@ const Categories = () => {
   ];
 
   return (
-    <div className="md:container  flex flex-col  pt-10 h-fit relative">
+    <div className="md:container  flex flex-col  lg:pt-15  p-5 h-fit relative">
       <div className="flex flex-wrap xl:flex-nowrap justify-center lg:justify-between gap-6">
         <div className="bg-secondary pl-8 w-80 rounded-lg h-[100px] flex items-center gap-6 ">
           <div>
