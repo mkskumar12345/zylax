@@ -58,7 +58,7 @@ const BestSeller = ({ bestSellerData }: { bestSellerData: any }) => {
   return (
     <div className="bg-secondary py-16">
       <div className="md:container">
-        <div className="grid grid-cols-12 gap-6 ">
+        <div className="lg:grid grid-cols-12 gap-6 lg:p-0 p-5 ">
           <div className="lg:col-span-4 col-span-12 ">
             <div className="flex flex-col gap-4 mb-4">
               <p className="text-[#666666] text-xs font-medium">
@@ -87,14 +87,6 @@ const BestSeller = ({ bestSellerData }: { bestSellerData: any }) => {
           <div className="lg:col-span-8 mt-4 md:col-span-12 ">
             <div id="best-seller" className="flex justify-between">
               <h1 className="font-bold text-3xl">Best Sellers</h1>
-              {/* <div className="flex gap-4">
-                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white  ">
-                  <Image src={svgIconLeftArrow} alt="" />
-                </span>
-                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white  ">
-                  <Image src={svgIconRightArrow} alt="" />
-                </span>
-              </div> */}
             </div>
             <Carousel
               opts={{

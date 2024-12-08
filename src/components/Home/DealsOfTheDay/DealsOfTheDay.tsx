@@ -61,7 +61,7 @@ const DealsOfTheDay = ({ dealOfTheDayData }: { dealOfTheDayData: any }) => {
         <h1 className="text-secondary md:container mt-10 font-semibold md:text-3xl text-2xl lg:text-4xl mb-8">
           Best Deals of The Days
         </h1>
-        <div className="grid grid-cols-3 gap-x-4  md:container pb-10 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4  md:container pb-10 ">
           {dealOfTheDayData?.slice(0, 6)?.map((item: any, index: number) => (
             <div
               key={`deal-of-the-day-${item?.id}`}
