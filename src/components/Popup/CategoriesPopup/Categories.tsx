@@ -15,32 +15,47 @@ import { useRouter } from "next/navigation";
 import allPagesRoutes from "@/constants/allPagesRoutes";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import { on } from "events";
 
 const Categories = () => {
-  const [breadCrumps, setBreadCrumps] = useState<any[]>([
-    {
-      title: "Categories",
-    },
-  ]);
   const router = useRouter();
-  const [categoriesChilds, setCategoriesChilds] = useState<any[]>([]);
+  const [categoriesChilds1, setCategoriesChilds1] = useState<any[]>([]);
+  const [categoriesChilds2, setCategoriesChilds2] = useState<any[]>([]);
+  const [categoriesChilds3, setCategoriesChilds3] = useState<any[]>([]);
+
   const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
   const dispatch = useDispatch();
   const { data: categories, isLoading } = useGetCategoriesListQuery(undefined);
-  console.log(categories);
 
   const onCategoryClick = (item: any) => {
     if (item?.child?.length) {
-      setCategoriesChilds(item?.child);
-      setBreadCrumps((prev) => [...prev, { title: item?.title }]);
+      setCategoriesChilds1(item?.child);
+      setCategoriesChilds2([]);
+      setCategoriesChilds3([]);
     } else {
-      router.push(allPagesRoutes?.PRODUCTS);
+      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
-
-  const onClickBreadCrump = (item: any) => {
-    router.push(item?.path);
+  const onFirstChildHover = (item: any) => {
+    if (item?.child?.length) {
+      setCategoriesChilds2(item?.child);
+      setCategoriesChilds3([]);
+    } else {
+      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      dispatch(TOGGLE(popupTypes.CLOSE));
+    }
+  };
+  const onSecondChildHover = (item: any) => {
+    if (item?.child?.length) {
+      setCategoriesChilds3(item?.child);
+    } else {
+      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      dispatch(TOGGLE(popupTypes.CLOSE));
+    }
+  };
+  const onThirdChildClick = (item: any) => {
+    router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
     dispatch(TOGGLE(popupTypes.CLOSE));
   };
 
@@ -62,23 +77,16 @@ const Categories = () => {
           Shop <ChevronDown />
         </div>
       </DialogTrigger>
-      <DialogContent className="border-none max-h-[500px] h-full overflow-hidden max-w-full w-full">
-        <div className="relative p-5 w-full h-full  flex flex-col bg-white  shadow-lg  mt-2 rounded-[4px]">
+      <DialogContent className="border-none   max-h-[500px] h-full overflow-hidden max-w-full w-full">
+        <div className="relative w-full h-full  flex flex-col bg-white  shadow-lg  mt-2 rounded-[4px]">
           <DialogClose
-            className="absolute bg-white rounded-full top-1  right-1 text-black hover:text-[#8d8e8f] cursor-pointer"
+            className="absolute bg-white z-50 rounded-full -top-5  -right-5 text-black hover:text-[#8d8e8f] cursor-pointer"
             asChild
           >
             <X size={28} strokeWidth={2} />
           </DialogClose>
-          <DialogTitle className="font-semibold flex -mt-3 mb-2">
-            {breadCrumps?.map((item: any, index: number) => (
-              <span className="cursor-pointer" key={`breadcrupm-${item?.id}`}>
-                {item?.title} {index === breadCrumps?.length - 1 ? null : "/ "}
-              </span>
-            ))}
-          </DialogTitle>
-          <div className="grid h-full lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
-            <ScrollArea className="max-h-[400px]  w-full  rounded-md flex flex-col gap-1">
+          <div className="grid h-full lg:grid-cols-4 md:grid-cols-3 grid-cols-2  ">
+            <ScrollArea className="max-h-[490px] p-4  w-full  rounded-md flex flex-col gap-1">
               {categories?.data?.map(
                 (item: {
                   title: string;
@@ -88,7 +96,7 @@ const Categories = () => {
                 }) => (
                   <div
                     onClick={() => onCategoryClick(item)}
-                    className="border group flex justify-between   border-[#f2f3f4] px-4 py-2 cursor-pointer "
+                    className=" group flex justify-between hover:bg-[#f7f7f7]  px-1 py-2 cursor-pointer "
                   >
                     <span
                       className="!visible"
@@ -106,10 +114,10 @@ const Categories = () => {
                 )
               )}
             </ScrollArea>
-            {categoriesChilds?.length > 0 && (
-              <ScrollArea className=" md:col-span-2 sm:col-span-1 lg:col-span-3  max-h-[400px]">
-                <div className="w-full grid grid-cols-1 md:grid-cols-2  gap-2 lg:grid-cols-3 lg:col-span-3 ">
-                  {categoriesChilds?.map(
+            {categoriesChilds1?.length > 0 && (
+              <ScrollArea className="bg-[#f7f7f7] p-4 max-h-[490px]">
+                <div className="w-full ">
+                  {categoriesChilds1?.map(
                     (item: {
                       title: string;
                       description: string;
@@ -117,11 +125,69 @@ const Categories = () => {
                       child: any[];
                     }) => (
                       <div
-                        onClick={() => onCategoryClick(item)}
-                        className="border group flex justify-between items-center h-14  border-[#f3f3f4] px-4 py-2 cursor-pointer "
+                        onMouseEnter={() => {
+                          item?.child?.length > 0 && onFirstChildHover(item);
+                        }}
+                        onClick={() => {
+                          onFirstChildHover(item);
+                        }}
+                        className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
                       >
-                        <div className="flex gap-2">
-                          <Laptop className="mr-2" />
+                        <div className="flex gap-2 font-semibold">
+                          {/* <Laptop className="mr-2" /> */}
+                          {item.title}
+                        </div>
+                        {item?.child?.length > 0 && <ChevronRight />}
+                      </div>
+                    )
+                  )}
+                </div>
+              </ScrollArea>
+            )}
+            {categoriesChilds2?.length > 0 && (
+              <ScrollArea className="  hover:bg-[#f7f7f7] max-h-[490px] p-4">
+                <div className="w-full  ">
+                  {categoriesChilds2?.map(
+                    (item: {
+                      title: string;
+                      description: string;
+                      icon: any;
+                      child: any[];
+                    }) => (
+                      <div
+                        onMouseEnter={() => {
+                          item?.child?.length > 0 && onSecondChildHover(item);
+                        }}
+                        onClick={() => {
+                          onSecondChildHover(item);
+                        }}
+                        className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
+                      >
+                        <div className="flex gap-2 font-semibold">
+                          {item.title}
+                        </div>
+                        {item?.child?.length > 0 && <ChevronRight />}
+                      </div>
+                    )
+                  )}
+                </div>
+              </ScrollArea>
+            )}
+            {categoriesChilds3?.length > 0 && (
+              <ScrollArea className=" hover:bg-[#f7f7f7] max-h-[490px] p-4">
+                <div className="w-full ">
+                  {categoriesChilds3?.map(
+                    (item: {
+                      title: string;
+                      description: string;
+                      icon: any;
+                      child: any[];
+                    }) => (
+                      <div
+                        onClick={() => onThirdChildClick(item)}
+                        className=" group flex justify-between items-center py-2  px-4  cursor-pointer "
+                      >
+                        <div className="flex gap-2 font-semibold">
                           {item.title}
                         </div>
                         {item?.child?.length > 0 && <ChevronRight />}

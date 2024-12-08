@@ -56,14 +56,20 @@ import {
 import checkQuantity from "@/lib/checkQuantity";
 import ProductsShimmer from "@/ShimmerUi/ProductsShimmer/ProductsShimmer";
 
-const Products = ({ brand }: { brand?: string | number | undefined }) => {
+const Products = ({
+  brand,
+  category,
+}: {
+  brand?: string | number | undefined;
+  category?: string | number | undefined;
+}) => {
   const shimmerArray = Array(9).fill(0);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
   const [values, setValues] = useState([20, 80]);
   const [page, setPage] = useState<number>(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(category || "");
   const [addToFavoriteMutation, { isSuccess: isSuccessFavorite }] =
     useAddToFavoriteMutation();
   const [removeFromFavorite, { isSuccess: isSuccessRemove }] =
@@ -95,7 +101,6 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
       toast.error(response.message);
     }
   };
-
   return (
     <>
       <CommonBanner
@@ -252,8 +257,9 @@ const Products = ({ brand }: { brand?: string | number | undefined }) => {
               <div className="flex relative h-[42px] w-full  lg:w-[309px]">
                 <Input
                   placeholder="Search"
-                  className="h-full w-full"
+                  className="h-full w-full font-medium"
                   type="text"
+                  value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <Image
