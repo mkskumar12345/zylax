@@ -237,7 +237,6 @@ const CategoriesAfterLG = ({ categories, router, dispatch }: any) => {
 
 const CategoriesBeforeLG = ({ categories, router, dispatch }: any) => {
   const [categoriesChilds, setCategoriesChilds] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<any>(null);
 
   const onCategoryClick = (item: any) => {
     if (item?.child?.length) {
