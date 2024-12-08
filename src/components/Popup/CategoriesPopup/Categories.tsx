@@ -95,7 +95,12 @@ const Categories = () => {
                   child: any[];
                 }) => (
                   <div
-                    onClick={() => onCategoryClick(item)}
+                    onMouseEnter={() => {
+                      item?.child?.length > 0 && onCategoryClick(item);
+                    }}
+                    onClick={() => {
+                      onCategoryClick(item);
+                    }}
                     className=" group flex justify-between hover:bg-[#f7f7f7]  px-1 py-2 cursor-pointer "
                   >
                     <span
@@ -145,7 +150,7 @@ const Categories = () => {
               </ScrollArea>
             )}
             {categoriesChilds2?.length > 0 && (
-              <ScrollArea className="  hover:bg-[#f7f7f7] max-h-[490px] p-4">
+              <ScrollArea className="  hover:bg-[#fffdfd] max-h-[490px] p-4">
                 <div className="w-full  ">
                   {categoriesChilds2?.map(
                     (item: {
@@ -161,7 +166,7 @@ const Categories = () => {
                         onClick={() => {
                           onSecondChildHover(item);
                         }}
-                        className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
+                        className=" group hover:bg-[#e3e3e3] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
                       >
                         <div className="flex gap-2 font-semibold">
                           {item.title}
