@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, Menu, MoveRight } from "lucide-react";
 import NavSearch from "./NavSearch";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -27,10 +27,15 @@ import Link from "next/link";
 import Signup from "@/components/Popup/Signup/Signup";
 import Login from "@/components/Popup/Login/Login";
 import allPagesRoutes from "@/constants/allPagesRoutes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "@/store/slices/cartSlice";
+import { TOGGLE } from "@/store/slices/popupSlice";
+import { popupTypes } from "@/components/Popup/popupTypes";
+import { RootState } from "@/store/store";
 
 const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
+  const dispatch = useDispatch();
+  const isPopupOpen = useSelector((state: RootState) => state.popups.ISOPEN);
   const cartItems = useSelector(selectCartItems);
 
   return (
@@ -116,6 +121,20 @@ const NavMiddle = ({ authToken }: { authToken: string | undefined }) => {
                           <h3>Home</h3>
                         </SheetClose>
                       </Link>
+                      <h3
+                        className="flex gap-2"
+                        onClick={() =>
+                          dispatch(
+                            TOGGLE(
+                              isPopupOpen === popupTypes.CLOSE
+                                ? popupTypes.CATEGORIES
+                                : popupTypes.CLOSE
+                            )
+                          )
+                        }
+                      >
+                        Shop <MoveRight />
+                      </h3>
                       <Link
                         title="Shop By Categories"
                         href={allPagesRoutes.PRODUCTS}
