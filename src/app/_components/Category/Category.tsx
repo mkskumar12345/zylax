@@ -54,7 +54,7 @@ import {
   selectCartItems,
 } from "@/store/slices/cartSlice";
 import checkQuantity from "@/lib/checkQuantity";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const dispatch = useDispatch();
@@ -68,6 +68,11 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   const [filters, setFilters] = useState<any>(null);
   const [products, setProducts] = useState<any>([]);
   const [attr, setAttr] = useState<any>(null);
+
+  // get query param from URL
+  const searchParams = useSearchParams();
+  const urlAttr = searchParams.get('attr');
+
   // const { data: products, isLoading } = useGetProductsQuery({
   //   page: page,
   //   items_per_page: 10,
@@ -100,6 +105,7 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
     const requestOptions: any = { method: "GET", redirect: "follow" };
     const params = new URLSearchParams();
     params.append("page", page.toString());
+    params.append("items_per_page", '12');
     if (attr) params.append("attr", JSON.stringify(attr));
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_APP_URL}/category/${pathname.split('/').pop()}?${params.toString()}`, requestOptions);
@@ -129,7 +135,11 @@ const Category = ({ brand }: { brand?: string | number | undefined }) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (urlAttr && !attr) {
+      setAttr((prev: any) => JSON.parse(urlAttr));
+    } else {
+      fetchData();
+    }
   }, [])
 
   useEffect(() => {
