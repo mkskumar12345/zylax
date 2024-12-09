@@ -282,9 +282,6 @@ const CategoriesBeforeLG = ({ categories, router, dispatch }: any) => {
                 <Laptop className="mr-2" />
                 <div className="w-full font-semibold">
                   <h4 className="text-primary">{item.title}</h4>
-                  <div className="text-[#989797]  leading-4  hidden group-hover:block  font-medium text-sm ">
-                    {item?.description}
-                  </div>
                 </div>
                 {item?.child?.length > 0 && <ChevronRight className="" />}
               </div>
@@ -388,9 +385,6 @@ const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
                   <Laptop className="mr-2" />
                   <div className="w-full font-semibold">
                     <h4 className="text-primary">{item.title}</h4>
-                    <div className="text-[#989797]  leading-4  hidden group-hover:block  font-medium text-sm ">
-                      {item?.description}
-                    </div>
                   </div>
                   {item?.child?.length > 0 && <ChevronRight className="" />}
                 </div>
@@ -408,38 +402,53 @@ const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
                   icon: any;
                   child: any[];
                 }) => (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                  <div>
+                    {item?.child?.length === 0 && (
                       <div
-                        // onClick={() => {
-                        //   onCategoryClick(item);
-                        // }}
-                        className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
+                        onClick={() => {
+                          dispatch(TOGGLE(popupTypes.CLOSE));
+                          router.replace(
+                            `${allPagesRoutes?.PRODUCTS}?category=${item?.title}`
+                          );
+                        }}
+                        className="  hover:bg-[#FFFFFF]  hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer "
                       >
                         <div className="flex gap-2 font-semibold">
                           {/* <Laptop className="mr-2" /> */}
                           {item.title}
                         </div>
-                        {item?.child?.length > 0 && <ChevronRight />}
                       </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="border-[#c3c3c4] rounded-[8px]">
-                      {item?.child?.map((child: any) => (
-                        <DropdownMenuItem
-                          onClick={() => {
-                            if (child?.child?.length == 0) {
-                              router.push(
-                                `${allPagesRoutes?.PRODUCTS}?category=${item?.title}`
-                              );
-                              dispatch(TOGGLE(popupTypes.CLOSE));
-                            }
-                          }}
-                        >
-                          {child.title}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                    )}
+                    {item?.child?.length > 0 && (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <div className=" group hover:bg-[#FFFFFF] hover:text-primary flex justify-between items-center py-2  px-4  cursor-pointer ">
+                            <div className="flex gap-2 font-semibold">
+                              {/* <Laptop className="mr-2" /> */}
+                              {item.title}
+                            </div>
+                            {item?.child?.length > 0 && <ChevronRight />}
+                          </div>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="border-[#c3c3c4] rounded-[8px]">
+                          {item?.child?.map((child: any) => (
+                            <DropdownMenuItem
+                              onClick={() => {
+                                if (child?.child?.length == 0) {
+                                  router.push(
+                                    `${allPagesRoutes?.PRODUCTS}?category=${item?.title}`
+                                  );
+                                  dispatch(TOGGLE(popupTypes.CLOSE));
+                                }
+                              }}
+                            >
+                              {child.title}
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  </div>
                 )
               )}
             </div>
