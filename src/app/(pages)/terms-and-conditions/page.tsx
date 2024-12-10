@@ -8,7 +8,8 @@ const page = async () => {
     allApiRoutes?.termsAndCondition.TERMS_AND_CONDITION
   );
 
-  return <TermsAndConditions pageData={response?.data} />;
+  return <div>TermsAndConditions</div>;
+  // return <TermsAndConditions pageData={response?.data} />;
 };
 
 export default page;
