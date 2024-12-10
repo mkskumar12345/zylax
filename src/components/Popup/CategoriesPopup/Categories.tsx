@@ -96,7 +96,7 @@ const CategoriesAfterLG = ({ categories, router, dispatch }: any) => {
       setCategoriesChilds2([]);
       setCategoriesChilds3([]);
     } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      router.push(`/${item?.link}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
@@ -105,7 +105,7 @@ const CategoriesAfterLG = ({ categories, router, dispatch }: any) => {
       setCategoriesChilds2(item?.child);
       setCategoriesChilds3([]);
     } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      router.push(`/${item?.link}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
@@ -113,12 +113,12 @@ const CategoriesAfterLG = ({ categories, router, dispatch }: any) => {
     if (item?.child?.length) {
       setCategoriesChilds3(item?.child);
     } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      router.push(`/${item?.link}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
   const onThirdChildClick = (item: any) => {
-    router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+    router.push(`/${item?.link}`);
     dispatch(TOGGLE(popupTypes.CLOSE));
   };
   return (
@@ -249,7 +249,7 @@ const CategoriesBeforeLG = ({ categories, router, dispatch }: any) => {
     if (item?.child?.length) {
       setCategoriesChilds(item?.child);
     } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      router.push(`/${item?.link}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
@@ -328,7 +328,7 @@ const CategoriesBeforeSM = ({ categories, router, dispatch }: any) => {
     if (item?.child?.length) {
       setCategoriesChilds(item?.child);
     } else {
-      router.push(`${allPagesRoutes?.PRODUCTS}?category=${item?.title}`);
+      router.push(`/${item?.link}`);
       dispatch(TOGGLE(popupTypes.CLOSE));
     }
   };
